@@ -2,39 +2,7 @@ import React, {useState} from 'react';
 import { Text , View, Image, Button, StyleSheet, ScrollView } from 'react-native';
 import ReviewCard from './ReviewCard';
 
-export default function PostCard({id=1, image= require("../../assets/profile.png"), title= 'Título', rating= 4, hiringNumber=12, details="Acá van todos los detalles del prestador del servicio abajo van las reviews??? ", reviews  = [{
-    titulo : "Review 1",
-    rating : "5",
-    usuario : "Usuario 1",
-    review : "muy buena la atención !!!"
-},
-{
-    titulo : "Review 2",
-    rating : "1",
-    usuario : "usuario 2",
-    review : "un uno!! un UNO le pongo. vuelva a leer"
-},{
-    titulo : "Bond",
-    rating : "007",
-    usuario : "James Bond",
-    review : "Dr No"
-},{
-    titulo : "expo 4",
-    rating : "4",
-    usuario : "tarjeta expo",
-    review : "detalles review tarjeta 4"
-},{
-    titulo : "expo 5",
-    rating : "5",
-    usuario : "tarjeta expo",
-    review : "detalles review tarjeta 5"
-},{
-    titulo : "expo 6",
-    rating : "3",
-    usuario : "tarjeta expo",
-    review : "detalles review tarjeta 6"
-}
-]}){
+export default function PostCard({id=1, image= require("../../assets/profile.png"), title, rating, hiringNumber, details, reviews}){
     function showDetails(){
         if(detailsView){
             setDetailsView(false);
