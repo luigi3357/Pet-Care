@@ -39,7 +39,8 @@ module.exports = (sequelize) => {
     },
     keeper: {
       type: DataTypes.BOOLEAN,
-      allowNull: false,
+      defaultValue: false
+      //Indicador del status del usuario como cuidador
     },
     rating: {
       type: DataTypes.DECIMAL(3,2),

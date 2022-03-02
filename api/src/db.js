@@ -28,7 +28,8 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 const { User, Post, Review } = sequelize.models;
 
-
+User.hasMany(Post, {as: "posteos", foreignKey: "author_id"})
+Post.belongsTo(User,{as: "author", foreignKey: "author_id"})
 
 
 

@@ -3,10 +3,15 @@ const { verifyEmail, hash, create, search, compare } = require('../services/logi
 const { key, validate } = require('../services/resetPassword');
 const { sendEmail } = require('../services/SendEmail');
 const { Update } = require('../services/updateUser');
+const  UserRoutes  = require('./users');
+const PostsRoutes  = require('./posts');
 
 
 
 const router = Router();
+
+router.use("/users", UserRoutes)
+router.use('/posts', PostsRoutes)
 
 router.post("/register", async (req, res) => {
     let { email, password } = req.body
@@ -17,10 +22,13 @@ router.post("/register", async (req, res) => {
             if (verify === true && password.length >= 8) {
                 let hasheador = await hash(password)
                 let result = await create(email, hasheador)
-                return res.status(200).send(result)
+                return res.status(201).send(result)
             }
             if (verify === false) {
                 return res.status(404).send("Email invalido")
+            }
+            if (password.length<8){
+                return res.status(404).send("La contraseña debe contener al menos 8 caracteres")
             }
         } catch (error) {
             return res.status(404).send(error)
@@ -71,4 +79,6 @@ router.put("/reset", async (req, res) => {
     } 
     return res.status(404).send("error")
 })
+
+
 module.exports = router;

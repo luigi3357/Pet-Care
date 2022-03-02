@@ -18,7 +18,6 @@ async function create (email,hasheador){
         where:{
             password: hasheador,
             email:email,
-            keeper:true
           }
        })
        return Creado
