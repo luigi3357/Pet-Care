@@ -55,8 +55,8 @@ router.put("/forgot-password", async (req, res) => {
         let update = await Update({ token: token, email: email.toLowerCase() })
 
         //armamos el mensaje
-        let asunto = "codigo para reset de password"
-        let mensaje = `codigo para resetear la contraseña ${token}`;
+        let asunto = "Cambio de contraseña"
+        let mensaje = `Usted solicito un cambio de contraseña para hacer efectivo el mismo coloque el siguiente codigo cuando se lo soliciten ${token}; verifique que coincidan mayusculas y minusculas `;
         //envia el email
         let send = sendEmail(email, mensaje, asunto)
         return res.send(update)
