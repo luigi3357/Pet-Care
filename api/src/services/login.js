@@ -24,8 +24,9 @@ async function create (email,hasheador){
        return Creado
 }
 
-async function search (algo){
-   let user = await User.findOne({ algo })
+async function search (body){
+    console.log(body)
+   let user = await User.findOne({ body })
    return user
 }
 
