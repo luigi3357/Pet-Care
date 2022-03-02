@@ -77,7 +77,7 @@ function Login(){
             
             <View style={styles.text2}>
                 <Text >No tienes cuenta?</Text>
-                <TouchableOpacity onPress={()=>navigation.navigate("SingUp")}>
+                <TouchableOpacity onPress={()=>navigation.navigate("Register")}>
                 <Text style={styles.singupText}>REGISTRATE</Text>
                 </TouchableOpacity>
             </View>
