@@ -4,7 +4,7 @@ const { User, Post } = require('../db')
 const router = Router();
 
 
-router.get('/', async (req, res, next)=>{
+router.get('/all', async (req, res, next)=>{
     try {
         const posts = await Post.findAll({
             include: {
@@ -19,7 +19,7 @@ router.get('/', async (req, res, next)=>{
     }
   })
 
-router.post('/', async (req, res, next)=>{
+router.post('/create', async (req, res, next)=>{
     try{
         const {title, description, author_id} = req.body;
         if (!title || !description ){
