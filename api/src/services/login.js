@@ -1,5 +1,5 @@
 const bcrypt = require('bcryptjs')
-const { User } = require('../db');
+const { User, Post, Feedback } = require('../db');
 
 
 function verifyEmail(email){
@@ -9,15 +9,16 @@ function verifyEmail(email){
 }
 
 async function hash(password){
-    let hashh = await bcrypt.hash(password, 10)
-    return hashh
+    let hash = await bcrypt.hash(password, 10)
+    return hash
 }
 
 async function create (email,hasheador){
     let Creado = User.findOrCreate({
         where:{
             password: hasheador,
-            email:email
+            email:email,
+            keeper:true
           }
        })
        return Creado
