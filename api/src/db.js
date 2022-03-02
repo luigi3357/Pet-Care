@@ -30,8 +30,8 @@ const { User, Post, Review } = sequelize.models;
 
 User.hasMany(Post, {as: "posteos", foreignKey: "author_id"})
 Post.belongsTo(User,{as: "author", foreignKey: "author_id"})
-User.hasMany(Review, {as: "reviews", foreignKey: "subject_id" })
-Review.belongsTo(User, {as: 'subject', foreignKey: 'subject_id'})
+User.hasMany(Review, {as: "reviews", foreignKey: "reviewedUser_id" })
+Review.belongsTo(User, {as: 'reviwedUser', foreignKey: 'reviewedUser_id'})
 
 
 

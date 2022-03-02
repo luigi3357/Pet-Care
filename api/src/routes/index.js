@@ -5,6 +5,7 @@ const { sendEmail } = require('../services/SendEmail');
 const { Update } = require('../services/updateUser');
 const  UserRoutes  = require('./users');
 const PostsRoutes  = require('./posts');
+const ReviewRoutes  = require('./reviews');
 
 
 
@@ -12,11 +13,13 @@ const router = Router();
 
 router.use("/users", UserRoutes)
 router.use('/posts', PostsRoutes)
+router.use('/reviews', ReviewRoutes)
 
 router.post("/register", async (req, res) => {
     let { email, password } = req.body
     let user = await search({ email: email.toLowerCase() })
     if (!user) {
+        console.log('estoy aca')
         try {
             let verify = verifyEmail(email.toLowerCase())
             if (verify === true && password.length >= 8) {
