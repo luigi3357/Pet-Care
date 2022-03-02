@@ -3,6 +3,7 @@ const { verifyEmail, hash, create, search, compare } = require('../services/logi
 const { key, validate } = require('../services/resetPassword');
 const { sendEmail } = require('../services/SendEmail');
 const { Update } = require('../services/updateUser');
+const { User, Post } = require('../db')
 
 
 
@@ -17,10 +18,13 @@ router.post("/register", async (req, res) => {
             if (verify === true && password.length >= 8) {
                 let hasheador = await hash(password)
                 let result = await create(email, hasheador)
-                return res.status(200).send(result)
+                return res.status(201).send(result)
             }
             if (verify === false) {
                 return res.status(404).send("Email invalido")
+            }
+            if (password.length<8){
+                return res.status(404).send("La contraseña de contener al menos 8 caracteres")
             }
         } catch (error) {
             return res.status(404).send(error)
