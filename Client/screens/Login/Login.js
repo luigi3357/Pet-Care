@@ -1,17 +1,28 @@
 import React, { useState } from 'react'
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
-import { NativeBaseProvider,Button, Box,Image,AspectRatio,Icon } from 'native-base'
+import { View, Text, StyleSheet, TouchableOpacity, Alert } from 'react-native'
+import { NativeBaseProvider,Button, Box,Image,AspectRatio,Icon,FormControl } from 'native-base'
 import {useNavigation} from '@react-navigation/native'
 import InputsLogin from './Componentes/InpuntsLogin'
 import {FontAwesome5} from '@expo/vector-icons'
+import {useSelector, useDispatch} from 'react-redux'
+import {setEmail, setPassword} from '../Login/actions/loginActions'
 
 function Login(){
+    
 
-    const[username, setUsername] = useState('');
+    const dispatch =useDispatch();
+    const setData = async () =>{
+        if(!email){
+            console.log("no papa")
+        }else{
+      try{
 
-    const[password, setPassword] = useState('');
-          
-
+          navigation.navigate("ForgetPassword")
+      }catch(error){
+        console.log(error)
+      }
+        }
+    }
 
 
     const navigation = useNavigation();
@@ -29,7 +40,8 @@ function Login(){
             <View style={styles.middle}>
                 <Text style={styles.loginText}>Login</Text>
             </View>
-            <InputsLogin value={username} setValue={setUsername}
+            <FormControl >
+            <InputsLogin 
              InputLeftElement={
                 <Icon
                    as={<FontAwesome5  name="user"/>}
@@ -44,8 +56,9 @@ function Login(){
                 />
             }
             placeholder="Usuario o email"
+            onChangeText={(value)=>dispatch(setEmail(value))}
              />
-            <InputsLogin value={password} setValue={setPassword}
+              <InputsLogin 
                           InputLeftElement={
                             <Icon
                                as={<FontAwesome5  name="key"/>}
@@ -61,14 +74,17 @@ function Login(){
                         }
                         placeholder="contraseña"
                         secureTextEntry={true}
+                        onChangeText={(value)=>dispatch(setPassword(value))}
                         />
+             </FormControl>
             <View style={styles.buttonStyle}>
                 <Button
-                 onPress={()=>navigation.navigate("Profile")}
+                 onPress={setData}
                 style={styles.buttonDesing}>
                     LOGIN
-                </Button>
+                </Button>       
             </View>
+            
             <View style={styles.text2}>
                 <TouchableOpacity onPress={()=>navigation.navigate("ForgetPassword")}>
                 <Text style={styles.singupText}>Olvidaste tu Contraseña?</Text>
@@ -150,7 +166,7 @@ export default () => {
   const styles = StyleSheet.create({
       container:{
           flex:1,
-          backgroundColor:"#fff",
+          backgroundColor:"#f9f9f9",
       },
       loginText:{
           fontSize:30,
