@@ -1,19 +1,18 @@
 import React from 'react'
-import { View, StyleSheet} from 'react-native'
+import { View, StyleSheet, TextInput} from 'react-native'
 import {Input} from 'native-base'
 
 
 
-const InputsLogin =({value, setValue,placeholder,secureTextEntry,InputLeftElement}) => {
+const InputsLogin =({ setValue,placeholder,secureTextEntry,InputLeftElement}) => {
 
     return(
         <View>
         <View style={styles.buttonStyleX}>
         <View style={styles.emailInput}>
-            <Input
+            <TextInput
+                
                 InputLeftElement={InputLeftElement}
-                onChange={setValue}
-                value= {value}
                 secureTextEntry={secureTextEntry}
                 placeholder = {placeholder}
                 _ligth={{
