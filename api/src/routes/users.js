@@ -6,7 +6,6 @@ const router = Router();
 router.get('/:id', async (req, res, next)=>{
     const { id } = req.params;
     try {   
-    console.log(id, await checkUUIDV(id))
     if(await checkUUIDV(id)){
         const user = await User.findOne({
             where: {
