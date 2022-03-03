@@ -1,21 +1,24 @@
 const { Router } = require('express');
-const { User, Post } = require('../db');
+const { User, Post, Review } = require('../db');
 const { checkUUIDV } = require('../services/checkUUID');
 const router = Router();
 
 router.get('/:id', async (req, res, next)=>{
     const { id } = req.params;
     try {   
-    console.log(id, await checkUUIDV(id))
     if(await checkUUIDV(id)){
         const user = await User.findOne({
             where: {
                 id
             },
-            include: {
+            include: [{
                 model: Post,
                 as: 'posteos',            
-            }
+            },
+            {
+                model: Review,
+                as: "reviews"
+            }]
         });
         if(user){
             res.send(user)

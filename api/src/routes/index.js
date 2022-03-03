@@ -5,6 +5,8 @@ const { sendEmail } = require('../services/SendEmail');
 const { Update } = require('../services/updateUser');
 const  UserRoutes  = require('./users');
 const PostsRoutes  = require('./posts');
+const ReviewRoutes  = require('./reviews');
+const UploadRoutes  = require('./uploadform');
 
 
 
@@ -12,6 +14,8 @@ const router = Router();
 
 router.use("/users", UserRoutes)
 router.use('/posts', PostsRoutes)
+router.use('/reviews', ReviewRoutes)
+router.use('/upload', UploadRoutes )
 
 router.post("/register", async (req, res) => {
     let { email, password } = req.body
