@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const { User, Post } = require('../db');
+const { User, Post, Review } = require('../db');
 const { checkUUIDV } = require('../services/checkUUID');
 const router = Router();
 
@@ -12,10 +12,14 @@ router.get('/:id', async (req, res, next)=>{
             where: {
                 id
             },
-            include: {
+            include: [{
                 model: Post,
                 as: 'posteos',            
-            }
+            },
+            {
+                model: Review,
+                as: "reviews"
+            }]
         });
         if(user){
             res.send(user)

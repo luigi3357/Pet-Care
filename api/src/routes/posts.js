@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const { User, Post } = require('../db')
+const { User, Post, Review } = require('../db');
 
 const router = Router();
 
@@ -9,7 +9,12 @@ router.get('/all', async (req, res, next)=>{
         const posts = await Post.findAll({
             include: {
                 model: User,
-                as: "author"
+                as: "author",
+                include: {
+                    model: Review,
+                    as: "reviews"
+
+                }
             }
         });
         res.status(200).send(posts)
