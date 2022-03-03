@@ -1,9 +1,8 @@
 import React, {useState} from 'react';
 import { Text , View, Image, Button, StyleSheet, ScrollView } from 'react-native';
-import GoldStar from '../../../assets/Gold_Star';
 import ReviewCard from './ReviewCard';
 
-export default function PostCard({id=1, image, title= 'Título', rating= 4, hiringNumber=12, details="detalles", reviews}){
+export default function PostCard({id=1, image= require("../../assets/profile.png"), title, rating, hiringNumber, details, reviews}){
     function showDetails(){
         if(detailsView){
             setDetailsView(false);
@@ -15,18 +14,29 @@ export default function PostCard({id=1, image, title= 'Título', rating= 4, hiri
     const [detailsView, setDetailsView] = useState(false);
     return (
         <View style={styles.container} id={id}>
-            { image ? <Image
-            source={image}
-            />: null}
-            <Text style={styles.title}>
-            {title}
-            </Text>
-            <Text style={styles.rating}>
-            {rating}
-            </Text>
+
+            <View style= {{display: "flex", flexFlow:"row", alignItems : "center", justifyContent:"space-around"}}>
+                <Image
+                style = {{width: 50, height: 50, borderRadius:"5px", border:"1px solid black"}}
+                source={image}
+                />
+
+                <Text style={styles.title}>
+                {title}
+                </Text>
+            </View>
+
+            <View style= {{display: "flex", flexFlow:"row", alignItems : "center", justifyContent:"space-around"}}>
+                <Text> Rating: </Text>
+                <Image
+                style= {{width:25, height:25}}
+                source={require('../../assets/Gold_Star.png')}
+                />
+                <Text style={styles.rating}>
+                {rating}
+                </Text>
+            </View>
             <Image
-            style = {{maxHeight="10px"}}
-            source={GoldStar}
             />
             <Text>
             {hiringNumber}
@@ -35,7 +45,7 @@ export default function PostCard({id=1, image, title= 'Título', rating= 4, hiri
             </Button>
             { detailsView ?
             <View style={styles.details}>
-                <Text>{details}</Text>
+                <Text style={{flexFlow:"center", margin : "8px"}}>{details}</Text>
 
 
            <View style={styles.detailsReviews}>
@@ -71,21 +81,28 @@ const styles = StyleSheet.create({
         border : "2px solid blue",
         justifyContent : "center",
         alignItems : "center",
-        flex : 1,
+        padding : "15px",
+        width : "97vw",
     }
     ,title : {
+        fontSize : "1.5rem",
         fontFamily : "Helvetica",
         fontWeight : 700
     }
     ,rating : {
+        fontSize : "1.2rem",
         color : "gold",
         fontFamily : "Courier New",
         fontWeight : "bold",
-        textShadow : "1px 1px 2px black",
+        textShadow : "1px 1px 0px black",
     }
     ,button : {
     }
     ,details : {
+        display:"flex",
+        justifyContent:"center",
+        alignItems:"center",
+        textAlign:"center"
     }
      ,detailsReviews : {
       display : "flex",
