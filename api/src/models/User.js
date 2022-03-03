@@ -50,6 +50,10 @@ module.exports = (sequelize) => {
       type: DataTypes.INTEGER,
       defaultValue: 0
 
+    },
+    profileImgURL: {
+      type: DataTypes.STRING,
+
     }
     },
   );

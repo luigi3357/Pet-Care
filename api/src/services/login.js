@@ -24,7 +24,6 @@ async function create (email,hasheador){
 }
 
 async function search (body){
-    console.log(body)
    let user = await User.findOne({
        where: body
    })

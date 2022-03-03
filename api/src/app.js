@@ -12,6 +12,7 @@ server.name = 'API';
 
 server.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }));
 server.use(bodyParser.json({ limit: '50mb' }));
+server.use(('/uploads'),express.static('uploadedImages'));//me genera una carpeta static(con acceso desde el navegador)
 server.use(cookieParser());
 server.use(morgan('dev'));
 server.use((req, res, next) => {
