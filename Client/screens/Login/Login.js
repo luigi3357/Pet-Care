@@ -5,7 +5,7 @@ import {useNavigation} from '@react-navigation/native'
 import InputsLogin from './Componentes/InpuntsLogin'
 import {FontAwesome5} from '@expo/vector-icons'
 import {useSelector, useDispatch} from 'react-redux'
-import {setEmail, setPassword} from '../Login/actions/loginActions'
+
 
 function Login(){   
 
@@ -64,7 +64,7 @@ function Login(){
              </FormControl>
             <View style={styles.buttonStyle}>
                 <Button
-                 onPress={setData}
+                 
                 style={styles.buttonDesing}>
                     LOGIN
                 </Button>       
