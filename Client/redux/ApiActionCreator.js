@@ -18,7 +18,7 @@ const apiActionCreator = (payload) => (dispatch) => {
 };
 
 export const registerBack= payload => {
-    console.log(payload)
+  
     try {
         console.log(payload,"entre al try")
         return async (dispatch)=>{                        

@@ -4,7 +4,7 @@ import Svg, { G, Circle } from "react-native-svg";
 import { AntDesign } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 
-export default NextButton = ({ percentage, scrollTo }) => {
+function NextButton({ percentage, scrollTo }){
   const size = 128;
   const strokeWidth = 2;
   const center = size / 2;
@@ -99,3 +99,7 @@ const styles = StyleSheet.create({
     padding: 20,
   },
 });
+
+
+
+export default NextButton;
