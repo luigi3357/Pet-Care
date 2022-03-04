@@ -17,6 +17,9 @@ const Register = () => {
   const data = { email: email, password :password}
   const navigation = useNavigation()
  
+
+
+
   
   function handlesubmit(){
     dispatch(registerBack(data)) 
@@ -25,7 +28,7 @@ const Register = () => {
     <View style={styles.container}>
 
        <View style={styles.logoPos}>
-       <TouchableOpacity onPress={()=> navigation.navigate("Login")()}>
+       <TouchableOpacity onPress={()=> navigation.navigate("Login")}>
             <Icon
              as={<FontAwesome5  name="angle-left"/>}
              size="sm"

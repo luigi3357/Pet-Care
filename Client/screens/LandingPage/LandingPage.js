@@ -5,8 +5,10 @@ import Paginator from "./Paginator";
 import NextButton from "./NextButton";
 import { useNavigation } from "@react-navigation/native";
 import slides from "./slides";
+import { NativeBaseProvider } from "native-base";
 
-export default LandingPage = () => {
+
+function LandingPage() {
   const navigation = useNavigation();
   const [currentIndex, setCurrentIndex] = useState(0);
   const scrollX = useRef(new Animated.Value(0)).current;
@@ -65,3 +67,14 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
 });
+
+
+
+
+export default () => {
+  return(
+  <NativeBaseProvider>
+  <LandingPage/>
+</NativeBaseProvider>
+  )
+}

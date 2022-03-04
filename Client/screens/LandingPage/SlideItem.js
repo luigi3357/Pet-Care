@@ -7,7 +7,7 @@ import {
   useWindowDimensions,
 } from "react-native";
 
-export default SlideItem = ({ item }) => {
+function SlideItem({ item }){
   const { width } = useWindowDimensions();
 
   return (
@@ -51,3 +51,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 64,
   },
 });
+
+
+export default SlideItem;
