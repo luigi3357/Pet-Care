@@ -7,22 +7,9 @@ import {FontAwesome5} from '@expo/vector-icons'
 import {useSelector, useDispatch} from 'react-redux'
 import {setEmail, setPassword} from '../Login/actions/loginActions'
 
-function Login(){
-    
+function Login(){   
 
-    const dispatch =useDispatch();
-    const setData = async () =>{
-        if(!email){
-            console.log("no papa")
-        }else{
-      try{
-
-          navigation.navigate("ForgetPassword")
-      }catch(error){
-        console.log(error)
-      }
-        }
-    }
+   
 
 
     const navigation = useNavigation();
@@ -56,7 +43,6 @@ function Login(){
                 />
             }
             placeholder="Usuario o email"
-            onChangeText={(value)=>dispatch(setEmail(value))}
              />
               <InputsLogin 
                           InputLeftElement={
@@ -74,7 +60,6 @@ function Login(){
                         }
                         placeholder="contraseña"
                         secureTextEntry={true}
-                        onChangeText={(value)=>dispatch(setPassword(value))}
                         />
              </FormControl>
             <View style={styles.buttonStyle}>
