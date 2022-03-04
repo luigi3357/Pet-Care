@@ -8,7 +8,7 @@ import MailCode from "./screens/Login/MailCode"
 import ForgetPassword from "./screens/Login/ForgetPassword"
 import NewPassword from "./screens/Login/NewPassword"
 import { Provider } from "react-redux";
-import { Store } from "./store/store";
+import { store } from "./redux/store";
 
 const Stack = createStackNavigator();
 
@@ -27,7 +27,7 @@ function App() {
 
 export default () => {
   return (
-    <Provider store={Store}>
+    <Provider store={store}>
     <NavigationContainer>
       <App />
     </NavigationContainer>
