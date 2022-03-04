@@ -1,4 +1,4 @@
-import ACTION_TYPES from '../../../constants/loginConstants';
+import ACTION_TYPES from './ActionTypes.js';
 
 export const fetchData = () => ({
   type: ACTION_TYPES.API_PENDING,

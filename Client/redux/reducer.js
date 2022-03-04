@@ -1,4 +1,4 @@
-import ACTION_TYPES from '../constants/loginConstants';
+import ACTION_TYPES from './ActionTypes';
 
 const initialState = {
   loading: false,
