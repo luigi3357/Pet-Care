@@ -130,11 +130,11 @@ export default function SearchBar(){
 
   const styles = StyleSheet.create({
     container: {
-      flex: 1,
+      // flex: 1,
       backgroundColor: '#EEE',
       alignItems: 'center',
       justifyContent: 'center',
-      maxHeight : '1.5rem',
+      maxHeight : '2rem',
       width : '20vw',
     },
     dropdown : {
@@ -145,8 +145,8 @@ export default function SearchBar(){
       borderLeftWidth : "1px",
       borderRightWidth : "1px",
       position : 'absolute',
-      top : "1.5rem",
-      left : '0px'   // cambiar esto por { right : '0px' } si se va a colocar del lado derecho 
+      top : "2rem",
+      right : '1px'   // cambiar esto por { right : '0px' } si se va a colocar del lado derecho 
       ,borderRadius : '4px'
     },
     filters : {
@@ -154,7 +154,7 @@ export default function SearchBar(){
       borderTopColor : 'slategray',
       borderTopWidth : '1px',
       textAlign : 'center',
-      alignItems : "flex-start",
+      alignItems : "flex-end",
       fontWeight : '900'
     },
     options : {
