@@ -9,8 +9,10 @@ export default function Navbar() {
   return (
     <NativeBaseProvider> 
  <View style={styles.container}  >
-   
-      <SearchBar/>
+  
+   <SearchBar/>
+     
+  
         <Filtrado/>
 
  </View>
@@ -22,8 +24,12 @@ export default function Navbar() {
 const styles = StyleSheet.create({
   container: {
     // flex:1,
+   
+    
     display: "flex",
     flexFlow:"row",
     justifyContent:"space-between",
+   
+    marginBottom:25,
   }
 });

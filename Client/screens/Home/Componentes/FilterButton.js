@@ -1,6 +1,6 @@
 import { Text, View , StyleSheet, TouchableOpacity} from 'react-native'
 import React, { useState } from 'react'
-
+import { Entypo } from '@expo/vector-icons';
 export default function SearchBar(){
   const [show, setShow] = useState(false);
   const [filter, setFilter] = useState('');
@@ -62,7 +62,7 @@ export default function SearchBar(){
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity  onPress={()=> handleShow()}><Text>Filtrar</Text></TouchableOpacity>
+      <TouchableOpacity  onPress={()=> handleShow()}><Entypo name="menu" size={24} color="black" /></TouchableOpacity>
       { show ?
       <View style={styles.dropdown}>
         <TouchableOpacity style={styles.filters} onPress={()=>cleanFilters()}>
