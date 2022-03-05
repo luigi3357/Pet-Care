@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
-import {VStack,Box,Divider,Input, Icon,NativeBaseProvider,AspectRatio, Center} from 'native-base'
-import { Ionicons,AntDesign } from '@expo/vector-icons'; 
-import {View,TouchableOpacity,Text,StyleSheet} from 'react-native'
+import {Icon,NativeBaseProvider} from 'native-base'
+import { Ionicons } from '@expo/vector-icons'; 
+import {View,TouchableOpacity,Text,StyleSheet, TextInput} from 'react-native'
 
 
 export default function SearchBar() {
@@ -19,10 +19,10 @@ export default function SearchBar() {
   }
     return (
         <NativeBaseProvider>
-      <AspectRatio ratio={3/1} >
+    
         <View style={styles.container}>
         <View style={styles.searchContainer}>
-      
+      <View style={styles.searchicon}>
          
       
        
@@ -30,40 +30,45 @@ export default function SearchBar() {
  style={styles.searchicon}
  onPress={submitSearch}
   >
-  <Icon ml="2" size="8" color="#000000" as={<Ionicons name="ios-search" />} />
+  <Icon ml="2" size="7" color="#000000" as={<Ionicons name="ios-search" />} />
   </TouchableOpacity>
   
-        <VStack w="75%" space={5} >
-        <Input 
-        variant="filled" 
-        width="100%"  py="1" 
-        color={'white'}
-        onChangeText={(text)=>{
-          var letters = /^[A-Za-z]+$/;
-          if(text.length>30){
-            setError('Query too long.')
-          }
-          else if(text.match(letters)){
-            searchText(text)
-          if(error){
-            setError(false)
-          }
-          }
-          else setError('Solo letras del alfabeto')
-        }
-      }
-      />
-      </VStack>
+  </View>
+
+      
+       <TextInput
+       style={styles.textInput}
+      
+       onChangeText={(text)=>{
+         var letters = /^[A-Za-z]+$/;
+         if(text.length>30){
+           setError('Query too long.')
+         }
+         else if(text.match(letters)){
+           searchText(text)
+         if(error){
+           setError(false)
+         }
+         }
+         else setError('Solo letras del alfabeto')
+       }
+     }
+       
+       />
+          
+
+         
+       
       </View>
       
       
     <View>
-{
+{/* {
   error &&
-  <Text style={{width:'75vw',marginTop:'2%',color:'white'}}>
+  <Text style={{width:'90%',marginTop:'2%',color:'white'}}>
         {error}
     </Text>
-}
+} */}
     </View>
     
 
@@ -77,7 +82,7 @@ export default function SearchBar() {
        
 
 
-      </AspectRatio>
+     
       </NativeBaseProvider>
       )
  
@@ -87,26 +92,36 @@ export default function SearchBar() {
     }
     const styles = StyleSheet.create({
       container:{
-      
-        maxHeight: "1.5rem",
+        width:'100%',
+     
       alignItems:'center',
 
     },
     searchContainer:{
-      backgroundColor:'rgb(224, 224, 224)',
-      borderRadius:40,
-      width:'75vw',
+      alignItems: 'center',
+      
+      backgroundColor:'white',
+      maxHeight : '2rem',
+      width:'100%',
     flexDirection:'row',
     alignItems:'center'
   },
     searchicon:{
-    
+     
       justifyContent:'center',
       alignItems:'center',
-      bottom:2,
       opacity: 0.5,
-      width:40,
-      zIndex:1,
+    
       
     },
+    textInput:{
+     
+       height:'100%'
+
+    },
+      
   })
+        
+   
+    
+      
