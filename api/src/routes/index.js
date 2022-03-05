@@ -46,14 +46,19 @@ router.post("/login", async (req, res) => {
     let { email, password } = req.body
     try {
         let user = await search({ email: email.toLowerCase() })
-        if (user) {
+        if(!user){
+            return res.status(404).send("notEmail")
+        }
+        if (user){
             let check = await compare(password, user)
             if (check === true) {
-                return res.status(200).json(user.id)
+                console.log(check)
+                return res.status(200).json(check)
             }
             if (check === false) {
-                return res.status(404).send("Lo siento password incorrecta")
+                return res.status(404).send(check)
             }
+            
         }
     } catch (error) {
         return res.status(404).send(error)
