@@ -1,6 +1,6 @@
 import { Text, View , StyleSheet, TouchableOpacity} from 'react-native'
 import React, { useState } from 'react'
-import { Entypo } from '@expo/vector-icons';
+
 export default function SearchBar(){
   const [show, setShow] = useState(false);
   const [filter, setFilter] = useState('');
@@ -62,7 +62,7 @@ export default function SearchBar(){
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity  onPress={()=> handleShow()}><Entypo name="menu" size={24} color="black" /></TouchableOpacity>
+      <TouchableOpacity  onPress={()=> handleShow()}><Text>Filtrar</Text></TouchableOpacity>
       { show ?
       <View style={styles.dropdown}>
         <TouchableOpacity style={styles.filters} onPress={()=>cleanFilters()}>
@@ -133,33 +133,33 @@ export default function SearchBar(){
       // flex: 1,
       backgroundColor: '#EEE',
       alignItems: 'center',
-      justifyContent: 'center',
-      maxHeight : '2rem',
-      width : '20vw',
+      justifyContent: 'flex-start',
+      height : '40%',
+      width : '25%',
     },
     dropdown : {
-      width: '50vw',
+      width: 50,
       backgroundColor : '#EEE',
       borderColor : "slategray",
-      borderBottomWidth : '1px',
-      borderLeftWidth : "1px",
-      borderRightWidth : "1px",
-      position : 'absolute',
-      top : "2rem",
-      right : '1px'   // cambiar esto por { right : '0px' } si se va a colocar del lado derecho 
-      ,borderRadius : '4px'
+      borderBottomWidth : 1,
+      borderLeftWidth : 1,
+      borderRightWidth : 1,
+      // position : 'absolute',
+      top : 30,
+      right : 1   // cambiar esto por { right : '0px' } si se va a colocar del lado derecho 
+      ,borderRadius : 4
     },
     filters : {
-      padding : '2px',
+      padding : 2,
       borderTopColor : 'slategray',
-      borderTopWidth : '1px',
+      borderTopWidth : 1,
       textAlign : 'center',
       alignItems : "flex-end",
       fontWeight : '900'
     },
     options : {
       alignItems:'flex-end',
-      paddingRight:'0.2rem'
+      paddingRight:0.2
     }
   });
   

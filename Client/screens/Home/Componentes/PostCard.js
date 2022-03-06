@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { Text , View, Image, Button, StyleSheet, ScrollView } from 'react-native';
+import { Text , View, Image, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
 import ReviewCard from './ReviewCard';
 
 export default function PostCard({id=1, image= require("../../assets/profile.png"), title= 'Título', rating= 4, hiringNumber=12, details="Acá van todos los detalles del prestador del servicio abajo van las reviews??? ", reviews  = [{
@@ -45,11 +45,11 @@ export default function PostCard({id=1, image= require("../../assets/profile.png
 
     const [detailsView, setDetailsView] = useState(false);
     return (
-        <View style={styles.container} id={id}>
+        <View style={styles.container} key={id}>
 
-            <View style= {{display: "flex", flexFlow:"row", alignItems : "center", justifyContent:"space-around"}}>
+            <View style= {{display: "flex", flexDirection:"row", alignItems : "center", justifyContent:"center", textAlign:'center'}}>
                 <Image
-                style = {{width: 50, height: 50, borderRadius:"5px", border:"1px solid black"}}
+                style = {{width: 50, height: 50, borderRadius:5, borderWidth: 1, borderColor : "#FFF"}}
                 source={image}
                 />
 
@@ -58,7 +58,7 @@ export default function PostCard({id=1, image= require("../../assets/profile.png
                 </Text>
             </View>
 
-            <View style= {{display: "flex", flexFlow:"row", alignItems : "center", justifyContent:"space-around"}}>
+            <View style= {{display: "flex", flexDirection:"row", alignItems : "center", justifyContent:"space-around"}}>
                 <Text> Rating: </Text>
                 <Image
                 style= {{width:25, height:25}}
@@ -71,13 +71,19 @@ export default function PostCard({id=1, image= require("../../assets/profile.png
             <Image
             />
             <Text>
-            {hiringNumber}
+            Cantidad de contrataciones: {hiringNumber}
             </Text>
-            <Button title="detalles" style={styles.button} onPress={()=> showDetails()}>
-            </Button>
+
+
+
+
+
+            <TouchableOpacity title="detalles"onPress={()=> showDetails()}>
+                <Text  style={styles.button} >Detalles</Text>
+            </TouchableOpacity>
             { detailsView ?
             <View style={styles.details}>
-                <Text style={{flexFlow:"center", margin : "8px"}}>{details}</Text>
+                <Text style={{justifyContent:"center", margin : 50}}>{details}</Text>
 
 
            <View style={styles.detailsReviews}>
@@ -86,9 +92,9 @@ export default function PostCard({id=1, image= require("../../assets/profile.png
             showsHorizontalScrollIndicator= {false}>
            { reviews?
 
-               reviews.map(i=>{
+               reviews.map((i,idx)=>{
                    return(
-                        <ReviewCard titulo={i.titulo} rating = {i.rating} review = {i.review} usuario = {i.usuario}/>
+                        <ReviewCard id={idx} titulo={i.titulo} rating = {i.rating} review = {i.review} usuario = {i.usuario}/>
                    )
                }) 
                
@@ -103,32 +109,42 @@ export default function PostCard({id=1, image= require("../../assets/profile.png
     )
 }
 
-
-
 const styles = StyleSheet.create({
     container : {
         display : "flex",
-        backgroundColor : "#DDD",
-        borderRadius : "10px",
-        border : "2px solid blue",
+        backgroundColor :"#60D394",
+        borderRadius : 10,
+        borderWidth : 4,
+        borderColor : "#CCC",
         justifyContent : "center",
         alignItems : "center",
-        padding : "15px",
-        width : "97vw",
+        padding : 15,
+        minWidth : 97,
+        margin : 40
+        // ,zIndex : 4
     }
     ,title : {
-        fontSize : "1.5rem",
-        fontFamily : "Helvetica",
-        fontWeight : 700
+        fontSize: 1.5,
+        // fontFamily : "Helvetica",
+        fontWeight : "700"
     }
     ,rating : {
-        fontSize : "1.2rem",
+        fontSize : 1.2,
         color : "gold",
-        fontFamily : "Courier New",
+        // fontFamily : "Courier New",
         fontWeight : "bold",
-        textShadow : "1px 1px 0px black",
+        textShadowColor : "#FFF",
+        textShadowOffset : {width : 1, height : 1},
     }
     ,button : {
+        backgroundColor : '#8aF',
+        marginTop: 0.5
+        ,color: '#FFF'
+        ,display: 'flex',
+        justifyContent:'flex-end'
+        ,alignItems : 'flex-end'
+        // ,flex:1
+        ,padding : 4
     }
     ,details : {
         display:"flex",
@@ -138,7 +154,8 @@ const styles = StyleSheet.create({
     }
      ,detailsReviews : {
       display : "flex",
-      flexFlow : "row"
-      ,maxWidth : "100vw"
+      flexDirection : "row"
+    //   ,width : 100
+    //   ,marginLeft : '2px solid green'
     }
 })
