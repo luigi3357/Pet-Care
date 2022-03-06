@@ -21,7 +21,7 @@ export const registerBack= payload => {
         console.log(payload,"entre al try")
         return async (dispatch)=>{                        
             console.log("entre al return")
-            let json = await axios.post("http://localhost:3001/register", payload)
+            let json = await axios.post("http://192.168.1.76:3001/register", payload)
             console.log("entre al return", json)
             return json
         }
