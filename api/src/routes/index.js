@@ -18,14 +18,14 @@ router.use('/reviews', ReviewRoutes)
 router.use('/upload', UploadRoutes )
 
 router.post("/register", async (req, res) => {
-    let { email, password } = req.body
+    let { email, password, name, last_name } = req.body
     let user = await search({ email: email.toLowerCase() })
     if (!user) {
         try {
             let verify = verifyEmail(email.toLowerCase())
             if (verify === true && password.length >= 8) {
                 let hasheador = await hash(password)
-                let result = await create(email, hasheador)
+                let result = await create(email, hasheador, name, last_name)
                 return res.status(201).send(result)
             }
             if (verify === false) {
