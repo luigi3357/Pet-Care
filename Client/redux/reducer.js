@@ -4,6 +4,7 @@ const initialState = {
   loading: false,
   data: '',
   error: '',
+  check:'',
 };
 
 const apiReducer = (state = initialState, action) => {
@@ -25,7 +26,11 @@ const apiReducer = (state = initialState, action) => {
         error: action.payload,
         loading: false,
       };
-
+      case ACTION_TYPES.GET_CHECK:
+        return {
+          ...state,
+          check: action.payload,
+        };
     default:
       return state;
   }

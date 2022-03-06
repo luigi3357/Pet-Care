@@ -1,21 +1,19 @@
 import axios from 'axios';
 import {fetchData, fetchSuccess, fetchError} from './ApiAction';
 
-const apiActionCreator = (payload) => (dispatch) => {
-  dispatch(fetchData());
-  return new Promise(() => {
-    axios
-      .get("http://localhost:3001/user", payload)
-      .then((response) => {
-        dispatch(fetchSuccess(response.data));
-        console.log("entre",response.data)
-      })
-      .catch((error) => {
-        dispatch(fetchError(error));
-        console.error(error);
-      });
-  });
-};
+export const getLogin = (payload) =>  {
+  try {
+    console.log(payload,"entre al try")
+    return async (dispatch)=>{                        
+        console.log("entre al return")
+        let json = await axios.post("http://192.168.1.76:3001/login", payload)
+        console.log("entre al return", json)
+        return json
+    }
+} catch (error) {
+    console.error(error)
+}    
+}
 
 export const registerBack= payload => {
   
@@ -49,4 +47,3 @@ export const registerBack= payload => {
 //     }
 // }
 
-export default apiActionCreator;
