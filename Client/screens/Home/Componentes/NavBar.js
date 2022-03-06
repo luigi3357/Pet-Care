@@ -8,14 +8,12 @@ import Filtrado from './FilterButton'
 export default function Navbar() {
   return (
     <NativeBaseProvider> 
- <View style={styles.container}  >
-  
-   <SearchBar/>
-     
-  
+ {/* <View style={styles.container}  > */}
+   
+      <SearchBar/>
         <Filtrado/>
 
- </View>
+ {/* </View> */}
 
 </NativeBaseProvider> 
 
@@ -23,13 +21,13 @@ export default function Navbar() {
 }
 const styles = StyleSheet.create({
   container: {
-    // flex:1,
-   
-    
+    flex:1,
     display: "flex",
-    flexFlow:"row",
-    justifyContent:"space-between",
-   
-    marginBottom:25,
+    flexDirection:"row",
+    justifyContent:'flex-start'
+    // ,position: "absolute"
+    // ,top: 15
+    ,marginTop:50
+    ,marginRight : 70
   }
 });
