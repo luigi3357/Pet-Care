@@ -30,20 +30,5 @@ export const registerBack= payload => {
     }    
 }
 
-// export const registerBack= payload => {
-//     return (dispatch)=>{
-//         try {
-//             console.log(payload,"soy payload")
-//             axios.post("http://localhost:3001/register", payload)
-//             .then(response=>{
-//                 console.log(response.data)
-//                 return dispatch (
-//                      response.data
-//                 )
-//             })
-//         } catch (error) {
-//             console.error(error)
-//         } 
-//     }
-// }
+
 

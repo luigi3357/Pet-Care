@@ -6,7 +6,7 @@ import { StyleSheet, SafeAreaView, View ,ScrollView,} from 'react-native';
 import Navbar from './NavBar';
 import PostCard from './PostCard';
 import Bottomplus from './BottomForm/Bottomplus'
-
+import Footer from '../../Profile/Componentes/Footer'
 export default function HomeScreens() {
 
   function getRandomName(q) {
@@ -40,29 +40,29 @@ export default function HomeScreens() {
 
   return (
       <>
-      <View style={{zIndex:1,height:'12%',width:'100%',backgroundColor:'orange'}}>
+      <View style={{height:'13%',width:'100%'}}>
            <Navbar/>
     </View >
- 
     <ScrollView>
            <PostCard id={1} reviews={reviewsPostCard[0]} details={getRandomName(12)} title={getRandomName(Math.ceil(Math.random()* 3))} hiringNumber={Math.ceil(Math.random()*20)} rating={Math.ceil(Math.random()*5)}/>
            <PostCard id={2} reviews={reviewsPostCard[1]} details={getRandomName(12)} title={getRandomName(Math.ceil(Math.random()* 3))} hiringNumber={Math.ceil(Math.random()*20)} rating={Math.ceil(Math.random()*5)}/>
            <PostCard id={3} reviews={reviewsPostCard[2]} details={getRandomName(12)} title={getRandomName(Math.ceil(Math.random()* 3))} hiringNumber={Math.ceil(Math.random()*20)} rating={Math.ceil(Math.random()*5)}/>
            <PostCard id={4} reviews={reviewsPostCard[3]} details={getRandomName(12)} title={getRandomName(Math.ceil(Math.random()* 3))} hiringNumber={Math.ceil(Math.random()*20)} rating={Math.ceil(Math.random()*5)}/>
            <PostCard id={5} reviews={reviewsPostCard[4]} details={getRandomName(12)} title={getRandomName(Math.ceil(Math.random()* 3))} hiringNumber={Math.ceil(Math.random()*20)} rating={Math.ceil(Math.random()*5)}/>
-           </ScrollView>
-   <View style={styles.container}>
-
-           <Bottomplus/>
+    </ScrollView>
+   <View >
+    <Bottomplus/>
    </View>
-
+   <View style={{height:'8%',width:'100%'}}>
+           <Footer/>
+    </View >
         </>
     )
   }
   const styles = StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: 'orange',
+  
       alignItems: 'flex-end',
       justifyContent: 'flex-end'
     },

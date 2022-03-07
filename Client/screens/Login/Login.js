@@ -1,12 +1,10 @@
 import React, { useState } from 'react'
-import { View, StyleSheet, TouchableOpacity, ScrollView, RefreshControl,  } from 'react-native'
-import { NativeBaseProvider,Button, Box,Image,AspectRatio,Input,Stack, Alert, IconButton, HStack, VStack, CloseIcon, Text, Center} from 'native-base'
+import { View, StyleSheet, TouchableOpacity, ScrollView, RefreshControl,Alert  } from 'react-native'
+import { NativeBaseProvider,Button, Image,Input,Text} from 'native-base'
 import {useNavigation} from '@react-navigation/native'
 import { getLogin } from '../../redux/ApiActionCreator'
 import {FontAwesome5} from '@expo/vector-icons'
 import {useSelector, useDispatch} from 'react-redux'
-
-
 
 const Login = () => {   
         
@@ -15,17 +13,28 @@ const Login = () => {
     const [password,onChangePassword] = useState("")
     const data = { email: email, password :password}
     const [refresh, setRefresh] = useState(false)
-    const checks = useSelector((state=>(state.check)))
-console.log(checks)
+    const trues = useSelector((state=>(state.true)))
+    const falses = useSelector((state=>(state.false)))
+  
+    
+  function errorAlert(){
+    Alert.alert(
+      "Error",
+      "Ingrese los datos correctos para ingresar",
+      [
+        { text: "OK", onPress: ()=>navigation.navigate("Login") }
+      ]
+    )};
+
+
+
+
     function handlesubmit(){
         dispatch(getLogin(data)) 
-        if(checks===false){
-            console.log('error de logueo')
-        }else{
+        
         navigation.navigate("HomeScreen")
-        }
-    }
 
+    }
     
   const pullMe = ()=>{
         setRefresh(true)
@@ -43,21 +52,16 @@ console.log(checks)
 
 
     return(
-        <ScrollView  refreshControl={
-            <RefreshControl
-            refreshing={refresh}
-            onRefresh={()=>pullMe()}
-            />
-          }>
+        <View>
+        
             <View style={styles.logoPos}>
                 <Image
                 source={require("../../assets/slides/img1.png")}
                 style={styles.logo}
-                alt="image"/>
+                alt="."
+               />
             </View>
-            <View style={styles.middle}>
-                <Text style={styles.loginText}>Login</Text>
-            </View>
+            <View>
             <Input                          
              type="text"     
               onChangeText={(email)=>onChangeEmail(email)}
@@ -68,11 +72,12 @@ console.log(checks)
              onChangeText={(password)=>onChangePassword(password)}
              placeholder = "Contraseña"
               />
+
             <View style={styles.buttonStyle}>
                 <Button
                  onPress={(data)=>handlesubmit(data)}
                 style={styles.buttonDesing}>
-                    LOGIN
+                    Inicia Sesion
                 </Button>       
             </View>
             <View style={styles.text2}>
@@ -87,7 +92,8 @@ console.log(checks)
                 <Text style={styles.singupText}>REGISTRATE</Text>
                 </TouchableOpacity>
             </View>
-            </ScrollView>
+            </View>
+            </View>
     )
 }
 export default () => {
@@ -107,10 +113,12 @@ export default () => {
       },
       loginText:{
           fontSize:30,
-          fontWeight: "bold"
+          fontWeight: "bold",
+
       },
       middle:{
           alignItems:'center',
+          top:70
       },
       text2:{
           paddingTop: 10,
@@ -152,8 +160,9 @@ export default () => {
           justifyContent:"space-around"
     },
       logo: {
-          width: 300,
-          height: 300,
+          width: 200,
+          height: 200,
+          resizeMode:'cover'
       },
       tinylogo: {
           width: 70,

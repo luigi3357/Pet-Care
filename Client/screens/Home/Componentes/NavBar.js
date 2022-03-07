@@ -9,11 +9,10 @@ export default function Navbar() {
   return (
     <NativeBaseProvider> 
  <View style={styles.container}  >
-   <View  style={{ flex:1,}}>
-
+   <View  style={{ flex:1, marginTop:10}}>
       <SearchBar/>
    </View>
-   <View style={{ flex:1,}}>
+   <View style={{ flex:1}}>
 
   <Filtrado />
    </View>

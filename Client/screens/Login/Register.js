@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, TouchableOpacity, RefreshControl  } from 'react-native'
+import { View, Text, StyleSheet, TouchableOpacity, RefreshControl, Alert  } from 'react-native'
 import React,{ useEffect, useState } from 'react'
 import { useDispatch } from "react-redux";
 import {Input, NativeBaseProvider,Button, Icon, Image } from 'native-base'
@@ -28,10 +28,17 @@ const Register = () => {
    },2000)
   }
 
-
-
+  function registerLog(){
+    Alert.alert(
+      "Registrado",
+      "Registro exitoso",
+      [
+        { text: "Inicia Sesion", onPress: ()=>navigation.navigate("HomeScreen") }
+      ]
+    )};
  function handlesubmit(e){
     dispatch(registerBack(data)) 
+    registerLog()
   }
   
   return (
