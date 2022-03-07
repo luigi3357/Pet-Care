@@ -1,12 +1,10 @@
 import React, { useState } from 'react'
-import { View, StyleSheet, TouchableOpacity, ScrollView, RefreshControl,  } from 'react-native'
-import { NativeBaseProvider,Button, Box,Image,AspectRatio,Input,Stack, Alert, IconButton, HStack, VStack, CloseIcon, Text, Center} from 'native-base'
+import { View, StyleSheet, TouchableOpacity, ScrollView, RefreshControl,Alert  } from 'react-native'
+import { NativeBaseProvider,Button, Image,Input,Text} from 'native-base'
 import {useNavigation} from '@react-navigation/native'
 import { getLogin } from '../../redux/ApiActionCreator'
 import {FontAwesome5} from '@expo/vector-icons'
 import {useSelector, useDispatch} from 'react-redux'
-
-
 
 const Login = () => {   
         
@@ -15,17 +13,28 @@ const Login = () => {
     const [password,onChangePassword] = useState("")
     const data = { email: email, password :password}
     const [refresh, setRefresh] = useState(false)
-    const checks = useSelector((state=>(state.check)))
-console.log(checks)
+    const trues = useSelector((state=>(state.true)))
+    const falses = useSelector((state=>(state.false)))
+
+    
+
+
+  function errorAlert(){
+    Alert.alert(
+      "Error",
+      "Ingrese los datos correctos para ingresar",
+      [
+        { text: "OK", onPress: ()=>navigation.navigate("Login") }
+      ]
+    )};
+
+
     function handlesubmit(){
         dispatch(getLogin(data)) 
-        if(checks===false){
-            console.log('error de logueo')
-        }else{
+        
         navigation.navigate("HomeScreen")
-        }
-    }
 
+    }
     
   const pullMe = ()=>{
         setRefresh(true)
@@ -76,7 +85,7 @@ console.log(checks)
                 </Button>       
             </View>
             <View style={styles.text2}>
-                <TouchableOpacity onPress={()=>navigation.navigate("ForgetPassword")}>
+                <TouchableOpacity onPress={()=>navigation.navigate("Profile")}>
                 <Text style={styles.singupText}>Olvidaste tu Contraseña?</Text>
                 </TouchableOpacity>
             </View>

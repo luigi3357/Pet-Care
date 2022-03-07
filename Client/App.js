@@ -10,12 +10,15 @@ import NewPassword from "./screens/Login/NewPassword"
 import { Provider } from "react-redux";
 import Store from "./redux/store";
 import HomeScreen from "./screens/Home/Componentes/HomeScreen";
+import Profile from "./screens/Profile/Profile";
 
 
 const Stack = createStackNavigator();
 
 
 function App() {
+
+  
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="LandingPage" component={LandingPage}/>
@@ -25,6 +28,7 @@ function App() {
       <Stack.Screen name="Register" component={Register} />
       <Stack.Screen name="NewPassword" component={NewPassword}/>
       <Stack.Screen name="HomeScreen" component={HomeScreen}/>
+      <Stack.Screen name="Profile" component={Profile}/>
     </Stack.Navigator>
   );
 }
