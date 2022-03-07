@@ -2,7 +2,6 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import React from "react";
 import { Provider } from "react-redux";
-import Store from "./Store";
 import HomeScreen from "./screens/Home/Componentes/HomeScreen";
 import LandingPage from "./screens/LandingPage/LandingPage";
 import ForgetPassword from "./screens/Login/ForgetPassword";
@@ -11,6 +10,7 @@ import MailCode from "./screens/Login/MailCode";
 import NewPassword from "./screens/Login/NewPassword";
 import Register from "./screens/Login/Register";
 import Profile from "./screens/Profile/Profile";
+import Store from "./Store";
 
 
 
