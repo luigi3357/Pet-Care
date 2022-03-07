@@ -3,9 +3,7 @@ import {fetchData, fetchSuccess, fetchError} from './ApiAction';
 
 export const getLogin = (payload) =>  {
   try {
-    console.log(payload,"entre al try")
     return async (dispatch)=>{                        
-        console.log("entre al return")
         let json = await axios.post("http://192.168.1.76:3001/login", payload)
         console.log("entre al return", json)
         return json
@@ -18,9 +16,7 @@ export const getLogin = (payload) =>  {
 export const registerBack= payload => {
   
     try {
-        console.log(payload,"entre al try")
         return async (dispatch)=>{                        
-            console.log("entre al return")
             let json = await axios.post("http://192.168.1.76:3001/register", payload)
             console.log("entre al return", json)
             return json

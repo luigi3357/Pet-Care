@@ -19,7 +19,9 @@ router.use('/upload', UploadRoutes )
 
 router.post("/register", async (req, res) => {
     let { email, password, name, last_name } = req.body
+    console.log(req.body,"soy el body")
     let user = await search({ email: email.toLowerCase() })
+    console.log(user," soy el user")
     if (!user) {
         try {
             let verify = verifyEmail(email.toLowerCase())
@@ -53,11 +55,11 @@ router.post("/login", async (req, res) => {
             let check = await compare(password, user)
             if (check === true) {
                 console.log(check)
-                return res.status(200).json('true')
+                return res.status(200).json(check)
             }
             if (check === false) {
                 console.log(check)
-                return res.status(404).send('false')
+                return res.status(404).send(check)
             }
             
         }
