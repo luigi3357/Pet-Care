@@ -1,3 +1,4 @@
+/*
 const { User, Post, Review } = require('../src/db');
 
 
@@ -67,4 +68,4 @@ const { User, Post, Review } = require('../src/db');
 module.exports={
     createPost,
     createReview
-}
+} */
