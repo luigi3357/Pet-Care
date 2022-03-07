@@ -1,4 +1,4 @@
-import ACTION_TYPES from './ActionTypes';
+import ACTION_TYPES from '../Actions/ActionTypes';
 
 const initialState = {
   loading: false,

@@ -1,10 +1,9 @@
+import { useNavigation } from '@react-navigation/native'
+import { Button, Image, Input, NativeBaseProvider, Text } from 'native-base'
 import React, { useState } from 'react'
-import { View, StyleSheet, TouchableOpacity, ScrollView, RefreshControl,Alert  } from 'react-native'
-import { NativeBaseProvider,Button, Image,Input,Text} from 'native-base'
-import {useNavigation} from '@react-navigation/native'
-import { getLogin } from '../../redux/ApiActionCreator'
-import {FontAwesome5} from '@expo/vector-icons'
-import {useSelector, useDispatch} from 'react-redux'
+import { Alert, StyleSheet, TouchableOpacity, View } from 'react-native'
+import { useDispatch, useSelector } from 'react-redux'
+import { getLogin } from '../../Store/Actions/ApiActionCreator'
 
 const Login = () => {   
         
