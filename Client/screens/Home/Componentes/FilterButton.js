@@ -1,7 +1,8 @@
 import { Text, View , StyleSheet, TouchableOpacity} from 'react-native'
 import React, { useState } from 'react'
+import { Entypo } from '@expo/vector-icons';
 
-export default function SearchBar(){
+export default function FilterSelect(){
   const [show, setShow] = useState(false);
   const [filter, setFilter] = useState('');
   const [showFilter, setShowFilter] = useState(false);
@@ -61,8 +62,12 @@ export default function SearchBar(){
 
 
   return (
+    
     <View style={styles.container}>
-      <TouchableOpacity  onPress={()=> handleShow()}><Text>Filtrar</Text></TouchableOpacity>
+      {
+        show? null :
+      <TouchableOpacity  onPress={()=> handleShow()}><Entypo name="menu" size={35} color="black" /></TouchableOpacity>
+      }
       { show ?
       <View style={styles.dropdown}>
         <TouchableOpacity style={styles.filters} onPress={()=>cleanFilters()}>
@@ -124,21 +129,24 @@ export default function SearchBar(){
       : null
       }
     </View>
+    
   );
+    
   }
 
 
   const styles = StyleSheet.create({
     container: {
-      // flex: 1,
-      backgroundColor: '#EEE',
+      flex: 1,
+      backgroundColor: '#00D2C6', //FILTER __ yellow
       alignItems: 'center',
-      justifyContent: 'flex-start',
-      height : '40%',
-      width : '25%',
+      justifyContent:'center',
+      height : '90%',
+      width : '60%',
+      right:-80,
     },
     dropdown : {
-      width: 50,
+      width: '100%',
       backgroundColor : '#EEE',
       borderColor : "slategray",
       borderBottomWidth : 1,
@@ -150,6 +158,7 @@ export default function SearchBar(){
       ,borderRadius : 4
     },
     filters : {
+      width:'100%',
       padding : 2,
       borderTopColor : 'slategray',
       borderTopWidth : 1,
@@ -158,7 +167,7 @@ export default function SearchBar(){
       fontWeight : '900'
     },
     options : {
-      alignItems:'flex-end',
+      alignItems:'center',
       paddingRight:0.2
     }
   });

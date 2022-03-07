@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import { Text , View, Image, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
 import ReviewCard from './ReviewCard';
 
-export default function PostCard({id=1, image= require("../../assets/profile.png"), title= 'Título', rating= 4, hiringNumber=12, details="Acá van todos los detalles del prestador del servicio abajo van las reviews??? ", reviews  = [{
+export default function PostCard({id=1, image= require("../../../assets/profile.png"), title= 'Título', rating= 4, hiringNumber=12, details="Acá van todos los detalles del prestador del servicio abajo van las reviews??? ", reviews  = [{
     titulo : "Review 1",
     rating : "5",
     usuario : "Usuario 1",
@@ -62,7 +62,7 @@ export default function PostCard({id=1, image= require("../../assets/profile.png
                 <Text> Rating: </Text>
                 <Image
                 style= {{width:25, height:25}}
-                source={require('../../assets/Gold_Star.png')}
+                source={require('../../../assets/Gold_Star.png')}
                 />
                 <Text style={styles.rating}>
                 {rating}
