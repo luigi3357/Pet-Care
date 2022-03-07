@@ -6,6 +6,8 @@ import { getLogin } from '../../redux/ApiActionCreator'
 import {FontAwesome5} from '@expo/vector-icons'
 import {useSelector, useDispatch} from 'react-redux'
 
+
+
 const Login = () => {   
         
     const dispatch = useDispatch()
@@ -20,7 +22,7 @@ console.log(checks)
         if(checks===false){
             console.log('error de logueo')
         }else{
-        navigation.navigate("ForgetPassword")
+        navigation.navigate("HomeScreen")
         }
     }
 
