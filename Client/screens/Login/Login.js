@@ -15,10 +15,8 @@ const Login = () => {
     const [refresh, setRefresh] = useState(false)
     const trues = useSelector((state=>(state.true)))
     const falses = useSelector((state=>(state.false)))
-
+  
     
-
-
   function errorAlert(){
     Alert.alert(
       "Error",
@@ -27,6 +25,8 @@ const Login = () => {
         { text: "OK", onPress: ()=>navigation.navigate("Login") }
       ]
     )};
+
+
 
 
     function handlesubmit(){
@@ -52,21 +52,16 @@ const Login = () => {
 
 
     return(
-        <ScrollView  refreshControl={
-            <RefreshControl
-            refreshing={refresh}
-            onRefresh={()=>pullMe()}
-            />
-          }>
+        <View>
+        
             <View style={styles.logoPos}>
                 <Image
                 source={require("../../assets/slides/img1.png")}
                 style={styles.logo}
-                alt="image"/>
+                alt="."
+               />
             </View>
-            <View style={styles.middle}>
-                <Text style={styles.loginText}>Login</Text>
-            </View>
+            <View>
             <Input                          
              type="text"     
               onChangeText={(email)=>onChangeEmail(email)}
@@ -77,15 +72,16 @@ const Login = () => {
              onChangeText={(password)=>onChangePassword(password)}
              placeholder = "Contraseña"
               />
+
             <View style={styles.buttonStyle}>
                 <Button
                  onPress={(data)=>handlesubmit(data)}
                 style={styles.buttonDesing}>
-                    LOGIN
+                    Inicia Sesion
                 </Button>       
             </View>
             <View style={styles.text2}>
-                <TouchableOpacity onPress={()=>navigation.navigate("Profile")}>
+                <TouchableOpacity onPress={()=>navigation.navigate("ForgetPassword")}>
                 <Text style={styles.singupText}>Olvidaste tu Contraseña?</Text>
                 </TouchableOpacity>
             </View>
@@ -96,7 +92,8 @@ const Login = () => {
                 <Text style={styles.singupText}>REGISTRATE</Text>
                 </TouchableOpacity>
             </View>
-            </ScrollView>
+            </View>
+            </View>
     )
 }
 export default () => {
@@ -116,10 +113,12 @@ export default () => {
       },
       loginText:{
           fontSize:30,
-          fontWeight: "bold"
+          fontWeight: "bold",
+
       },
       middle:{
           alignItems:'center',
+          top:70
       },
       text2:{
           paddingTop: 10,
@@ -161,8 +160,9 @@ export default () => {
           justifyContent:"space-around"
     },
       logo: {
-          width: 300,
-          height: 300,
+          width: 200,
+          height: 200,
+          resizeMode:'cover'
       },
       tinylogo: {
           width: 70,

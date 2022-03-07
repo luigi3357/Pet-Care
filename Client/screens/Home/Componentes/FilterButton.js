@@ -143,7 +143,8 @@ export default function FilterSelect(){
       justifyContent:'center',
       height : '90%',
       width : '60%',
-      right:-80,
+      right:-100,
+      marginTop:15
     },
     dropdown : {
       width: '100%',
@@ -153,7 +154,7 @@ export default function FilterSelect(){
       borderLeftWidth : 1,
       borderRightWidth : 1,
       // position : 'absolute',
-      top : 30,
+      top : -30,
       right : 1   // cambiar esto por { right : '0px' } si se va a colocar del lado derecho 
       ,borderRadius : 4
     },

@@ -1,14 +1,15 @@
 
-import React from 'react'
-import { NativeBaseProvider,Icon, Avatar,Box,Center,Fab} from 'native-base'
+import React, { useEffect } from 'react'
+import { NativeBaseProvider,Icon, Avatar,Box,Center,Fab, Button} from 'native-base'
 import {useNavigation} from '@react-navigation/native'
 import {View, StyleSheet,Text,TouchableOpacity} from 'react-native'
 import {FontAwesome5,MaterialCommunityIcons, MaterialIcons} from '@expo/vector-icons'
 import Footer from './Componentes/Footer'
 
+
 function Profile(){
 
-   const navigation = useNavigation()
+    const navigation = useNavigation()
 
     return(
        <View style={styles.container}>
@@ -40,7 +41,6 @@ function Profile(){
               }}
                />
                 </TouchableOpacity>
-
            </View>
 
            <View style={styles.avatar}>
@@ -50,47 +50,14 @@ function Profile(){
           RB
         </Avatar>
            </View>
-           
-           <View style={styles.middle}>
-                <Text style={styles.textName}>Franco Miño</Text>
-           </View>
-
-           <View style={styles.text2}>
-               <Icon
-             as={<FontAwesome5  name="star"/>}
-             size="sm"
-             m={2}
-               />
-                <Text style={{marginTop:10}}>4.5</Text>
-                <View style={{marginTop:10, marginLeft:150, flexDirection:'row'}}>
-                <Text>5</Text>
-                <Text style={{ marginLeft:30}}>Contrataciones</Text>
-                </View>
-           </View>
-
-           <View style={{flexDirection:'row', justifyContent:'space-between', marginLeft:20, marginRight:20, marginTop:30}}>
-               <View style={{flexDirection:'column'}}>
-                   <Text>feature</Text>
-                   <Text>feature</Text>
-                   <Text>feature</Text>
-                   <Text>feature</Text>
-               </View>
-               <View style={{flexDirection:'column'}}>
-                   <Text>feature</Text>
-                   <Text>feature</Text>
-                   <Text>feature</Text>
-                   <Text>feature</Text>
-               </View>
-               <View style={{flexDirection:'column'}}>
-                   <Text>feature</Text>
-                   <Text>feature</Text>
-                   <Text>feature</Text>
-                   <Text>feature</Text>
-               </View>
-           </View>
-           <View>
-           </View>
-
+           <View style={styles.buttonStyle}>
+                <Button
+                 onPress={()=>navigation.navigate("Login")}
+                style={styles.buttonDesing}>
+                    Cerrar Sesion
+                </Button>       
+            </View>
+    
            <Footer/>
        </View>
 
@@ -111,7 +78,7 @@ export default () => {
   const styles = StyleSheet.create({
     container:{
         flex:1,
-        backgroundColor:"#fff",
+        backgroundColor:"#f9f9f9",
     },
 
     up:{
@@ -138,6 +105,14 @@ export default () => {
         alignItems:'center',
         marginTop:10,
     },
+    buttonStyle:{
+        marginRight:15,
+        marginLeft:15,
+        marginTop:300,
+    },
+    buttonDesing:{
+        backgroundColor: "#00d2c6"
+      },
     })
 
 

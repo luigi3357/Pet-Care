@@ -28,9 +28,17 @@ const Register = () => {
    },2000)
   }
 
+  function registerLog(){
+    Alert.alert(
+      "Registrado",
+      "Registro exitoso",
+      [
+        { text: "Inicia Sesion", onPress: ()=>navigation.navigate("HomeScreen") }
+      ]
+    )};
  function handlesubmit(e){
     dispatch(registerBack(data)) 
-    navigation.navigate("Login")
+    registerLog()
   }
   
   return (

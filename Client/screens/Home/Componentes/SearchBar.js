@@ -18,24 +18,18 @@ export default function SearchBar() {
     console.log(value)
   }
     return (
-      <NativeBaseProvider>
+      <View style={{marginTop:10}}>
     <AspectRatio ratio={3/1}>
       <View style={styles.container}>
       <View style={styles.searchContainer}>
     <View style={styles.searchicon}>
-       
-    
-     
 <TouchableOpacity
 style={styles.searchicon}
 onPress={submitSearch}
 >
 <Icon ml="2" size="7" color="#000000" as={<Ionicons name="ios-search" />} />
 </TouchableOpacity>
-
 </View>
-
-    
      <TextInput
      style={styles.textInput}
     
@@ -53,37 +47,11 @@ onPress={submitSearch}
        else setError('Solo letras del alfabeto')
      }
    }
-     
      />
-        
-
-       
-     
+    </View>    
     </View>
-    
-    
-  <View>
-{/* {
-error &&
-<Text style={{width:'90%',marginTop:'2%',color:'white'}}>
-      {error}
-  </Text>
-} */}
-  </View>
-  
-
-
-      
-    </View>
-
-
-    
-
-     
-
-
     </AspectRatio>
-    </NativeBaseProvider>
+    </View>
     )
 
    
@@ -98,6 +66,7 @@ error &&
       alignItems:'center',
      backgroundColor:'orange',
       justifyContent:'center',
+      
     },
     searchContainer:{
       alignItems: 'center',

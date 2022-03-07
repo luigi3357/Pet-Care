@@ -6,7 +6,8 @@ const initialState = {
   error: '',
   true:'true',
   false:'false',
-  users:''
+  name:'',
+  last_name:''
 };
 
 const apiReducer = (state = initialState, action) => {
@@ -43,6 +44,16 @@ const apiReducer = (state = initialState, action) => {
             ...state,
             users: action.payload,
           };
+        case ACTION_TYPES.GET_ID:
+            return {
+              ...state,
+              name: action.payload,
+            };
+        case ACTION_TYPES.GET_LAST_NAME:
+            return {
+              ...state,
+              last_name: action.payload,
+            };
     default:
       return state;
   }
