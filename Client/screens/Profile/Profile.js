@@ -1,3 +1,4 @@
+
 import React from 'react'
 import { NativeBaseProvider,Icon, Avatar,Box,Center,Fab} from 'native-base'
 import {useNavigation} from '@react-navigation/native'
@@ -102,7 +103,7 @@ export default () => {
       <NativeBaseProvider>
         <Profile/>
       </NativeBaseProvider>
-    )
+      )
   }
 
 
@@ -138,5 +139,6 @@ export default () => {
         marginTop:10,
     },
     })
+
 
 

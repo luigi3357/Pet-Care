@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import {VStack,Box,Divider,Input, Icon,NativeBaseProvider,AspectRatio, Center} from 'native-base'
 import { Ionicons,AntDesign } from '@expo/vector-icons'; 
-import {View,TouchableOpacity,Text,StyleSheet} from 'react-native'
+import {View,TouchableOpacity,TextInput,StyleSheet} from 'react-native'
 
 
 export default function SearchBar() {
@@ -18,90 +18,116 @@ export default function SearchBar() {
     console.log(value)
   }
     return (
-        <NativeBaseProvider>
-      <AspectRatio ratio={3/1} >
-        <View style={styles.container}>
-        <View style={styles.searchContainer}>
-      
-         
-      
+      <NativeBaseProvider>
+    <AspectRatio ratio={3/1}>
+      <View style={styles.container}>
+      <View style={styles.searchContainer}>
+    <View style={styles.searchicon}>
        
-  <TouchableOpacity
- style={styles.searchicon}
- onPress={submitSearch}
-  >
-  <Icon ml="2" size="8" color="#000000" as={<Ionicons name="ios-search" />} />
-  </TouchableOpacity>
-  
-        <VStack w="75%" space={5} >
-        <Input 
-        variant="filled" 
-        width="100%"  py="1" 
-        color={'white'}
-        onChangeText={(text)=>{
-          var letters = /^[A-Za-z]+$/;
-          if(text.length>30){
-            setError('Query too long.')
-          }
-          else if(text.match(letters)){
-            searchText(text)
-          if(error){
-            setError(false)
-          }
-          }
-          else setError('Solo letras del alfabeto')
-        }
-      }
-      />
-      </VStack>
-      </View>
-      
-      
-    <View>
-{
-  error &&
-  <Text style={{width:'75%',marginTop:'2%',color:'white'}}>
-        {error}
-    </Text>
-}
+    
+     
+<TouchableOpacity
+style={styles.searchicon}
+onPress={submitSearch}
+>
+<Icon ml="2" size="7" color="#000000" as={<Ionicons name="ios-search" />} />
+</TouchableOpacity>
+
+</View>
+
+    
+     <TextInput
+     style={styles.textInput}
+    
+     onChangeText={(text)=>{
+       var letters = /^[A-Za-z]+$/;
+       if(text.length>30){
+         setError('Query too long.')
+       }
+       else if(text.match(letters)){
+         searchText(text)
+       if(error){
+         setError(false)
+       }
+       }
+       else setError('Solo letras del alfabeto')
+     }
+   }
+     
+     />
+        
+
+       
+     
     </View>
     
-      </View>
+    
+  <View>
+{/* {
+error &&
+<Text style={{width:'90%',marginTop:'2%',color:'white'}}>
+      {error}
+  </Text>
+} */}
+  </View>
+  
 
 
-      </AspectRatio>
-      </NativeBaseProvider>
-      )
- 
-     
       
- 
-    }
+    </View>
+
+
+    
+
+     
+
+
+    </AspectRatio>
+    </NativeBaseProvider>
+    )
+
+   
+    
+
+  }
     const styles = StyleSheet.create({
       container:{
-        width:'%30',
+        flex:1,
+        width:'100%',
+        height:'100%',
       alignItems:'center',
+     backgroundColor:'orange',
+      justifyContent:'center',
     },
     searchContainer:{
       alignItems: 'center',
-      
-      backgroundColor:'red',
-      width:"75%",
-    flexDirection:'row',
-    alignItems:'center'
+      justifyContent:'flex-start',
+      height:'124%',
+      backgroundColor:'#00D2C6', //red search
+      width:"100%",
+      flexDirection:'row',
+      marginLeft:15,
   },
     searchicon:{
-     
+      
+     backgroundColor:'white',
+     height:"40%",
+     width:'30%',
       justifyContent:'center',
       alignItems:'center',
-      opacity: 0.5,
+      borderTopLeftRadius:8,
+      borderBottomLeftRadius:8
     
       
     },
     textInput:{
-     
-       height:"100%"
-
+      width:'100%',
+       height:"40%",
+backgroundColor:'white',
+borderWidth:6,
+borderColor:'white',
+borderTopRightRadius:8,
+borderBottomRightRadius:8
     },
       
   })
