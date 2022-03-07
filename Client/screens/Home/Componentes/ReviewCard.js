@@ -8,7 +8,7 @@ export default function ReviewCard({id,titulo, rating, usuario, review}) {
             <View style={{display:"flex", flexDirection:"row", textAlign:"center", alignItems:"center"}}>
                 <Image
                     style= {{width:10, height:15}}
-                    source={require('../../assets/Gold_Star.png')}
+                    source={require('../../../assets/Gold_Star.png')}
                 />
                 <Text style={styles.reviewRating}> {rating}</Text>
             </View>
