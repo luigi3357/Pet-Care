@@ -1,9 +1,9 @@
 {
-  "hostType": "lan",
+  "hostType": "tunnel",
   "lanType": "ip",
   "dev": true,
   "minify": false,
-  "urlRandomness": "ms-yc8",
+  "urlRandomness": "ci-btn",
   "https": false,
   "scheme": null,
   "devClient": false

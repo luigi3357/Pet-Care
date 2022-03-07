@@ -25,7 +25,7 @@ router.post("/register", async (req, res) => {
             let verify = verifyEmail(email.toLowerCase())
             if (verify === true && password.length >= 8) {
                 let hasheador = await hash(password)
-                let result = await create(email, hasheador, name, last_name)
+                let result = await create(email.toLowerCase(), hasheador, name, last_name)
                 return res.status(201).send(result)
             }
             if (verify === false) {
@@ -47,6 +47,7 @@ router.post("/login", async (req, res) => {
     try {
         let user = await search({ email: email.toLowerCase() })
         if(!user){
+            console.log('este error')
             return res.status(404).send("notEmail")
         }
         if (user){

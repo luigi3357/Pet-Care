@@ -1,10 +1,10 @@
 {
-  "expoServerPort": null,
-  "packagerPort": null,
+  "devToolsPort": 19002,
+  "expoServerPort": 19000,
+  "packagerPort": 19000,
+  "expoServerNgrokUrl": "https://ci-btn.negurito.client.exp.direct",
+  "packagerNgrokUrl": "https://ci-btn.negurito.client.exp.direct",
+  "ngrokPid": 6740,
   "packagerPid": null,
-  "expoServerNgrokUrl": null,
-  "packagerNgrokUrl": null,
-  "ngrokPid": null,
-  "webpackServerPort": null,
-  "devToolsPort": 19002
+  "webpackServerPort": null
 }
