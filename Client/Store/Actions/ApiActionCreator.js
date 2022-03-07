@@ -1,13 +1,12 @@
 import axios from 'axios';
 import ACTION_TYPES from './ActionTypes.js';
 import {fetchData, fetchSuccess, fetchError} from './ApiAction';
-const localhost = 'localhost';
+const localhost = '192.168.100.8';
 
 export const getLogin = (payload) =>  {
   try {
     return async (dispatch)=>{                        
         let json = await axios.post(`http://${localhost}:3001/login`, payload)
-        console.log(json.data)
         return {
             type: ACTION_TYPES.GET_CHECK,
             payload: json.data
