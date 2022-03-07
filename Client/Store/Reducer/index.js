@@ -2,10 +2,11 @@ import ACTION_TYPES from '../Actions/ActionTypes';
 
 const initialState = {
   loading: false,
-  data: '',
+  users: '',
   error: '',
   true:'true',
   false:'false',
+  check:"",
   name:'',
   last_name:''
 };
@@ -20,7 +21,7 @@ const apiReducer = (state = initialState, action) => {
     case ACTION_TYPES.API_SUCCESS:
       return {
         ...state,
-        data: action.payload,
+        users: action.payload,
         loading: false,
       };
     case ACTION_TYPES.API_ERROR:
@@ -39,11 +40,6 @@ const apiReducer = (state = initialState, action) => {
           ...state,
           false: action.payload,
         };
-        case ACTION_TYPES.GET_USERS:
-          return {
-            ...state,
-            users: action.payload,
-          };
         case ACTION_TYPES.GET_ID:
             return {
               ...state,
@@ -54,6 +50,12 @@ const apiReducer = (state = initialState, action) => {
               ...state,
               last_name: action.payload,
             };
+            case ACTION_TYPES.GET_CHECK:
+              console.log(action.payload)
+              return{
+                ...state,                
+                check: action.payload,
+              }
     default:
       return state;
   }

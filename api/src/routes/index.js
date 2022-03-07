@@ -46,6 +46,7 @@ router.post("/register", async (req, res) => {
 
 router.post("/login", async (req, res) => {
     let { email, password } = req.body
+    console.log(req.body)
     try {
         let user = await search({ email: email.toLowerCase() })
         if(!user){
