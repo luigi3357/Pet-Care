@@ -7,7 +7,7 @@ const getUser = (payload) => (dispatch) => {
     dispatch(fetchData());
     return new Promise(() => {
       axios
-        .get("http://localhost:3001/user")
+        .get(`http://${localhost}:3001/users`)
         .then((response) => {
           dispatch(fetchSuccess(response.data));         
         })
