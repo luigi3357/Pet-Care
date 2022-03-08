@@ -19,36 +19,17 @@ export default function HomeScreens() {
   return string.trim();
 }
 
-  var reviewsPostCard = [];
-
-  for(let i =0; i<5; i++){
-    let arrAux = [];
-  for(let i =0; i<8;i++){
-
-    let obj = {
-      titulo : getRandomName(3),
-      rating : Math.ceil(Math.random()*5),
-      usuario: getRandomName(2)
-     ,review : getRandomName(Math.ceil(Math.random()*17))
-    }
-    arrAux.push(obj);
-    
-  }
-  reviewsPostCard.push(arrAux);
-}
-
-
   return (
       <>
       <View style={{height:'13%',width:'100%'}}>
            <Navbar/>
     </View >
     <ScrollView>
-           <PostCard id={1} reviews={reviewsPostCard[0]} details={getRandomName(12)} title={getRandomName(Math.ceil(Math.random()* 3))} hiringNumber={Math.ceil(Math.random()*20)} rating={Math.ceil(Math.random()*5)}/>
-           <PostCard id={2} reviews={reviewsPostCard[1]} details={getRandomName(12)} title={getRandomName(Math.ceil(Math.random()* 3))} hiringNumber={Math.ceil(Math.random()*20)} rating={Math.ceil(Math.random()*5)}/>
-           <PostCard id={3} reviews={reviewsPostCard[2]} details={getRandomName(12)} title={getRandomName(Math.ceil(Math.random()* 3))} hiringNumber={Math.ceil(Math.random()*20)} rating={Math.ceil(Math.random()*5)}/>
-           <PostCard id={4} reviews={reviewsPostCard[3]} details={getRandomName(12)} title={getRandomName(Math.ceil(Math.random()* 3))} hiringNumber={Math.ceil(Math.random()*20)} rating={Math.ceil(Math.random()*5)}/>
-           <PostCard id={5} reviews={reviewsPostCard[4]} details={getRandomName(12)} title={getRandomName(Math.ceil(Math.random()* 3))} hiringNumber={Math.ceil(Math.random()*20)} rating={Math.ceil(Math.random()*5)}/>
+           <PostCard id={1}  details={getRandomName(12)} title={getRandomName(Math.ceil(Math.random()* 3))} hiringNumber={Math.ceil(Math.random()*20)} rating={Math.ceil(Math.random()*5)}/>
+           <PostCard id={2}  details={getRandomName(12)} title={getRandomName(Math.ceil(Math.random()* 3))} hiringNumber={Math.ceil(Math.random()*20)} rating={Math.ceil(Math.random()*5)}/>
+           <PostCard id={3}  details={getRandomName(12)} title={getRandomName(Math.ceil(Math.random()* 3))} hiringNumber={Math.ceil(Math.random()*20)} rating={Math.ceil(Math.random()*5)}/>
+           <PostCard id={4}  details={getRandomName(12)} title={getRandomName(Math.ceil(Math.random()* 3))} hiringNumber={Math.ceil(Math.random()*20)} rating={Math.ceil(Math.random()*5)}/>
+           <PostCard id={5}  details={getRandomName(12)} title={getRandomName(Math.ceil(Math.random()* 3))} hiringNumber={Math.ceil(Math.random()*20)} rating={Math.ceil(Math.random()*5)}/>
     </ScrollView>
    <View >
     <Bottomplus/>
@@ -67,3 +48,26 @@ export default function HomeScreens() {
       justifyContent: 'flex-end'
     },
   });
+
+
+
+
+
+
+  //   var reviewsPostCard = [];
+
+//   for(let i =0; i<5; i++){
+//     let arrAux = [];
+//   for(let i =0; i<8;i++){
+
+//     let obj = {
+//       titulo : getRandomName(3),
+//       rating : Math.ceil(Math.random()*5),
+//       usuario: getRandomName(2)
+//      ,review : getRandomName(Math.ceil(Math.random()*17))
+//     }
+//     arrAux.push(obj);
+    
+//   }
+//   reviewsPostCard.push(arrAux);
+// }

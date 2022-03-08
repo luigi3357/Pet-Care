@@ -25,18 +25,18 @@ export default function ReviewCard({id,titulo, rating, usuario, review}) {
 const styles = StyleSheet.create({
     reviewCard : {
         display : 'flex'
-        ,justifyContent:"center"
+        ,justifyContent : "flex-start"
         ,alignItems:"center"
         ,backgroundColor : "#AF8"
         ,borderWidth : 1
         ,borderColor : "lightblue"
         ,borderStyle : "solid"
-        ,justifyContent : "flex-start"
         // ,margin : 2
         ,borderRadius : 3
         // ,minWidth: 88
-        ,maxWidth : 350
-        ,minHeight : 120
+        ,width : 150
+        ,height : 120
+        ,marginHorizontal: 5
     }
 
     
@@ -51,12 +51,13 @@ const styles = StyleSheet.create({
         ,textShadowColor : "black"
         ,textShadowOffset : {width : 1, height : 1}
         ,textShadowRadius : 2
+        ,margin: 0
     }
     ,reviewUsuario : {
         fontWeight : "300"
         // ,fontFamily : "Helvetica"
         ,color : '#00F'
-        ,margin : 4
+        ,margin : 0
     }
     ,reviewReview: {
         // borderTopColor : "#0F0",
