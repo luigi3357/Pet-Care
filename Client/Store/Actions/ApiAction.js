@@ -19,7 +19,7 @@ export const getId = (name) => async (dispatch) => {
   try{
       
 
-      const json = await axios.get("http://192.168.1.76:3001/register/" + name )
+      const json = await axios.get("http://192.168.1.7:3001/register/" + name )
 
   dispatch({
       type: ACTION_TYPES.GET_ID,
