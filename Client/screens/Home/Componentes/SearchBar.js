@@ -1,19 +1,56 @@
 import { Ionicons } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
 import { AspectRatio, Icon } from "native-base";
-import React, { useState } from "react";
-import { StyleSheet, TextInput, TouchableOpacity, View } from "react-native";
+import React, { useEffect, useState } from "react";
+import {
+  Alert,
+  StyleSheet,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from "react-native";
 
 export default function SearchBar() {
+  const navigation = useNavigation();
   const [value, setValue] = useState("");
-  const [error, setError] = useState();
+  const [error, setError] = useState("");
 
-  function searchText(valor) {
-    setValue(valor);
-    console.log(value);
+  function errorAlert(message) {
+    Alert.alert("Error", message, [
+      { text: "OK", onPress: () => navigation.navigate("HomeScreen") },
+    ]);
   }
+
+  function validateSearch(value) {
+    if (value.length < 1) {
+      setError("Ingresa una keyword en la búsqueda");
+    } else if (!/[A-Za-z ]/.test(value)) {
+      setError("Solo letras o espacios");
+      //console.log(error)
+    } else if (value.length > 30) {
+      setError("Máximo 30 caracteres");
+      //console.log(error)
+    } else {
+      setError("");
+    }
+    setValue(value);
+  }
+
+  useEffect(() => {
+    validateSearch(value);
+  }, [value]);
+
   function submitSearch() {
+    validateSearch(value);
+    if (error) {
+      errorAlert(error);
+      setValue("");
+    }else{
+      dispatch()
+    }
     console.log(value);
   }
+
   return (
     <View style={{ marginTop: 10 }}>
       <AspectRatio ratio={3 / 1}>
@@ -35,16 +72,9 @@ export default function SearchBar() {
             <TextInput
               style={styles.textInput}
               onChangeText={(text) => {
-                var letters = /^[A-Za-z]+$/;
-                if (text.length > 30) {
-                  setError("Query too long.");
-                } else if (text.match(letters)) {
-                  searchText(text);
-                  if (error) {
-                    setError(false);
-                  }
-                } else setError("Solo letras del alfabeto");
+                setValue(text);
               }}
+              value={value}
             />
           </View>
         </View>
