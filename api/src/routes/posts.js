@@ -15,7 +15,8 @@ router.get('/all', async (req, res, next)=>{
                     as: "reviews"
 
                 }
-            }
+            },
+            order: [['createdAt','DESC']]
         });
         res.status(200).send(posts)
         
