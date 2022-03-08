@@ -13,5 +13,16 @@ async function infoTotalDb(){
     })
 }
 
+async function infoPostDb(){
+    return await Post.findAll({
+        include:[{
+            model: User,
+            as: 'users'
+        },{
+            model: Review,
+            as: "reviews"
+        }]
+    })
+}
 
 module.exports ={ infoTotalDb }
