@@ -51,8 +51,6 @@ const apiReducer = (state = initialState, action) => {
               last_name: action.payload,
             };
             case ACTION_TYPES.GET_CHECK:
-
-             const cambio = action.payload=== true? state.check === "true" : state.check === "false"
               return{
                 ...state,                
                 check: cambio,
