@@ -56,6 +56,12 @@ const apiReducer = (state = initialState, action) => {
                 ...state,                
                 check: action.payload,
               }
+              case ACTION_TYPES.POST_PUBLIC:
+                return{
+                  ...state,                
+                  
+               
+                }
     default:
       return state;
   }
