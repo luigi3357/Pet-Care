@@ -3,6 +3,21 @@ import ACTION_TYPES from './ActionTypes.js';
 import {fetchData, fetchSuccess, fetchError} from './ApiAction';
 const localhost = '192.168.100.8';
 
+const getUser = (payload) => (dispatch) => {
+    dispatch(fetchData());
+    return new Promise(() => {
+      axios
+        .get("http://localhost:3001/user")
+        .then((response) => {
+          dispatch(fetchSuccess(response.data));         
+        })
+        .catch((error) => {
+          dispatch(fetchError(error));
+          console.error(error);
+        });
+    });
+  };
+
 export const getLogin = (payload) =>  {
   try {
     return async (dispatch)=>{                        
