@@ -28,6 +28,7 @@
     "nodemailer": "^6.7.2",
     "nodemon": "^2.0.15",
     "pg": "^8.5.1",
-    "sequelize": "^6.3.5"
+    "sequelize": "^6.3.5",
+    "mercadopago": "^1.5.12"
   }
 }
