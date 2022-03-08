@@ -1,15 +1,15 @@
-import React from "react";
-import Login from "./screens/Login/Login";
-import Register from "./screens/Login/Register";
-import { createStackNavigator } from "@react-navigation/stack";
-import LandingPage from "./screens/LandingPage/LandingPage";
 import { NavigationContainer } from "@react-navigation/native";
-import MailCode from "./screens/Login/MailCode"
-import ForgetPassword from "./screens/Login/ForgetPassword"
-import NewPassword from "./screens/Login/NewPassword"
+import { createStackNavigator } from "@react-navigation/stack";
+import React from "react";
 import { Provider } from "react-redux";
-import Store from "./redux/store";
+import Store from "./Store";
 import HomeScreen from "./screens/Home/Componentes/HomeScreen";
+import LandingPage from "./screens/LandingPage/LandingPage";
+import ForgetPassword from "./screens/Login/ForgetPassword";
+import Login from "./screens/Login/Login";
+import MailCode from "./screens/Login/MailCode";
+import NewPassword from "./screens/Login/NewPassword";
+import Register from "./screens/Login/Register";
 import Profile from "./screens/Profile/Profile";
 
 
