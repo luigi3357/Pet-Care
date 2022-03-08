@@ -1,12 +1,12 @@
 const { Router } = require('express');
-const { infoTotalDb } = require('../services/getDb');
-infoTotalDb
+const { infoPostDb } = require('../services/getDb');
+
 
 
 const router = Router();
 
 router.get('/orderAndFilter', async (req, res) => {
-    let data = await infoDb()
+    let data = await infoPostDb()
     const {order} = req.params
 
 //ordenamiento por rating    
@@ -55,7 +55,7 @@ router.get('/orderAndFilter', async (req, res) => {
 
 // filtrado por tamaño
 
-    if(continente==="AllTamaño"){
+    if(order==="AllTamaño"){
         res.send(data)
     }
     if(order === "pequeño" || order === "mediano" || order === "grande"){
@@ -65,7 +65,7 @@ router.get('/orderAndFilter', async (req, res) => {
 
 //filtrado por tipo de mascota
 
-    if(continente==="AllTipo"){
+    if(continente==="AllType"){
         res.send(data)
     }
     if(order === "perro" || order === "gato" || order === "aves" || order === "roedores"){
