@@ -1,5 +1,5 @@
 require('dotenv').config();
-const { Sequelize } = require('sequelize');
+const { Sequelize, Op} = require('sequelize');
 const fs = require('fs');
 const path = require('path');
 const {
@@ -37,5 +37,6 @@ Review.belongsTo(User, {as: 'reviwedUser', foreignKey: 'reviewedUser_id'})
 
 module.exports = {
   ...sequelize.models, 
-  conn: sequelize,     
+  conn: sequelize,
+  Op,     
 };

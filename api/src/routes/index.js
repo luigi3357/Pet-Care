@@ -7,6 +7,7 @@ const  UserRoutes  = require('./users');
 const PostsRoutes  = require('./posts');
 const ReviewRoutes  = require('./reviews');
 const UploadRoutes  = require('./uploadform');
+const SearchRoutes  = require('./searchBar');
 
 const MercadoPagoRoutes = require("./mercadoPago")
 
@@ -18,6 +19,7 @@ router.use("/users", UserRoutes)
 router.use('/posts', PostsRoutes)
 router.use('/reviews', ReviewRoutes)
 router.use('/upload', UploadRoutes )
+router.use('/search', SearchRoutes )
 router.use("/mercadoPago", MercadoPagoRoutes)
 
 
