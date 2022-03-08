@@ -27,17 +27,17 @@ module.exports = (sequelize) => {
       type: DataTypes.ENUM("pequeño","mediano","grande",),
       allowNull: true
     },
-    adress: {
+    address: {
       type: DataTypes.STRING,
-      allowNull: false,
+      //allowNull: false,
     },
     image:{
       type: DataTypes.STRING(5000),
-      allowNull: false,
+      //allowNull: false,
     },
     phone: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      //allowNull: false
     }
 
     },
