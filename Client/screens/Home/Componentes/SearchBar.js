@@ -27,8 +27,6 @@ export default function SearchBar() {
         error,
         [
           { text: "OK", onPress: ()=>{
-            setError("");
-            setValue("");
             console.log(error,value);
             navigation.navigate('HomeScreen');
           }}
