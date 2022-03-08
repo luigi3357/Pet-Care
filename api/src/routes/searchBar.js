@@ -11,16 +11,6 @@ router.get('/', async (req,res,next)=>{
             const foundPosts = await searchingMachine(keywords);
             const searchResponse = foundPostsSelector(foundPosts);
             res.send(searchResponse)            
-
-
-
-            // const search = await Post.findAll({
-            //     where: {
-            //         [Op.or]: [{description: {[Op.iLike]: `%${keywords[0]}%`}}, {description: {[Op.iLike]: `%${keywords[1]}%`}}]
-            //     },
-            //     order: [['createdAt', 'DESC']]
-            // })
-           // res.send(search)
         }
     } catch (error) {
         next(error)
