@@ -19,9 +19,9 @@ export default function SearchBar() {
       <AspectRatio ratio={3 / 1}>
         <View style={styles.container}>
           <View style={styles.searchContainer}>
-            <View style={styles.searchicon}>
+            <View style={styles.searchIcon}>
               <TouchableOpacity
-                style={styles.searchicon}
+                style={styles.searchIcon}
                 onPress={submitSearch}
               >
                 <Icon
@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     marginLeft: 15,
   },
-  searchicon: {
+  searchIcon: {
     backgroundColor: "white",
     height: "40%",
     width: "30%",
