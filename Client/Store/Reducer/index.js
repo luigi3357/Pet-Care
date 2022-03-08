@@ -51,6 +51,8 @@ const apiReducer = (state = initialState, action) => {
               last_name: action.payload,
             };
             case ACTION_TYPES.GET_CHECK:
+              console.log(action.payload)
+              cambio = action.payload === "notEmail"? state.check === "true": state.check
               return{
                 ...state,                
                 check: cambio,

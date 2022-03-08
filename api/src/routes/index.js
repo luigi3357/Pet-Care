@@ -62,7 +62,7 @@ router.post("/login", async (req, res) => {
             let check = await compare(password, user)
             if (check === true) {
                 console.log(check)
-                return res.status(200).send("true")
+                return res.status(200).send("true")                
             }
             if (check === false) {
                 console.log(check)
