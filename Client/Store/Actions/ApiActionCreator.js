@@ -1,13 +1,13 @@
 import axios from 'axios';
 import ACTION_TYPES from './ActionTypes.js';
 import {fetchData, fetchSuccess, fetchError} from './ApiAction';
-const localhost = '192.168.100.8';
+const localhost = '192.168.100.16';
 
 const getUser = (payload) => (dispatch) => {
     dispatch(fetchData());
     return new Promise(() => {
       axios
-        .get("http://localhost:3001/user")
+        .get(`http://${localhost}:3001/users`)
         .then((response) => {
           dispatch(fetchSuccess(response.data));         
         })
