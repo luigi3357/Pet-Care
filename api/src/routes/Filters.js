@@ -1,21 +1,22 @@
 const { Router } = require('express');
-const { infoPostDb } = require('../services/getDb');
-
-
+const { infoPostDb, infoTotalDb } = require('../services/getDb');
 
 const router = Router();
 
+
+
 router.get('/orderAndFilter', async (req, res) => {
-    let data = await infoPostDb()
+    let dataPost = await infoPostDb()
+    let dataUser = await infoTotalDb()
     const {order} = req.params
 
 //ordenamiento por rating    
     
     if(order ==="AllRating"){
-      return res.send(data)
+      return res.send(dataPost)
     }
     if(order === "ascRating"){
-     let ascendente = data.sort((a, b)=>{
+     let ascendente = dataUser.sort((a, b)=>{
         if (a.rating > b.rating) return 1;
         if (a.rating < b.rating) return -1;
         return 0;
@@ -23,7 +24,7 @@ router.get('/orderAndFilter', async (req, res) => {
     return res.send(ascendente)
     }
     if(order === "descRating"){
-      let descendiente = data.sort((a, b)=>{
+      let descendiente = dataUser.sort((a, b)=>{
         if (a.rating > b.rating) return -1;
         if (a.rating < b.rating) return 1;
         return 0;
@@ -34,10 +35,10 @@ router.get('/orderAndFilter', async (req, res) => {
 //ordenamiento precio
     
     if(order ==="AllPrice"){
-        return res.send(data)
+        return res.send(dataPost)
       }
       if(order === "ascPrice"){
-       let ascendente = data.sort((a, b)=>{
+       let ascendente = dataPost.sort((a, b)=>{
           if (a.price > b.price) return 1;
           if (a.price < b.price) return -1;
           return 0;
@@ -45,7 +46,7 @@ router.get('/orderAndFilter', async (req, res) => {
       return res.send(ascendente)
       }
       if(order === "descPrice"){
-        let descendiente = data.sort((a, b)=>{
+        let descendiente = dataPost.sort((a, b)=>{
           if (a.price > b.price) return -1;
           if (a.price < b.price) return 1;
           return 0;
@@ -56,17 +57,17 @@ router.get('/orderAndFilter', async (req, res) => {
 // filtrado por tamaño
 
     if(order==="AllTamaño"){
-        res.send(data)
+        res.send(dataPost)
     }
     if(order === "pequeño" || order === "mediano" || order === "grande"){
-        let filtroSize = data.filter(el=> el.size.toLowerCase() === size.toLowerCase())
+        let filtroSize = dataPost.filter(el=> el.size.toLowerCase() === size.toLowerCase())
     return res.send(filtroSize)
     }
 
 //filtrado por tipo de mascota
 
     if(continente==="AllType"){
-        res.send(data)
+        res.send(dataPost)
     }
     if(order === "perro" || order === "gato" || order === "aves" || order === "roedores"){
         let filtroTypes = data.filter(el=> el.types.toLowerCase() === types.toLowerCase())
