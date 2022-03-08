@@ -1,7 +1,7 @@
 import axios from 'axios';
 import ACTION_TYPES from './ActionTypes.js';
 import {fetchData, fetchSuccess, fetchError} from './ApiAction';
-const localhost = '192.168.100.8';
+const localhost = '192.168.1.7';
 
 const getUser = (payload) => (dispatch) => {
     dispatch(fetchData());
