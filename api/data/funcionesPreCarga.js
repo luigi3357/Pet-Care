@@ -6,7 +6,7 @@ const { User, Post, Review } = require('../src/db');
     try{
         const {title, description, email} = posteos;
 
-        const user = await User.findOne({
+        const user = User.findOne({
             where: {
                 email
             },
