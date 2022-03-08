@@ -7,6 +7,7 @@ const  UserRoutes  = require('./users');
 const PostsRoutes  = require('./posts');
 const ReviewRoutes  = require('./reviews');
 const UploadRoutes  = require('./uploadform');
+const SearchRoutes  = require('./searchBar');
 
 
 
@@ -16,6 +17,7 @@ router.use("/users", UserRoutes)
 router.use('/posts', PostsRoutes)
 router.use('/reviews', ReviewRoutes)
 router.use('/upload', UploadRoutes )
+router.use('/search', SearchRoutes )
 
 router.post("/register", async (req, res) => {
     let { email, password, name, last_name } = req.body
