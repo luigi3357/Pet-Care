@@ -1,5 +1,5 @@
 
-const { User, Post, Review } = require('../src/db');
+// const { User, Post, Review } = require('../src/db');
 
 
  async function createPost (posteos){

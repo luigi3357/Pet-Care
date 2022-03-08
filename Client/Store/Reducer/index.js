@@ -52,10 +52,17 @@ const apiReducer = (state = initialState, action) => {
             };
             case ACTION_TYPES.GET_CHECK:
               console.log(action.payload)
+              cambio = action.payload === "notEmail"? state.check === "true": state.check
               return{
                 ...state,                
-                check: action.payload,
+                check: cambio,
               }
+              case ACTION_TYPES.POST_PUBLIC:
+                return{
+                  ...state,                
+                  
+               
+                }
     default:
       return state;
   }

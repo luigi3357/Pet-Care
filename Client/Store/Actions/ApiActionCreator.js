@@ -1,7 +1,7 @@
 import axios from 'axios';
 import ACTION_TYPES from './ActionTypes.js';
 import {fetchData, fetchSuccess, fetchError} from './ApiAction';
-const localhost = '192.168.1.7';
+const localhost = '192.168.100.16';
 
 const getUser = (payload) => (dispatch) => {
     dispatch(fetchData());
@@ -36,9 +36,7 @@ export const registerBack= payload => {
   
     try {
         return async (dispatch)=>{                        
-            console.log("entre al return")
             let json = await axios.post(`http://${localhost}:3001/register`, payload)
-            console.log("entre al return", json)
             return json
         }
     } catch (error) {
@@ -46,5 +44,11 @@ export const registerBack= payload => {
     }    
 }
 
-
+export default function postPublic (payload){
+  return async function(dispatch){
+    const response= axios.post(`http://${localhost}:3001/` , payload)
+    console.log(response)
+    return response;
+  }
+}
 
