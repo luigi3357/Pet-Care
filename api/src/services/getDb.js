@@ -25,4 +25,4 @@ async function infoPostDb(){
     })
 }
 
-module.exports ={ infoTotalDb }
+module.exports ={ infoTotalDb, infoPostDb }
