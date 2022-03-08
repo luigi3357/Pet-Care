@@ -1,11 +1,10 @@
-import { View, Text, StyleSheet, TouchableOpacity, RefreshControl, Alert  } from 'react-native'
-import React,{ useEffect, useState } from 'react'
+import { FontAwesome5 } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
+import { Button, Icon, Image, Input, NativeBaseProvider } from 'native-base';
+import React, { useState } from 'react';
+import { Alert, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { useDispatch } from "react-redux";
-import {Input, NativeBaseProvider,Button, Icon, Image } from 'native-base'
-import {FontAwesome5, MaterialCommunityIcons} from '@expo/vector-icons'
-import {useNavigation} from '@react-navigation/native'
-import InputsLogin from './Componentes/InpuntsLogin'
-import  { registerBack } from '../../redux/ApiActionCreator';
+import { registerBack } from '../../Store/Actions/ApiActionCreator';
 
 
 const Register = () => {
