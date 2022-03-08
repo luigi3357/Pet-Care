@@ -126,37 +126,37 @@ const feedback = [
         "email1": "francomiño@gmail.com",
         "email2": "luiscataldo@gmail.com",
         "message": "Estamos muy contentos por las atenciones de Franco. Siempre nos manda fotos y videos",
-        "rate": 4
+        "rate": "4"
     },{
         "email1": "luiscataldo@gmail.com",
         "email2": "darianesquivel@gmail.com",
         "message": "Es de toda nuestra confianza y podemos estar seguros de que ellos están bien mientras estan con Luis",
-        "rate": 4
+        "rate": "4"
     },{
         "email1": "darianesquivel@gmail.com",
         "email2": "pablomoyano@gmail.com",
         "message": "Fue nuestra primera vez con la aplicación y sin dudarlo recomiendo ampliamente a Darian!! Muchas gracias.",
-        "rate": 5
+        "rate": "5"
     },{
         "email1": "pablomoyano@gmail.com",
         "email2": "sebastianguerra@gmail.com",
         "message": "Excelente servicio!!! durante el hospedaje Pablo nos estuvo mandando fotos y videos de nuestro peludo.",
-        "rate": 5
+        "rate": "5"
     },{
         "email1": "sebastianguerra@gmail.com",
         "email2": "lucasduran@gmail.com",
         "message": "Durante su cuidado me mantuvo al tanto de mi mascota y viendo las fotos que me mandaba supe que la estaba pasando bien.",
-        "rate": 5
+        "rate": "5"
     },{
         "email1": "lucasduran@gmail.com",
         "email2": "juanparaducha@gmail.com",
         "message": "Es el mejor!!! Mi gato es feliz con Lucas. Yo lo dejo con los ojos cerrados, confío en el 100%.",
-        "rate": 2
+        "rate": "2"
     },{        
             "email1": "juanparaducha@gmail.com",
             "email2": "lucasduran@gmail.com",
             "message": "No lo recomiendo. El día que acordamos entregar a Jero llegó tarde!! y casi pierso mi vuelo.",
-            "rate": 1
+            "rate": "1"
         }   
 ]
 

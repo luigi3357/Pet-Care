@@ -14,8 +14,10 @@ const Login = () => {
     const [refresh, setRefresh] = useState(false)
     const trues = useSelector((state=>(state.true)))
     const falses = useSelector((state=>(state.false)))
+
+    const checks = useSelector((state=>(state.check)))
   
-    
+    console.log(checks)
   function errorAlert(){
     Alert.alert(
       "Error",
@@ -31,7 +33,7 @@ const Login = () => {
     function handlesubmit(){
         dispatch(getLogin(data)) 
         
-        navigation.navigate("HomeScreen")
+        // navigation.navigate("HomeScreen")
 
     }
     
@@ -74,7 +76,7 @@ const Login = () => {
 
             <View style={styles.buttonStyle}>
                 <Button
-                 onPress={(data)=>handlesubmit(data)}
+                 onPress={handlesubmit}
                 style={styles.buttonDesing}>
                     Inicia Sesion
                 </Button>       

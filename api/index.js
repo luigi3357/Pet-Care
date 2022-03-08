@@ -9,8 +9,8 @@ const { createPost, createReview } = require('./data/funcionesPreCarga.js');
 conn.sync({ force: true }).then(async () => {
 
   try {    
-    const users = await user.forEach(element => {
-      User.findOrCreate({
+    const users = user.forEach(element => {
+       User.findOrCreate({
       where:{ 
         email:element.email,
         name:element.name,
@@ -20,9 +20,9 @@ conn.sync({ force: true }).then(async () => {
       })
     });     
            
-    const posts =  post.map(e=>createPost(e)); 
+    const posts = post.map(e=> createPost(e)); 
     
-    const reviews = feedback.map(el=>createReview(el))
+    const reviews = feedback.map(el=> createReview(el))
 
   } catch (error) {
     console.log(error)

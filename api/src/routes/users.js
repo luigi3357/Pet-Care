@@ -1,6 +1,8 @@
 const { Router } = require('express');
 const { User, Post, Review } = require('../db');
 const { checkUUIDV } = require('../services/checkUUID');
+const { infoTotalDb } = require('../services/getDb');
+
 const router = Router();
 
 router.get('/:id', async (req, res, next)=>{
@@ -31,6 +33,11 @@ router.get('/:id', async (req, res, next)=>{
     } catch (error) {
         next(error)
     }
+  })
+
+  router.get("/", async (req, res)=>{
+      const infoUser = await infoTotalDb()
+      res.send(infoUser)
   })
 
 module.exports = router;
