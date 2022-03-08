@@ -56,13 +56,12 @@ router.post("/login", async (req, res) => {
             let check = await compare(password, user)
             if (check === true) {
                 console.log(check)
-                return res.status(200).json(check)
+                return res.status(200).send("true")
             }
             if (check === false) {
                 console.log(check)
-                return res.status(404).send(check)
-            }
-            
+                return res.status(404).send("false")
+            }            
         }
     } catch (error) {
         return res.status(404).send(error)
