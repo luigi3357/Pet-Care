@@ -57,6 +57,12 @@ const apiReducer = (state = initialState, action) => {
                 ...state,                
                 check: cambio,
               }
+              case ACTION_TYPES.POST_PUBLIC:
+                return{
+                  ...state,                
+                  
+               
+                }
     default:
       return state;
   }
