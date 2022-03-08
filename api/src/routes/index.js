@@ -9,6 +9,8 @@ const ReviewRoutes  = require('./reviews');
 const UploadRoutes  = require('./uploadform');
 const SearchRoutes  = require('./searchBar');
 
+const MercadoPagoRoutes = require("./mercadoPago")
+
 
 
 const router = Router();
@@ -18,6 +20,8 @@ router.use('/posts', PostsRoutes)
 router.use('/reviews', ReviewRoutes)
 router.use('/upload', UploadRoutes )
 router.use('/search', SearchRoutes )
+router.use("/mercadoPago", MercadoPagoRoutes)
+
 
 router.post("/register", async (req, res) => {
     let { email, password, name, last_name } = req.body
