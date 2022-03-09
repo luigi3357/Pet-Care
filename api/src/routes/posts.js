@@ -14,7 +14,7 @@ router.get('/all', async (req, res, next)=>{
                     model: Review,
                     as: "reviews",
                     order: [['createdAt','DESC']],
-                    attributes: ['rate', 'message', 'updatedAt']
+                    attributes: ['id','rate', 'message', 'from_id', 'updatedAt']
 
                 },
                 attributes: ['name', 'last_name', 'rating', 'bookings']

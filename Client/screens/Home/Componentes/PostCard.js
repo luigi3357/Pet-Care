@@ -6,11 +6,12 @@ import ReviewCard from "./ReviewCard";
 
 export default function PostCard({
   id = 1,
-  image = require("../../../assets/profile.png"),
+  date = 'ayer',
   title = "Título",
+  image = require("../../../assets/profile.png"),
   rating = 4,
-  hiringNumber = 12,
-  details = "Acá van todos los detalles del prestador del servicio abajo van las reviews??? ",
+  bookings = 1,
+  description = "Acá van todos los detalles del prestador del servicio abajo van las reviews??? ",
   reviews = [
     {
         id: 1001,
@@ -106,7 +107,7 @@ export default function PostCard({
         <Text style={styles.rating}>{rating}</Text>
       </View>
       <Image />
-      <Text>Cantidad de contrataciones: {hiringNumber}</Text>
+      <Text>Cantidad de contrataciones: {bookings}</Text>
 
       <TouchableOpacity title="detalles" onPress={() => showDetails()}>
         <Text style={styles.button}>Detalles</Text>
@@ -114,7 +115,7 @@ export default function PostCard({
       {detailsView ? (
         <View style={styles.details}>
           <Text style={{ justifyContent: "center", margin: 50 }}>
-            {details}
+            {description}
           </Text>
 
           <View style={styles.detailsReviews}>
@@ -128,10 +129,9 @@ export default function PostCard({
                       <ReviewCard
                         id={i.id}
                         key={i.id}
-                        titulo={i.titulo}
-                        rating={i.rating}
-                        review={i.review}
-                        usuario={i.usuario}
+                        rating={i.rate}
+                        review={i.message}
+                        from={i.from_id}
                       />
                     );
                   })
