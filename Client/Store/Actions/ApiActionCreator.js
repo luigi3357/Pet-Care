@@ -1,7 +1,7 @@
 import axios from 'axios';
 import ACTION_TYPES from './ActionTypes.js';
 import {fetchData, fetchSuccess, fetchError} from './ApiAction';
-const localhost = '192.168.100.16';
+const localhost ='192.168.0.11' ; //'192.168.0.11'
 
 const getUser = (payload) => (dispatch) => {
     dispatch(fetchData());
@@ -46,22 +46,23 @@ export const registerBack= payload => {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 export default function postPublic (payload){
   return async function(dispatch){
-    const response= axios.post(`http://${localhost}:3001/create` , payload)
+    const response= axios.post(`http://${localhost}:3001/posts/create` , payload)
     console.log(response)
     return response;
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
 

@@ -17,7 +17,7 @@ export default function FormCard(){
     size:[],
     adress:'',
     phone:'',
-    author_Id:'',
+    author_Id:'5345674',
   })
   
   
@@ -125,17 +125,17 @@ setForm({
        dispatch(postPublic(form))
         console.log(form)
         alert('publicacion creada!')
-        setForm({
-          title:'',
-          description:'',
-          price:'',
-          image:'',
-          type:[],
-          size:[],
-          adress:'',
-          phone:'',
-          author_Id:'',
-        })
+        // setForm({
+        //   title:'',
+        //   description:'',
+        //   price:'',
+        //   image:'',
+        //   type:[],
+        //   size:[],
+        //   adress:'',
+        //   phone:'',
+        //   author_Id:'',
+        // })
 
   }
 
