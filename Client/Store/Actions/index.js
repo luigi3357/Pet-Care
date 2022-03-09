@@ -1,7 +1,7 @@
 import axios from 'axios';
 import ACTION_TYPES from './ActionTypes.js';
 import {fetchData, fetchSuccess, fetchError} from './ApiAction';
-const localhost = '192.168.100.16';
+const localhost = '192.168.100.8';
 
 const getUser = (payload) => (dispatch) => {
     dispatch(fetchData());
@@ -52,3 +52,16 @@ export default function postPublic (payload){
   }
 }
 
+/*              SearchBar              */
+export function searchKeyword(keywords){
+  return function(dispatch){
+    axios.get(`http://${localhost}:3001/search?keyword=`+ keywords.replace(" ","+"))
+    .then((response)=>{
+      dispatch({
+        type: ACTION_TYPES.SEARCH_KEYWORD,
+        payload: response.data
+      })
+    })
+    .catch((e)=>{throw new Error('No se pudo conectar al servidor')})
+  }
+}

@@ -17,8 +17,8 @@ async function searchingMachine(keywords) {
             [Op.or]: [
                 {title: {[Op.iLike]: `%${keyword}%`}},
                 {description: {[Op.iLike]: `%${keyword}%`}},
-                types.includes(keyword) ? {type: `${keyword}`} : null,
-                sizes.includes(keyword) ? {size: `${keyword}`} : null,
+                types.includes(keyword.toLowerCase()) ? {type: `${keyword.toLowerCase()}`} : null,
+                sizes.includes(keyword.toLowerCase()) ? {size: `${keyword.toLowerCase()}`} : null,
             ]
           ,
         },
