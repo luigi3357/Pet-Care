@@ -15,9 +15,9 @@ export default function FormCard(){
     image:'',
     type:[],
     size:[],
-    adress:'',
+    address:'',
     phone:'',
-    author_Id:'',
+    author_Id:'5345674',
   })
   
   
@@ -67,7 +67,7 @@ function adressTxt(e){
   console.log(adress)
   setForm({
     ...form,
-    adress:adress
+    address:adress
   })
 }
 function telTxt(e){
@@ -125,17 +125,17 @@ setForm({
        dispatch(postPublic(form))
         console.log(form)
         alert('publicacion creada!')
-        setForm({
-          title:'',
-          description:'',
-          price:'',
-          image:'',
-          type:[],
-          size:[],
-          adress:'',
-          phone:'',
-          author_Id:'',
-        })
+        // setForm({
+        //   title:'',
+        //   description:'',
+        //   price:'',
+        //   image:'',
+        //   type:[],
+        //   size:[],
+        //   adress:'',
+        //   phone:'',
+        //   author_Id:'',
+        // })
 
   }
 
