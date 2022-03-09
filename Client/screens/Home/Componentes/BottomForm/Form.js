@@ -26,7 +26,7 @@ const [titleC,setTitle]= useState('')
 const [descriptionC,setDescription]= useState('')
 const [priceC,setPrice]= useState('')
 const [imgC,setImg]= useState('')
-const [adress,setAdress]=useState('')
+const [address,setAddress]=useState('')
 const [tel, setTel] = useState('')
 function titleTxt (txtt){
   setTitle(txtt)
@@ -62,12 +62,12 @@ function imgTxt (txtt){
     image:imgC
   })
 }
-function adressTxt(e){
-  setAdress(e)
-  console.log(adress)
+function addressTxt(e){
+  setAddress(e)
+  console.log(address)
   setForm({
     ...form,
-    address:adress
+    address:address
   })
 }
 function telTxt(e){
@@ -132,7 +132,7 @@ setForm({
         //   image:'',
         //   type:[],
         //   size:[],
-        //   adress:'',
+        //   address:'',
         //   phone:'',
         //   author_Id:'',
         // })
@@ -305,7 +305,7 @@ onChangeText={(text)=>{
       <TextInput
 placeholder='Direccion'
 onChangeText={(text)=>{
-  adressTxt(text)
+  addressTxt(text)
 }}
 
 />
