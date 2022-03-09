@@ -107,3 +107,4 @@ dist
 package-lock.json
 Client/.expo/
 packager-info.json
+settings.json
