@@ -34,10 +34,10 @@ router.post('/create', async (req, res, next)=>{
     try{
         const {title, description, author_id, price, type, size, address, phone } = req.body;
         if (!title || !description ){
-            res.status(400).send('La publicacion debe tener un titulo válido')
+            return res.status(400).send('La publicacion debe tener un titulo válido')
         }
         if (!description ){
-            res.status(400).send('La publicacion debe tener una descripcion válida')
+            return res.status(400).send('La publicacion debe tener una descripcion válida')
         }
         const newPost = await Post.create({
             title,
@@ -52,7 +52,7 @@ router.post('/create', async (req, res, next)=>{
         })
         
         console.log(newPost)
-        res.status(201).send('Publicación creada con éxito')
+        return res.status(201).send('Publicación creada con éxito')
         
     }catch(error){
         res.send(error)
