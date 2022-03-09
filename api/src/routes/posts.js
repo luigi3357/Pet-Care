@@ -14,7 +14,8 @@ router.get('/all', async (req, res, next)=>{
                     model: Review,
                     as: "reviews"
 
-                }
+                },
+                order: [['createdAt','DESC']]
             },
             order: [['createdAt','DESC']]
         });

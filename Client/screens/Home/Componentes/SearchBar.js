@@ -44,7 +44,7 @@ export default function SearchBar() {
     validateSearch(value);
   }, [value]);
   useEffect(() => {
-    console.log(filtered_posts);
+    //console.log(filtered_posts);
   }, [filtered_posts]);
 
 
