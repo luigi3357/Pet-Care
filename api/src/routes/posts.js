@@ -27,7 +27,7 @@ router.get('/all', async (req, res, next)=>{
 
 router.post('/create', async (req, res, next)=>{
     try{
-        const {title, description, author_id, price, type, size, adress, phone } = req.body;
+        const {title, description, author_id, price, type, size, address, phone } = req.body;
         if (!title || !description ){
             res.status(400).send('La publicacion debe tener un titulo válido')
         }
@@ -39,8 +39,8 @@ router.post('/create', async (req, res, next)=>{
             description, 
             price: Number(price),
             type: type.toString().toLowerCase(),
-            size: syze.toString().toLowerCase(),
-            adress,
+            size: size.toString().toLowerCase(),
+            address,
             phone: Number(phone),
             author_id,
             
