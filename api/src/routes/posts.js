@@ -12,12 +12,16 @@ router.get('/all', async (req, res, next)=>{
                 as: "author",
                 include: {
                     model: Review,
-                    as: "reviews"
+                    as: "reviews",
+                    order: [['createdAt','DESC']],
+                    attributes: ['rate', 'message', 'updatedAt']
 
                 },
-                order: [['createdAt','DESC']]
+                attributes: ['name', 'last_name', 'rating', 'bookings']
             },
-            order: [['createdAt','DESC']]
+            order: [['createdAt','DESC']],
+            attributes: ['id','title', 'description', 'updatedAt']
+
         });
         res.status(200).send(posts)
         
