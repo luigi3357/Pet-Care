@@ -52,7 +52,7 @@ router.post('/create', async (req, res, next)=>{
         })
         
         console.log(newPost)
-        res.status(200).send('Publicación creada con éxito')
+        res.status(201).send('Publicación creada con éxito')
         
     }catch(error){
         res.send(error)

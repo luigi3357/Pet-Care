@@ -2,7 +2,7 @@ const { user, post, feedback } = require('./data/petCareUsersFake.js');
 const server = require('./src/app.js');
 const { conn } = require('./src/db.js');
 const { User } = require('./src/db');
-//const { createPost, createReview } = require('./data/funcionesPreCarga.js');
+const { createPost, createReview } = require('./data/funcionesPreCarga.js');
 
 
 
