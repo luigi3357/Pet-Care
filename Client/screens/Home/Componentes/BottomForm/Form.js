@@ -15,7 +15,7 @@ export default function FormCard(){
     image:'',
     type:[],
     size:[],
-    adress:'',
+    address:'',
     phone:'',
     author_Id:'5345674',
   })
