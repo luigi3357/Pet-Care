@@ -58,19 +58,6 @@ export default function postPublic (payload){
   }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 /*              SearchBar              */
 export function searchKeyword(keywords){
   return function(dispatch){
@@ -101,4 +88,17 @@ export function fetchAllPosts(){
     
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
