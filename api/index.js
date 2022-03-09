@@ -20,9 +20,9 @@ conn.sync({ force: true }).then(async () => {
       })
     });     
            
-    const posts = post.map(e=> createPost(e)); 
+    //const posts = post.map(e=> createPost(e)); 
     
-    const reviews = feedback.map(el=> createReview(el))
+    //const reviews = feedback.map(el=> createReview(el))
 
   } catch (error) {
     console.log(error)

@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import {
+  Alert,
     Image, ScrollView, StyleSheet, Text, TouchableOpacity, View
 } from "react-native";
 import ReviewCard from "./ReviewCard";
+import { useNavigation } from '@react-navigation/native'
+
 
 export default function PostCard({
   id = 1,
@@ -65,6 +68,9 @@ export default function PostCard({
   }
 
   const [detailsView, setDetailsView] = useState(false);
+
+  const navigation = useNavigation();
+
   return (
     <View style={styles.container} key={id}>
       <View
@@ -107,6 +113,11 @@ export default function PostCard({
       </View>
       <Image />
       <Text>Cantidad de contrataciones: {hiringNumber}</Text>
+
+      <TouchableOpacity title="goToPay" onPress={() => navigation.navigate("payment")}>  
+        <Text style={styles.button}>Contratar!</Text> 
+      </TouchableOpacity>  
+
 
       <TouchableOpacity title="detalles" onPress={() => showDetails()}>
         <Text style={styles.button}>Detalles</Text>

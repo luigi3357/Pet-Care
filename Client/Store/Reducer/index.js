@@ -60,9 +60,11 @@ const apiReducer = (state = initialState, action) => {
               case ACTION_TYPES.POST_PUBLIC:
                 return{
                   ...state,                
-                  
-               
                 }
+              case ACTION_TYPES.POST_PAYMENT: 
+                return{
+                  ...state,                
+                } 
     default:
       return state;
   }

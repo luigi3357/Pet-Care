@@ -21,21 +21,24 @@ mercadopago.configure({
 router.post("/checkout", (req, res) => {
     // Crea un objeto de preferencia
     //
-    // let preference = {
-    //     items: [
-    //         {
-    //             title: req.body.service,
-    //             unit_price: parseInt(req.body.price),
-    //             quantity: 1,
-    //         }
-    //     ], back_urls:{
-    //           "success": "http//localhost:3001/feedback",
-    //           "pending": "http//localhost:3001/feedback",   
-    //           "failure": "http//localhost:3001/feedback"
-    //        }, auto_return: "approved",
-    // };
 
-     let preference = {
+    let { carer, amount } = req.body
+    console.log(req.body)
+    let preference = {
+        items: [
+            {
+                title: req.body.carer,
+                unit_price: parseInt(req.body.amount),
+                quantity: 1,
+            }
+        ], /* back_urls:{
+              "success": "http//localhost:3001/feedback",
+              "pending": "http//localhost:3001/feedback",   
+              "failure": "http//localhost:3001/feedback"
+           }, auto_return: "approved", */
+    };
+
+     /* let preference = {
         items: [
             {
                 title: "Mi producto",
@@ -43,7 +46,7 @@ router.post("/checkout", (req, res) => {
                 quantity: 1,
             }
         ],
-    };
+    }; */
   
   mercadopago.preferences
     .create(preference)
