@@ -86,17 +86,3 @@ export function fetchAllPosts(){
     .catch((e)=>{throw new Error('No se pudo conectar al servidor')})
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-

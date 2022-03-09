@@ -30,7 +30,7 @@ export default function HomeScreens() {
                   key={post.id}
                   title={post.title}
                   description={post.description}
-                  reviews={post.author.reviews}
+                  reviews={post.author.reviews.length>0 ? post.author.reviews : null}
                   rating={post.author.rating}
                   bookings={post.author.bookings}
                 />
