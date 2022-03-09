@@ -2,7 +2,7 @@
 import React, { useState } from 'react'
 import { Picker,Text, View, StyleSheet,TextInput,  TouchableOpacity,FlatList} from 'react-native'
 import {useDispatch,useSelector} from 'react-redux'
-import postPublic from '../../../../Store/Actions/ApiActionCreator'
+import postPublic from '../../../../Store/Actions'
 //cuidador
 //titulo|| descripcion  ||precio|| tipo de mascota|| tamaño de mascota pequeño,mediano,grande|| imagenes del lugar donde va cuidar
 

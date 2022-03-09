@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "devToolsPort": 19002,
   "expoServerPort": null,
   "packagerPort": null,
@@ -7,4 +8,14 @@
   "expoServerNgrokUrl": null,
   "packagerNgrokUrl": null,
   "ngrokPid": null
+=======
+  "expoServerPort": 19000,
+  "packagerPort": 19000,
+  "packagerPid": null,
+  "expoServerNgrokUrl": "https://ms-yc8.negurito.client.exp.direct",
+  "packagerNgrokUrl": "https://ms-yc8.negurito.client.exp.direct",
+  "ngrokPid": 25028,
+  "webpackServerPort": null,
+  "devToolsPort": 19002
+>>>>>>> 049f31b232123990d0881b5fd3d4c766984da7ec
 }
