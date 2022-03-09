@@ -4,9 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchAllPosts } from "../../../Store/Actions";
 import Footer from "../../Profile/Componentes/Footer";
 import Bottomplus from "./BottomForm/Bottomplus";
-// import {AspectRatio,NativeBaseProvider} from 'native-base'
-// import SearchBar from './SearchBar'
-// import Filtrado from './FilterButton'
 import Navbar from "./NavBar";
 import PostCard from "./PostCard";
 
@@ -21,7 +18,7 @@ export default function HomeScreens() {
 
   return (
     <>
-      <View style={{ height: "13%", width: "100%" }}>
+      <View style={{ height: "20%", width: "100%" }}>
         <Navbar />
       </View>
       <ScrollView>
