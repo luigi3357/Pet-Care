@@ -67,7 +67,7 @@ function adressTxt(e){
   console.log(adress)
   setForm({
     ...form,
-    adress:adress
+    address:adress
   })
 }
 function telTxt(e){
