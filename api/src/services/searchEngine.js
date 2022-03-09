@@ -1,5 +1,8 @@
 const { Post, Op } = require("../db");
 
+const types = ["perro", 'gato', 'aves', 'roedores'];
+const sizes = ["pequeño", 'mediano', 'grande'];
+
 function queryToKeywordArray(queryString) {
   return queryString.keyword.split(" ");
 }
@@ -11,9 +14,13 @@ async function searchingMachine(keywords) {
       const keywordSearch = await Post.findAll({
         raw: true,
         where: {
-          description: {
-            [Op.iLike]: `%${keyword}%`,
-          },
+            [Op.or]: [
+                {title: {[Op.iLike]: `%${keyword}%`}},
+                {description: {[Op.iLike]: `%${keyword}%`}},
+                types.includes(keyword) ? {type: `${keyword}`} : null,
+                sizes.includes(keyword) ? {size: `${keyword}`} : null,
+            ]
+          ,
         },
       });
       foundPosts.push(keywordSearch);

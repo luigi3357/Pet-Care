@@ -1,4 +1,5 @@
 
+<<<<<<< HEAD
 // const { User, Post, Review } = require('../src/db');
 
 
@@ -24,6 +25,35 @@
 //             description,
 //             author_id: user.id
 //         })
+=======
+ const { User, Post, Review } = require('../src/db');
+
+
+ async function createPost (posteos){
+    try{
+        const {title, description, email, type, size} = posteos;
+
+        const user = User.findOne({
+            where: {
+                email
+            },
+            include: [{
+                model: Post,
+                as: 'posteos',            
+            },
+            {
+                model: Review,
+                as: "reviews"
+            }]
+        });
+        const newPost = await Post.create({
+            title,
+            description,
+            author_id: user.id,
+            type,
+            size
+        })
+>>>>>>> de5df45d42db6bac1cf293a1008c7af4594bf18c
       
 //     }catch(error){
 //        console.error(error)
