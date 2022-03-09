@@ -10,7 +10,7 @@ import {
   View
 } from "react-native";
 import { useSelector, useDispatch } from 'react-redux';
-import { searchKeyword } from "../../../Store/Actions";
+import { fetchAllPosts, searchKeyword } from "../../../Store/Actions";
 
 export default function SearchBar() {
   const navigation = useNavigation();
@@ -26,9 +26,7 @@ export default function SearchBar() {
   }
 
   function validateSearch(value) {
-    if (value.length < 1) {
-      setError("Ingresa una keyword en la búsqueda");
-    } else if (!/[A-Za-z ]/.test(value)) {
+    if (!/[A-Za-z ]/.test(value)) {
       setError("Solo letras o espacios");
       //console.log(error)
     } else if (value.length > 30) {
@@ -44,16 +42,18 @@ export default function SearchBar() {
     validateSearch(value);
   }, [value]);
   useEffect(() => {
-    console.log(filtered_posts);
+    //console.log(filtered_posts);
   }, [filtered_posts]);
 
 
   function submitSearch() {
     validateSearch(value);
-    if (error) {
+    if(value.length==0){
+    dispatch(fetchAllPosts())
+    }else if (error) {
       errorAlert(error);
       setValue("");
-    }else{
+    } else{
       dispatch(searchKeyword(value))
     }
     console.log(value);

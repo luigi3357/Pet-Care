@@ -6,7 +6,7 @@
     try{
         const {title, description, email, type, size} = posteos;
 
-        const user = User.findOne({
+        const user = await User.findOne({
             where: {
                 email
             },

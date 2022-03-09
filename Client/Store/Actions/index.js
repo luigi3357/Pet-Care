@@ -65,3 +65,20 @@ export function searchKeyword(keywords){
     .catch((e)=>{throw new Error('No se pudo conectar al servidor')})
   }
 }
+
+/*               HomeScreen             */
+
+export function fetchAllPosts(){
+  return function(dispatch){
+    axios.get(`http://${localhost}:3001/posts/all`)
+    .then((response)=>{
+      dispatch({
+        type: ACTION_TYPES.FETCH_ALL_POSTS,
+        payload: response.data
+      })
+    })
+    .catch((e)=>{throw new Error('No se pudo conectar al servidor')})
+    
+    
+  }
+}
