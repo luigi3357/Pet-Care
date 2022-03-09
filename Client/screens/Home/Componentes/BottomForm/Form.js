@@ -2,7 +2,7 @@
 import React, { useState } from 'react'
 import { Picker,Text, View, StyleSheet,TextInput,  TouchableOpacity,FlatList} from 'react-native'
 import {useDispatch,useSelector} from 'react-redux'
-import postPublic from '../../../../Store/Actions/ApiActionCreator'
+import postPublic from '../../../../Store/Actions'
 //cuidador
 //titulo|| descripcion  ||precio|| tipo de mascota|| tamaño de mascota pequeño,mediano,grande|| imagenes del lugar donde va cuidar
 
@@ -15,9 +15,9 @@ export default function FormCard(){
     image:'',
     type:[],
     size:[],
-    adress:'',
+    address:'',
     phone:'',
-    author_Id:'',
+    author_Id:'5345674',
   })
   
   
@@ -26,7 +26,7 @@ const [titleC,setTitle]= useState('')
 const [descriptionC,setDescription]= useState('')
 const [priceC,setPrice]= useState('')
 const [imgC,setImg]= useState('')
-const [adress,setAdress]=useState('')
+const [address,setAddress]=useState('')
 const [tel, setTel] = useState('')
 function titleTxt (txtt){
   setTitle(txtt)
@@ -62,12 +62,12 @@ function imgTxt (txtt){
     image:imgC
   })
 }
-function adressTxt(e){
-  setAdress(e)
-  console.log(adress)
+function addressTxt(e){
+  setAddress(e)
+  console.log(address)
   setForm({
     ...form,
-    adress:adress
+    address:address
   })
 }
 function telTxt(e){
@@ -125,17 +125,17 @@ setForm({
        dispatch(postPublic(form))
         console.log(form)
         alert('publicacion creada!')
-        setForm({
-          title:'',
-          description:'',
-          price:'',
-          image:'',
-          type:[],
-          size:[],
-          adress:'',
-          phone:'',
-          author_Id:'',
-        })
+        // setForm({
+        //   title:'',
+        //   description:'',
+        //   price:'',
+        //   image:'',
+        //   type:[],
+        //   size:[],
+        //   address:'',
+        //   phone:'',
+        //   author_Id:'',
+        // })
 
   }
 
@@ -305,7 +305,7 @@ onChangeText={(text)=>{
       <TextInput
 placeholder='Direccion'
 onChangeText={(text)=>{
-  adressTxt(text)
+  addressTxt(text)
 }}
 
 />

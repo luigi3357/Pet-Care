@@ -3,7 +3,7 @@ import { Button, Image, Input, NativeBaseProvider, Text } from 'native-base'
 import React, { useState } from 'react'
 import { Alert, StyleSheet, TouchableOpacity, View } from 'react-native'
 import { useDispatch, useSelector } from 'react-redux'
-import { getLogin } from '../../Store/Actions/ApiActionCreator'
+import { getLogin } from '../../Store/Actions'
 
 const Login = () => {   
         
