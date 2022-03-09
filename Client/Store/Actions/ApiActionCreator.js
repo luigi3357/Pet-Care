@@ -48,7 +48,7 @@ export const registerBack= payload => {
 
 export default function postPublic (payload){
   return async function(dispatch){
-    const response= axios.post(`http://${localhost}:3001/` , payload)
+    const response= axios.post(`http://${localhost}:3001/create` , payload)
     console.log(response)
     return response;
   }
