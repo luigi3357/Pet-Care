@@ -52,3 +52,16 @@ export default function postPublic (payload){
   }
 }
 
+/*              SearchBar              */
+export function searchKeyword(keywords){
+  return function(dispatch){
+    axios.get(`http://${localhost}:3001/search?keyword=`+ keywords.replace(" ","+"))
+    .then((response)=>{
+      dispatch({
+        type: ACTION_TYPES.SEARCH_KEYWORD,
+        payload: response.data
+      })
+    })
+    .catch((e)=>{throw new Error('No se pudo conectar al servidor')})
+  }
+}

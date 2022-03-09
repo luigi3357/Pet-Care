@@ -7,13 +7,17 @@ import {
   StyleSheet,
   TextInput,
   TouchableOpacity,
-  View,
+  View
 } from "react-native";
+import { useSelector, useDispatch } from 'react-redux';
+import { searchKeyword } from "../../../Store/Actions";
 
 export default function SearchBar() {
   const navigation = useNavigation();
+  const dispatch = useDispatch();
   const [value, setValue] = useState("");
   const [error, setError] = useState("");
+  const filtered_posts = useSelector(state=>state.filtered_posts)
 
   function errorAlert(message) {
     Alert.alert("Error", message, [
@@ -39,6 +43,10 @@ export default function SearchBar() {
   useEffect(() => {
     validateSearch(value);
   }, [value]);
+  useEffect(() => {
+    console.log(filtered_posts);
+  }, [filtered_posts]);
+
 
   function submitSearch() {
     validateSearch(value);
@@ -46,7 +54,7 @@ export default function SearchBar() {
       errorAlert(error);
       setValue("");
     }else{
-      dispatch()
+      dispatch(searchKeyword(value))
     }
     console.log(value);
   }
