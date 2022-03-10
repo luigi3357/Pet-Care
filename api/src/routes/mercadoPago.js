@@ -8,7 +8,7 @@ const mercadopago = require("mercadopago");
 
 const router = Router();
 
-router.use(bodyParser.urlencoded({ extended: false}))
+router.use(bodyParser.urlencoded({ extended: true}))
 
 // Agrega credenciales
 //aca vinculamos el usuario dueño de la empresa a la que legará el dinero
@@ -21,21 +21,21 @@ mercadopago.configure({
 router.post("/checkout", (req, res) => {
     // Crea un objeto de preferencia
     //
-    // let preference = {
-    //     items: [
-    //         {
-    //             title: req.body.service,
-    //             unit_price: parseInt(req.body.price),
-    //             quantity: 1,
-    //         }
-    //     ], back_urls:{
-    //           "success": "http//localhost:3001/feedback",
-    //           "pending": "http//localhost:3001/feedback",   
-    //           "failure": "http//localhost:3001/feedback"
-    //        }, auto_return: "approved",
-    // };
+    let preference = {
+         items: [
+             {
+                 title: req.body.carer,
+                unit_price: parseInt(req.body.amount),
+                 quantity: 1,
+             }
+         ], back_urls:{
+               "success": "http//localhost:3001/feedback",
+              "pending": "http//localhost:3001/feedback",   
+              "failure": "http//localhost:3001/feedback"
+            }, auto_return: "approved",
+     };
 
-     let preference = {
+     /* let preference = {
         items: [
             {
                 title: "Mi producto",
@@ -43,7 +43,7 @@ router.post("/checkout", (req, res) => {
                 quantity: 1,
             }
         ],
-    };
+    }; */
   
   mercadopago.preferences
     .create(preference)
@@ -52,8 +52,8 @@ router.post("/checkout", (req, res) => {
       //global.id = response.body.id;
 
       console.log(response.body);
-      res.redirect(response.body.init_point)
-
+      //res.redirect(response.body.init_point)
+      res.send(response.body.init_point)
     })
     .catch(function (error) {
       console.log(error);

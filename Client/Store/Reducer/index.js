@@ -11,6 +11,7 @@ const initialState = {
   check: "",
   name: "",
   last_name: "",
+  checkout_link: ""
 };
 
 const apiReducer = (state = initialState, action) => {
@@ -64,6 +65,11 @@ const apiReducer = (state = initialState, action) => {
       return {
         ...state,
       };
+    case ACTION_TYPES.PAYMENT_CHECKOUT: 
+      return{
+        ...state,
+        checkout_link: action.payload                
+      } ;
     case ACTION_TYPES.SEARCH_KEYWORD:
       return {
         ...state,
