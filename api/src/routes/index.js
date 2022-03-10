@@ -8,6 +8,8 @@ const PostsRoutes  = require('./posts');
 const ReviewRoutes  = require('./reviews');
 const UploadRoutes  = require('./uploadform');
 const SearchRoutes  = require('./searchBar');
+const FilterRoutes  = require('./Filters');
+
 
 const MercadoPagoRoutes = require("./mercadoPago")
 
@@ -21,6 +23,8 @@ router.use('/reviews', ReviewRoutes)
 router.use('/upload', UploadRoutes )
 router.use('/search', SearchRoutes )
 router.use("/mercadoPago", MercadoPagoRoutes)
+router.use("/filter", FilterRoutes)
+
 
 
 router.post("/register", async (req, res) => {
@@ -50,32 +54,10 @@ router.post("/register", async (req, res) => {
     }
 })
 
-router.post("/login", async (req, res) => {
-    let { email, password } = req.body
-    console.log(req.body)
-    try {
-        let user = await search({ email: email.toLowerCase() })
-        if(!user){
-            return res.status(404).send("notEmail")
-        }
-        if (user){
-            let check = await compare(password, user)
-            if (check === true) {
-                console.log(check)
-                return res.status(200).send("true")                
-            }
-            if (check === false) {
-                console.log(check)
-                return res.status(404).send("false")
-            }            
-        }
-    } catch (error) {
-        return res.status(404).send(error)
-    }
-})
 router.put("/forgot-password", async (req, res) => {
     const { email } = req.body
-    let user = await search({ email: email.toLowerCase() })
+    console.log(req.body)
+    let user = await search({ email: email })
     if (user) {
         let token = key()
         let update = await Update({ token: token, email: email.toLowerCase() })
@@ -89,6 +71,7 @@ router.put("/forgot-password", async (req, res) => {
     }
     return res.status(404).send("Usuario no encontrado")
 })
+
 router.put("/reset", async (req, res) => {
     const { email, token, password } = req.body
     let up = await validate({ email: email, token: token, password:password})

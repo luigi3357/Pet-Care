@@ -17,7 +17,7 @@ async function create (email,hasheador,name, last_name){
     let Creado = User.findOrCreate({
         where:{
             password: hasheador,
-            email:email,
+            email:email.toLowerCase(),
             name: name, 
             last_name: last_name
           }
@@ -26,6 +26,7 @@ async function create (email,hasheador,name, last_name){
 }
 
 async function search (body){
+    console.log(body)
    let user = await User.findOne({
        where: body
    })

@@ -3,7 +3,6 @@ import React, { useState } from 'react'
 import { Entypo } from '@expo/vector-icons';
 import { getFiltered } from '../../../Store/Actions';
 import { useDispatch } from 'react-redux';
-import { get } from '../../../../api/src/routes';
 
 export default function FilterSelect(){
   const dispatch = useDispatch();

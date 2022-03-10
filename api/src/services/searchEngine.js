@@ -12,7 +12,6 @@ async function searchingMachine(keywords) {
     let foundPosts = [];
     for (const keyword of keywords) {
       const keywordSearch = await Post.findAll({
-        
         where: {
           [Op.or]: [
             { title: { [Op.iLike]: `%${keyword}%` } },
@@ -78,8 +77,28 @@ function sortDescDate(posts) {
     return 0;
   });
 }
+
+function findPostsForHomeScreen() {
+  return Post.findAll({
+    include: {
+      model: User,
+      as: "author",
+      include: {
+        model: Review,
+        as: "reviews",
+        order: [["createdAt", "DESC"]],
+        attributes: ["id", "rate", "message", "from_id", "updatedAt"],
+      },
+      attributes: ["name", "last_name", "rating", "bookings"],
+    },
+    order: [["createdAt", "DESC"]],
+    attributes: ["id", "title", "description", "updatedAt"],
+  });
+}
+
 module.exports = {
   queryToKeywordArray,
   searchingMachine,
   foundPostsSelector,
+  findPostsForHomeScreen
 };

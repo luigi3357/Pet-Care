@@ -19,22 +19,54 @@ export default function FormCard(){
     phone:'',
     author_Id:'5345674',
   })
-  
-  
+
+  const [errors, setErrors] = useState({});//estado para setear errores en caso que los haya
+  const [disabled, setDisabled] = useState(true);
+
+  function validate(input) {//valida y setea errores
+    let errors = {};    
+
+    if (!form.title) errors.title="Campo Requerido";
+    if (!form.description) errors.description="Campo Requerido";
+    if (!form.price) errors.price="Campo Requerido";
+    // if (!form.image) errors.image="Campo Requerido";
+    if (!form.type) errors.type="Campo Requerido";
+    if (!form.size) errors.size="Campo Requerido";
+    if (!form.address) errors.address="Campo Requerido";
+    if (!form.phone) errors.phone="Campo Requerido";
+   
+        return errors;
+}
+
+useEffect(() => {
+  if (
+     !errors.title.hasOwnProperty("title") &&
+     !errors.description.hasOwnProperty("description") &&
+     !errors.price.hasOwnProperty("price") &&
+    //  !errors.image.hasOwnProperty("image") &&
+     !errors.type.hasOwnProperty("type") &&
+     !errors.size.hasOwnProperty("size") &&
+     !errors.addres.hasOwnProperty("addres") &&
+     !errors.phone.hasOwnProperty("phone")     
+  ) {
+      setDisabled(false);
+  } else {
+      setDisabled(true);
+  }
+}, [errors, setDisabled]);
   
 const [titleC,setTitle]= useState('')
 const [descriptionC,setDescription]= useState('')
 const [priceC,setPrice]= useState('')
 const [imgC,setImg]= useState('')
-const [adress,setAdress]=useState('')
+const [address,setAddress]=useState('')
 const [tel, setTel] = useState('')
 function titleTxt (txtt){
   setTitle(txtt)
   
   console.log(titleC)
   setForm({
-    ...form,
-    
+    ...form,    
     title:titleC
   })
 }
@@ -62,12 +94,12 @@ function imgTxt (txtt){
     image:imgC
   })
 }
-function adressTxt(e){
-  setAdress(e)
-  console.log(adress)
+function addressTxt(e){
+  setAddress(e)
+  console.log(address)
   setForm({
     ...form,
-    address:adress
+    address:address
   })
 }
 function telTxt(e){
@@ -132,7 +164,7 @@ setForm({
         //   image:'',
         //   type:[],
         //   size:[],
-        //   adress:'',
+        //   address:'',
         //   phone:'',
         //   author_Id:'',
         // })
@@ -154,6 +186,13 @@ setForm({
           titleTxt(text)
         }}
                 />
+                <View>
+                {errors.title && (
+                        <Text className="errors" >{errors.title}</Text>
+                    )}
+                </View>
+               
+                
         </View>
         <View   style={{
         
@@ -170,6 +209,11 @@ setForm({
         descripTxt(text)
       }}
       />
+                      <View>
+                {errors.description && (
+                        <Text className="errors" >{errors.description}</Text>
+                    )}
+                </View>
       </View>
 
        <View>
@@ -182,6 +226,11 @@ setForm({
          priceTxt(text)
        }}
        />
+                       <View>
+                {errors.price && (
+                        <Text className="errors" >{errors.price}</Text>
+                    )}
+                </View>
        
        </View>
        <View>
@@ -202,6 +251,11 @@ setForm({
         <Picker.Item label="Roedores" value="roedores" />
       </Picker>
       </View>
+      <View>
+                {errors.type && (
+                        <Text className="errors" >{errors.type}</Text>
+                    )}
+                </View>
         <View>
           {
             form.type.map((el,idx) =>
@@ -256,6 +310,11 @@ setForm({
       
       </Picker>
       </View>
+      <View>
+                {errors.size && (
+                        <Text className="errors" >{errors.size}</Text>
+                    )}
+                </View>
 
          <View>
           {
@@ -298,6 +357,11 @@ onChangeText={(text)=>{
 }}
 
 />
+<View>
+                {errors.phone && (
+                        <Text className="errors" >{errors.phone}</Text>
+                    )}
+                </View>
       </View>
 
 
@@ -305,14 +369,19 @@ onChangeText={(text)=>{
       <TextInput
 placeholder='Direccion'
 onChangeText={(text)=>{
-  adressTxt(text)
+  addressTxt(text)
 }}
 
 />
+<View>
+                {errors.address && (
+                        <Text className="errors" >{errors.address}</Text>
+                    )}
+                </View>
       </View>
       
       
-      <View>
+      {/* <View>
 
 <TextInput
 placeholder='Imagenes donde mantendra la mascota...'
@@ -321,8 +390,13 @@ onChangeText={(text)=>{
 }}
 
 />
+                       <View>
+                {errors.image && (
+                        <Text className="errors" >{errors.image}</Text>
+                    )}
+                </View>
 
-</View>
+</View> */}
       
 
      
@@ -333,6 +407,7 @@ onChangeText={(text)=>{
 
 <View>
 <TouchableOpacity
+disabled={disabled}
 onPress={(e)=>handleSubmit(e)}
 >
 <Text>Send</Text>
