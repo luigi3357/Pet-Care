@@ -4,7 +4,7 @@ import { Button, Icon, Image, Input, NativeBaseProvider } from 'native-base';
 import React, { useState } from 'react';
 import { Alert, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { useDispatch } from "react-redux";
-import { registerBack } from '../../Store/Actions';
+import { registerBack } from '../../Store/Actions/index';
 
 
 const Register = () => {

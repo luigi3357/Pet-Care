@@ -3,13 +3,14 @@ import { Button, Image, Input, NativeBaseProvider, Text} from 'native-base'
 import React, { useEffect, useState } from 'react'
 import { StyleSheet, TouchableOpacity, View, ActivityIndicator,Alert } from 'react-native'
 import { useDispatch, useSelector } from 'react-redux'
-import { getUser } from '../../Store/Actions/ApiActionCreator'
+import { getUser } from '../../Store/Actions/index'
 import   bcrypt from 'bcryptjs'
 
 
 
 const Login = () => {   
         
+
     const dispatch = useDispatch()
     const [email,onChangeEmail] = useState("")
     const [password,onChangePassword] = useState("")
@@ -30,9 +31,9 @@ const Login = () => {
     useEffect(() => {
       dispatch(getUser())
     },[])
-
-    const user = useSelector((state=>(state.users)))
     
+    const user = useSelector((state=>(state.users)))
+    console.log(user)
   async function handlesubmit(){ 
     setLoading(true)
     setVisible(0)
@@ -70,12 +71,12 @@ const Login = () => {
             <View>
             <Input                          
              type="text"     
-              onChangeText={(email)=>onChangeEmail(email)}
+              onChangeText={onChangeEmail}
               placeholder = "Email"
              />
             <Input
              type="password"
-             onChangeText={(password)=>onChangePassword(password)}
+             onChangeText={onChangePassword}
              placeholder = "Contraseña"
               />
 
