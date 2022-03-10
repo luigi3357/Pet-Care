@@ -14,15 +14,10 @@ import Profile from "./screens/Profile/Profile";
 import Payment from "./screens/Payment/Payment";
 import Store from "./Store";
 
-
-
 const Stack = createStackNavigator();
 
 function App() {
-
-  
   return (
-   
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       {/* <Stack.Screen name="LandingPage" component={LandingPage} /> */}
       <Stack.Screen name="Login" component={Login} />
@@ -35,16 +30,15 @@ function App() {
       <Stack.Screen name="Profile" component={Profile}/>
       <Stack.Screen name="Payment" component={Payment}/>
     </Stack.Navigator>
-
   );
-  }
+}
 
 export default () => {
   return (
     <Provider store={Store}>
-    <NavigationContainer>
-      <App />
-    </NavigationContainer>
+      <NavigationContainer>
+        <App />
+      </NavigationContainer>
     </Provider>
   );
 };

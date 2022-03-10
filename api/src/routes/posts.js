@@ -1,42 +1,24 @@
 const { Router } = require('express');
 const { User, Post, Review } = require('../db');
+const { findPostsForHomeScreen } = require('../services/searchEngine');
 
 const router = Router();
 
 
 router.get('/all', async (req, res, next)=>{
     try {
-        const posts = await Post.findAll({
-            include: {
-                model: User,
-                as: "author",
-                include: {
-                    model: Review,
-                    as: "reviews",
-                    order: [['createdAt','DESC']],
-                    attributes: ['id','rate', 'message', 'from_id', 'updatedAt']
-
-                },
-                attributes: ['name', 'last_name', 'rating', 'bookings']
-            },
-            order: [['createdAt','DESC']],
-            attributes: ['id','title', 'description', 'updatedAt']
-
-        });
+        const posts = await findPostsForHomeScreen()
         res.status(200).send(posts)
-        
-    } catch (error) {
-        next(error)
-    }
+    } catch (error) {next(error)}
   })
 
 router.post('/create', async (req, res, next)=>{
     try{
         const {title, description, author_id, price, type, size, address, phone } = req.body;
-        if (!title || !description ){
+        if (!title){
             return res.status(400).send('La publicacion debe tener un titulo válido')
         }
-        if (!description ){
+        if (!description){
             return res.status(400).send('La publicacion debe tener una descripcion válida')
         }
         const newPost = await Post.create({
@@ -50,8 +32,6 @@ router.post('/create', async (req, res, next)=>{
             author_id,
             
         })
-        
-        console.log(newPost)
         return res.status(201).send('Publicación creada con éxito')
         
     }catch(error){

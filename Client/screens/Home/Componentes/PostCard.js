@@ -9,59 +9,10 @@ import {
 } from "react-native";
 import ReviewCard from "./ReviewCard";
 
-export default function PostCard({
-  id = 1,
-  date = "ayer",
-  title = "Título",
-  image = require("../../../assets/profile.png"),
-  rating = 4,
-  bookings = 1,
-  description = "Acá van todos los detalles del prestador del servicio abajo van las reviews??? ",
-  reviews = [
-    {
-      id: 1001,
-      titulo: "Excelente",
-      rating: "5",
-      usuario: "Amy Whinehouse",
-      review: "muy buena la atención !!!",
-    },
-    {
-      id: 1002,
-      titulo: "Ahhh aaaa iiihh aah",
-      rating: "1",
-      usuario: "Yoko Ono",
-      review: "un uno!! un UNO le pongo. vuelva a leer",
-    },
-    {
-      id: 1003,
-      titulo: "Mission Status",
-      rating: "4",
-      usuario: "James Bond",
-      review: "Dr No",
-    },
-    {
-      id: 1004,
-      titulo: "Boom",
-      rating: "4",
-      usuario: "Kurt Cobain",
-      review: "Es un tiro al piso",
-    },
-    {
-      id: 1005,
-      titulo: "Voodoo",
-      rating: "5",
-      usuario: "Jimmy Hendrix",
-      review: "Rock",
-    },
-    {
-      id: 1006,
-      titulo: "Mágico",
-      rating: "4",
-      usuario: "Harry Potter",
-      review: "Excelsior!",
-    },
-  ],
-}) {
+export default function PostCard({id, date, title, image = require("../../../assets/profile.png"), rating, bookings, description, reviews}) {
+  
+  const [detailsView, setDetailsView] = useState(false);
+
   function showDetails() {
     if (detailsView) {
       setDetailsView(false);
@@ -70,7 +21,6 @@ export default function PostCard({
     }
   }
 
-  const [detailsView, setDetailsView] = useState(false);
   return (
     <View style={styles.container}>
       <View
@@ -100,7 +50,7 @@ export default function PostCard({
             alignItems: "flex-start",
             justifyContent: "space-around",
             marginHorizontal: 15,
-            width: "65%"
+            width: "65%",
           }}
         >
           <Text style={styles.title}>{title}</Text>
@@ -122,7 +72,7 @@ export default function PostCard({
           </View>
           <Image />
           <Text>Contrataciones: {bookings}</Text>
-          <View style={{ alignSelf: "flex-end",}}>
+          <View style={{ alignSelf: "flex-end" }}>
             <TouchableOpacity title="detalles" onPress={() => showDetails()}>
               <Text style={styles.button}>Detalles</Text>
             </TouchableOpacity>
@@ -131,7 +81,14 @@ export default function PostCard({
       </View>
       {detailsView ? (
         <View style={styles.details}>
-          <Text style={{ justifyContent: "center", margin: 12, overflow: "hidden" , fontStyle: "italic" }}>
+          <Text
+            style={{
+              justifyContent: "center",
+              margin: 12,
+              overflow: "hidden",
+              fontStyle: "italic",
+            }}
+          >
             {description}
           </Text>
 
@@ -141,18 +98,8 @@ export default function PostCard({
               showsHorizontalScrollIndicator={false}
             >
               {reviews
-                ? reviews.map((i) => {
-                    return (
-                      <ReviewCard
-                        id={i.id}
-                        key={i.id}
-                        rating={i.rate}
-                        review={i.message}
-                        from={i.from_id}
-                      />
-                    );
-                  })
-                : null}
+                ? reviews.map((i) => {return <ReviewCard id={i.id} key={i.id} rating={i.rate} message={i.message} from={i.from_id}/>})
+                : <Text style={styles.notReview}>El usuario aún no posee reviews</Text>}
             </ScrollView>
           </View>
         </View>
@@ -207,8 +154,11 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     alignContent: "center",
-    justifyContent:"center"
+    justifyContent: "center",
     //   ,width : 100
     //   ,marginLeft : '2px solid green'
   },
+  notReview:{
+    fontSize: 10,
+  }
 });
