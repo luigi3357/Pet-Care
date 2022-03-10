@@ -100,7 +100,7 @@ router.put("/reset", async (req, res) => {
     let up = await validate({ email: email, token: token, password:password})
     if(up){
         return res.send(up)
-    } 
+    }
     return res.status(404).send("error")
 })
 
