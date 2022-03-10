@@ -4,11 +4,6 @@ const initialState = {
   loading: false,
   users: '',
   error: '',
-  true:'true',
-  false:'false',
-  check:"",
-  name:'',
-  last_name:''
 };
 
 const apiReducer = (state = initialState, action) => {
@@ -30,32 +25,7 @@ const apiReducer = (state = initialState, action) => {
         error: action.payload,
         loading: false,
       };
-      case ACTION_TYPES.GET_TRUE:
-        return {
-          ...state,
-          true: action.payload,
-        };
-        case ACTION_TYPES.GET_FALSE:
-        return {
-          ...state,
-          false: action.payload,
-        };
-        case ACTION_TYPES.GET_ID:
-            return {
-              ...state,
-              name: action.payload,
-            };
-        case ACTION_TYPES.GET_LAST_NAME:
-            return {
-              ...state,
-              last_name: action.payload,
-            };
-            case ACTION_TYPES.GET_CHECK:
-              console.log(action.payload)
-              return{
-                ...state,                
-                check: action.payload,
-              }
+
     default:
       return state;
   }

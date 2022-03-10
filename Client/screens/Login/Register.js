@@ -12,13 +12,14 @@ const Register = () => {
   const dispatch = useDispatch();
   const [email,onChangeEmail] = useState("");
   const [password,onChangePassword] = useState("");
+  const [repeatPassword,onChangeRepeat] = useState("");
   const [name,onChangeName] = useState("");
   const[last_name,onChangeLastName] = useState("");
   const [refresh, setRefresh] = useState(false)
   const data = { email: email, password :password, name:name, last_name:last_name};
   const [showModal, setShowModal] = useState(false);
   const navigation = useNavigation();
- 
+  
   const pullMe = ()=>{
    setRefresh(true)
 
@@ -35,9 +36,22 @@ const Register = () => {
         { text: "Inicia Sesion", onPress: ()=>navigation.navigate("HomeScreen") }
       ]
     )};
+  function errorPassword(){
+      Alert.alert(
+        "Error",
+        "Las contraseñas no coinciden.",
+        [
+          { text: "Volver", onPress: ()=>navigation.navigate("Register") }
+        ]
+      )};
+
  function handlesubmit(e){
+   if(password!==repeatPassword){
+        errorPassword()
+   }else{
     dispatch(registerBack(data)) 
     registerLog()
+   }
   }
   
   return (
@@ -77,12 +91,17 @@ const Register = () => {
                     <Input                            
                     type="text"     
                     onChangeText={onChangeEmail}
-                        placeholder = "Email"
+                    placeholder = "Email"
                     />
                     <Input
                     type="password"
                     onChangeText={onChangePassword}
-                        placeholder = "Contraseña"
+                    placeholder = "Contraseña"
+                    />
+                    <Input
+                    type="password"
+                    onChangeText={onChangeRepeat}
+                    placeholder = "Contraseña"
                     />
                   
             <View style={styles.buttonStyle}>

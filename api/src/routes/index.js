@@ -44,30 +44,6 @@ router.post("/register", async (req, res) => {
     }
 })
 
-router.post("/login", async (req, res) => {
-    let { email, password } = req.body
-    console.log(req.body)
-    try {
-        let user = await search({ email: email.toLowerCase() })
-        if(!user){
-            return res.status(404).send("notEmail")
-        }
-        if (user){
-            let check = await compare(password, user)
-            if (check === true) {
-                console.log(check)
-                return res.status(200).json(check)
-            }
-            if (check === false) {
-                console.log(check)
-                return res.status(404).send(check)
-            }
-            
-        }
-    } catch (error) {
-        return res.status(404).send(error)
-    }
-})
 router.put("/forgot-password", async (req, res) => {
     const { email } = req.body
     let user = await search({ email: email.toLowerCase() })
