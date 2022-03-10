@@ -90,7 +90,21 @@ export function fetchAllPosts(){
 }
 
 
-
+export function getFiltered(filter){
+  return function(dispatch){
+    axios.get(`http://${localhost}:3001/orderAndFilter`,
+    {
+      params : {
+        order : filter
+      }
+    }).then((res)=>{
+      dispatch({
+        type : ACTION_TYPES.GET_FILTERED,
+        payload : res.data
+      })
+    })
+  }
+}
 
 
 
