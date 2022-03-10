@@ -1,1 +1,10 @@
-{}
+{
+  "expoServerPort": 19000,
+  "packagerPort": 19000,
+  "packagerPid": null,
+  "expoServerNgrokUrl": "https://ms-yc8.negurito.client.exp.direct",
+  "packagerNgrokUrl": "https://ms-yc8.negurito.client.exp.direct",
+  "ngrokPid": 22000,
+  "webpackServerPort": null,
+  "devToolsPort": 19002
+}
