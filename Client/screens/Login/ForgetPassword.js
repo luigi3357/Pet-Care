@@ -1,19 +1,39 @@
-import React from 'react'
-import {View, StyleSheet, Text} from 'react-native'
+import React, { useState }	from 'react'
+import {View, StyleSheet, Text, TextInput} from 'react-native'
 import { NativeBaseProvider,Button,Icon } from 'native-base'
 import {useNavigation} from '@react-navigation/native'
 import InputsLogin from './Componentes/InpuntsLogin'
 import {FontAwesome5} from '@expo/vector-icons'
+import { forgotPassword } from '../../Store/Actions'
+import { useDispatch } from 'react-redux'
+
 
 function ForgetPassword(){
 
-    const navigation = useNavigation()
+    const navigation = useNavigation();
+
+    const [email,onChangeEmail] = useState("")
+    const data = { email: email}
+
+    const dispatch = useDispatch();
+
+    function handlesubmit(){     
+
+      dispatch(forgotPassword(data));
+      
+      navigation.navigate("MailCode");      
+    }
     
     return(
      <View style={styles.container}>
         <View style={styles.move}>
+       
           <Text style={styles.text}>Ingrese email de la cuenta</Text>
-            <InputsLogin
+          <TextInput                              
+              onChangeText={(email)=>onChangeEmail(email)}
+                        placeholder="Usuario o email"
+             />
+            {/* <InputsLogin
                          InputLeftElement={
                             <Icon
                                as={<FontAwesome5  name="user"/>}
@@ -27,12 +47,13 @@ function ForgetPassword(){
                                }}
                             />
                         }
-                        placeholder="Usuario o email"/>
+              onChangeText={(txt)=>emailText(txt)}
+                        placeholder="Usuario o email"/> */}
         </View>
         <View style={styles.buttonStyle}>
                 <Button 
                 style={styles.buttonDesing}
-                onPress={()=>navigation.navigate("MailCode")}>
+                onPress={()=>handlesubmit()}>
                     Enviar
                 </Button>
             </View>
