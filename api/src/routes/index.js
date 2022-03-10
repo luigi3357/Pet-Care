@@ -8,6 +8,8 @@ const PostsRoutes  = require('./posts');
 const ReviewRoutes  = require('./reviews');
 const UploadRoutes  = require('./uploadform');
 const SearchRoutes  = require('./searchBar');
+const FilterRoutes  = require('./Filters');
+
 
 const MercadoPagoRoutes = require("./mercadoPago")
 
@@ -21,6 +23,8 @@ router.use('/reviews', ReviewRoutes)
 router.use('/upload', UploadRoutes )
 router.use('/search', SearchRoutes )
 router.use("/mercadoPago", MercadoPagoRoutes)
+router.use("/filter", FilterRoutes)
+
 
 
 router.post("/register", async (req, res) => {
