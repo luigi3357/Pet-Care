@@ -1,12 +1,11 @@
-
-const { User, Post, Review } = require('../src/db');
+ const { User, Post, Review } = require('../src/db');
 
 
  async function createPost (posteos){
     try{
-        const {title, description, email} = posteos;
+        const {title, description, email, type, size} = posteos;
 
-        const user = User.findOne({
+        const user = await User.findOne({
             where: {
                 email
             },
@@ -22,7 +21,9 @@ const { User, Post, Review } = require('../src/db');
         const newPost = await Post.create({
             title,
             description,
-            author_id: user.id
+            author_id: user.id,
+            type,
+            size
         })
       
     }catch(error){

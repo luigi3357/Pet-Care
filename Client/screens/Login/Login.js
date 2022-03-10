@@ -158,13 +158,6 @@ export default () => {
           marginTop:30,
           marginLeft:15,
           marginRight:15,
-          alignItems:'center'
-      },
-      lineStyle:{
-          flexDirection:'row',
-          marginTop:30,
-          marginLeft:15,
-          marginRight:15,
           justifyContent:"space-around"
     },
       logo: {

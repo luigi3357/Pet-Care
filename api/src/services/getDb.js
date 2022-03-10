@@ -15,14 +15,22 @@ async function infoTotalDb(){
 
 async function infoPostDb(){
     return await Post.findAll({
-        include:[{
+        include: {
             model: User,
-            as: 'users'
-        },{
-            model: Review,
-            as: "reviews"
-        }]
-    })
+            as: "author",
+            include: {
+                model: Review,
+                as: "reviews",
+                order: [['createdAt','DESC']],
+                attributes: ['id','rate', 'message', 'from_id', 'updatedAt']
+
+            },
+            attributes: ['name', 'last_name', 'rating', 'bookings']
+        },
+        order: [['createdAt','DESC']],
+        attributes: ['id','title', 'description', 'updatedAt']
+
+    });
 }
 
 module.exports ={ infoTotalDb, infoPostDb }

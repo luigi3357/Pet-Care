@@ -7,6 +7,11 @@ const  UserRoutes  = require('./users');
 const PostsRoutes  = require('./posts');
 const ReviewRoutes  = require('./reviews');
 const UploadRoutes  = require('./uploadform');
+const SearchRoutes  = require('./searchBar');
+const FilterRoutes  = require('./Filters');
+
+
+const MercadoPagoRoutes = require("./mercadoPago")
 
 
 
@@ -16,6 +21,11 @@ router.use("/users", UserRoutes)
 router.use('/posts', PostsRoutes)
 router.use('/reviews', ReviewRoutes)
 router.use('/upload', UploadRoutes )
+router.use('/search', SearchRoutes )
+router.use("/mercadoPago", MercadoPagoRoutes)
+router.use("/filter", FilterRoutes)
+
+
 
 router.post("/register", async (req, res) => {
     let { email, password, name, last_name } = req.body
@@ -46,7 +56,8 @@ router.post("/register", async (req, res) => {
 
 router.put("/forgot-password", async (req, res) => {
     const { email } = req.body
-    let user = await search({ email: email.toLowerCase() })
+    console.log(req.body)
+    let user = await search({ email: email })
     if (user) {
         let token = key()
         let update = await Update({ token: token, email: email.toLowerCase() })
@@ -60,6 +71,7 @@ router.put("/forgot-password", async (req, res) => {
     }
     return res.status(404).send("Usuario no encontrado")
 })
+
 router.put("/reset", async (req, res) => {
     const { email, token, password } = req.body
     let up = await validate({ email: email, token: token, password:password})

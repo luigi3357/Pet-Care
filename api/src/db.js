@@ -1,5 +1,5 @@
 require('dotenv').config();
-const { Sequelize } = require('sequelize');
+const { Sequelize, Op} = require('sequelize');
 const fs = require('fs');
 const path = require('path');
 const {
@@ -28,8 +28,8 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 const { User, Post, Review } = sequelize.models;
 
-User.hasMany(Post, {as: "posteos", foreignKey: "author_id"})
-Post.belongsTo(User,{as: "author", foreignKey: "author_id"})
+User.hasMany(Post, {as: "posteos", foreignKey: {name:"author_id", allowNull: false}})
+Post.belongsTo(User,{as: "author", foreignKey: {name:"author_id", allowNull: false}})
 User.hasMany(Review, {as: "reviews", foreignKey: "reviewedUser_id" })
 Review.belongsTo(User, {as: 'reviwedUser', foreignKey: 'reviewedUser_id'})
 
@@ -37,5 +37,6 @@ Review.belongsTo(User, {as: 'reviwedUser', foreignKey: 'reviewedUser_id'})
 
 module.exports = {
   ...sequelize.models, 
-  conn: sequelize,     
+  conn: sequelize,
+  Op,     
 };
