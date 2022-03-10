@@ -1,11 +1,13 @@
 import React, { useEffect } from "react";
-import { ScrollView, StyleSheet, View } from "react-native";
+import { ScrollView, StyleSheet, View, TouchableOpacity, Text } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAllPosts } from "../../../Store/Actions";
 import Footer from "../../Profile/Componentes/Footer";
 import Bottomplus from "./BottomForm/Bottomplus";
 import Navbar from "./NavBar";
 import PostCard from "./PostCard";
+
+import { useNavigation } from '@react-navigation/native'
 
 export default function HomeScreens() {
   const filtered_posts = useSelector((state) => state.filtered_posts);
@@ -16,10 +18,17 @@ export default function HomeScreens() {
   }, []);
   useEffect(() => {}, [filtered_posts]);
 
+  const navigation = useNavigation();
+
   return (
     <>
       <View style={{ height: "20%", width: "100%" }}>
         <Navbar />
+      </View>
+      <View>
+        <TouchableOpacity title="goToPay" onPress={() => navigation.navigate("Payment")}>  
+          <Text style={styles.button}>Contratar!</Text> 
+        </TouchableOpacity>  
       </View>
       <ScrollView>
         {filtered_posts
@@ -53,5 +62,13 @@ const styles = StyleSheet.create({
 
     alignItems: "flex-end",
     justifyContent: "flex-end",
-  },
+  },button: {
+    backgroundColor: "#8aF",
+    marginTop: 0.5,
+    color: "#FFF",
+    display: "flex",
+    alignSelf: "flex-end",
+    // ,flex:1
+    padding: 4,
+  }
 });

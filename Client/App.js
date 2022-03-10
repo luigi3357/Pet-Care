@@ -11,6 +11,7 @@ import MailCode from "./screens/Login/MailCode";
 import NewPassword from "./screens/Login/NewPassword";
 import Register from "./screens/Login/Register";
 import Profile from "./screens/Profile/Profile";
+import Payment from "./screens/Payment/Payment";
 import Store from "./Store";
 
 const Stack = createStackNavigator();
@@ -24,11 +25,11 @@ function App() {
       <Stack.Screen name="MailCode" component={MailCode} />
       <Stack.Screen name="ForgetPassword" component={ForgetPassword} />
       <Stack.Screen name="Register" component={Register} />
-      <Stack.Screen name="NewPassword" component={NewPassword} />
-    */}
-      <Stack.Screen name="HomeScreen" component={HomeScreen} />
-      <Stack.Screen name="Profile" component={Profile} />
-      <Stack.Screen name="Form" component={FormCard} />
+      <Stack.Screen name="NewPassword" component={NewPassword} /> 
+      { <Stack.Screen name='Form' component={FormCard}/> */}
+      <Stack.Screen name="HomeScreen" component={HomeScreen}/>
+      <Stack.Screen name="Profile" component={Profile}/>
+      <Stack.Screen name="Payment" component={Payment}/>
     </Stack.Navigator>
   );
 }
