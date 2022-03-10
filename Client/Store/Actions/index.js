@@ -49,6 +49,17 @@ export const registerBack= payload => {
     }    
 }
 
+export const forgotPassword = payload => {
+  
+  try {
+      return async (dispatch)=>{                        
+          let json = await axios.put(`http://${localhost}:3001/forgot-password`, payload)
+          return json
+      }
+  } catch (error) {
+      console.error(error)
+  }    
+}
 
 
 export default function postPublic (payload){
