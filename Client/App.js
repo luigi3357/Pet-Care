@@ -13,15 +13,10 @@ import Register from "./screens/Login/Register";
 import Profile from "./screens/Profile/Profile";
 import Store from "./Store";
 
-
-
 const Stack = createStackNavigator();
 
 function App() {
-
-  
   return (
-   
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       {/* <Stack.Screen name="LandingPage" component={LandingPage} /> */}
       {/* <Stack.Screen name="Login" component={Login} />
@@ -29,20 +24,19 @@ function App() {
       <Stack.Screen name="ForgetPassword" component={ForgetPassword} />
       <Stack.Screen name="Register" component={Register} />
       <Stack.Screen name="NewPassword" component={NewPassword} /> */}
-      <Stack.Screen name='Form' component={FormCard}/>
-      <Stack.Screen name="HomeScreen" component={HomeScreen}/>
-      <Stack.Screen name="Profile" component={Profile}/>
+      {/* <Stack.Screen name='Form' component={FormCard}/> */}
+      {/* <Stack.Screen name="HomeScreen" component={HomeScreen} /> */}
+      <Stack.Screen name="Profile" component={Profile} />
     </Stack.Navigator>
-
   );
-  }
+}
 
 export default () => {
   return (
     <Provider store={Store}>
-    <NavigationContainer>
-      <App />
-    </NavigationContainer>
+      <NavigationContainer>
+        <App />
+      </NavigationContainer>
     </Provider>
   );
 };
