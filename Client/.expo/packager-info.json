@@ -5,7 +5,6 @@
   "packagerPid": null,
   "expoServerNgrokUrl": "https://ms-yc8.negurito.client.exp.direct",
   "packagerNgrokUrl": "https://ms-yc8.negurito.client.exp.direct",
-  "ngrokPid": 20952,
-  "webpackServerPort": null,
-  "devToolsPort": 19002
+  "ngrokPid": 19100,
+  "webpackServerPort": null
 }

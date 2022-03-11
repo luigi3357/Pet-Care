@@ -60,7 +60,8 @@ useEffect(() => {
       setDisabled(false);
   } else {
       setDisabled(true);
-  }
+  }}, [])
+
   function descripTxt(txtt) {
     setDescription(txtt);
     console.log(descriptionC);
@@ -352,10 +353,10 @@ onChangeText={(text)=>{
       </View>
     </SafeAreaView>
   );
+  
 }
-
-const styles = StyleSheet.create({
-  container: {
-    display: "flex"
-  },
-});
+  const styles = StyleSheet.create({
+    container: {
+      display: "flex"
+    },
+  });

@@ -1,6 +1,6 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Provider } from "react-redux";
 import FormCard from "./screens/Home/Componentes/BottomForm/Form";
 import HomeScreen from "./screens/Home/Componentes/HomeScreen";
@@ -19,6 +19,25 @@ import * as Linking from 'expo-linking';
 const Stack = createStackNavigator();
 
 function App() {
+
+  //   const [data, setData] = useState(null);
+
+  //   function handleDeepLink(e){
+  //     let data = Linking.parse(e.url);
+  //     setData(data);
+  //   }
+
+
+
+  // useEffect(()=>{
+  //   Linking.addEventListener('url', handleDeepLink);
+  //   return(()=>{
+  //     Linking.removeEventListener('url');
+  //   })
+  // }, []);
+
+
+
   return (
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         {/* <Stack.Screen name="LandingPage" component={LandingPage} />
