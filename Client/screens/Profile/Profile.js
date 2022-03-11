@@ -7,33 +7,42 @@ import {
   Image,
   ScrollView,
 } from "react-native";
-import { Ionicons, MaterialIcons } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
 import { AntDesign } from "@expo/vector-icons";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
 export default function App() {
+  const navigation = useNavigation();
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.titleBar}>
-          <AntDesign name={"left"} size={24} color="#52575D" />
+          <TouchableOpacity onPress={() => navigation.navigate("Login")}>
+            <AntDesign name={"left"} size={24} color="#52575D" />
+          </TouchableOpacity>
 
-          <AntDesign name={"edit"} size={24} color="#52575D" />
+          <TouchableOpacity onPress={() => navigation.navigate("Login")}>
+            <AntDesign name={"edit"} size={24} color="#52575D" />
+          </TouchableOpacity>
         </View>
 
-        <View style={{ alignSelf: "center" }}>
+        <View style={styles.headerProfile}>
           <View style={styles.profileImage}>
             <Image
               source={require("./img/media1.jpg")}
-              style={styles.image}
-              resizeMode="center"
+              style={styles.imageProfile}
             ></Image>
           </View>
           <View style={styles.dm}>
-            <AntDesign name={"message1"} size={24} color="#fff" />
+            <TouchableOpacity>
+              <AntDesign name={"message1"} size={24} color="#fff" />
+            </TouchableOpacity>
           </View>
 
           <View style={styles.add}>
-            <AntDesign name={"plus"} size={24} color="#fff" />
+            <TouchableOpacity>
+              <AntDesign name={"plus"} size={24} color="#fff" />
+            </TouchableOpacity>
           </View>
         </View>
 
@@ -112,47 +121,20 @@ export default function App() {
             </View>
           </ScrollView>
         </View>
-        <Text style={[styles.title, { textAlign: "center" }]}>PUBLICACION</Text>
+        <Text style={styles.title}>PUBLICACION</Text>
         <View style={{ alignItems: "center" }}>
           <View style={styles.recentItem}>
-            <View style={{ width: 250 }}>
-              <Text
-                style={[
-                  styles.publicartionCard,
-                  { color: "#41444B", fontWeight: "300" },
-                ]}
-              >
-                CARD PUBLICACION{" "}
-              </Text>
+            <View>
+              <Text style={styles.publicartionCard}>CARD PUBLICACION </Text>
             </View>
           </View>
           <Text style={styles.title}>REVIEWS</Text>
           <View style={styles.recentItem}>
-            <View style={{ width: 250 }}>
-              <Text
-                style={[styles.review, { color: "#41444B", fontWeight: "300" }]}
-              >
-                {" "}
-                REVIEW 1{" "}
-              </Text>
-              <Text
-                style={[styles.review, { color: "#41444B", fontWeight: "300" }]}
-              >
-                {" "}
-                REVIEW 3{" "}
-              </Text>
-              <Text
-                style={[styles.review, { color: "#41444B", fontWeight: "300" }]}
-              >
-                {" "}
-                REVIEW 4{" "}
-              </Text>
-              <Text
-                style={[styles.review, { color: "#41444B", fontWeight: "300" }]}
-              >
-                {" "}
-                REVIEW 5{" "}
-              </Text>
+            <View>
+              <Text style={styles.review}> REVIEW 1 </Text>
+              <Text style={styles.review}> REVIEW 3 </Text>
+              <Text style={styles.review}> REVIEW 4 </Text>
+              <Text style={styles.review}> REVIEW 5 </Text>
             </View>
           </View>
         </View>
@@ -164,13 +146,12 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#FFF",
+    backgroundColor: "#f9f9f9",
   },
-
-  image: {
-    flex: 1,
+  headerProfile: {
     width: 200,
     height: 200,
+    alignSelf: "center",
   },
   titleBar: {
     flexDirection: "row",
@@ -184,6 +165,7 @@ const styles = StyleSheet.create({
     fontWeight: "500",
     marginTop: 24,
     marginHorizontal: 16,
+    textAlign: "center",
   },
   subText: {
     fontSize: 12,
@@ -192,10 +174,23 @@ const styles = StyleSheet.create({
     fontWeight: "500",
   },
   profileImage: {
+    marginTop: 10,
     width: 200,
     height: 200,
-    borderRadius: 200,
+    borderRadius: 300,
     overflow: "hidden",
+  },
+  imageProfile: {
+    flex: 1,
+    width: 200,
+    height: 200,
+  },
+  image: {
+    flex: 1,
+    width: 200,
+    height: 200,
+    alignSelf: "center",
+    alignItems: "center",
   },
   dm: {
     backgroundColor: "#00d2c6",
@@ -222,45 +217,53 @@ const styles = StyleSheet.create({
   infoContainer: {
     alignSelf: "center",
     alignItems: "center",
-    marginTop: 16,
+    marginTop: 10,
   },
   statsContainer: {
     flexDirection: "row",
     alignSelf: "center",
-    marginTop: 32,
+    marginTop: 10,
   },
   statsBox: {
     alignItems: "center",
     flex: 1,
   },
   mediaImageContainer: {
-    width: 180,
-    height: 200,
+    width: 186,
+    height: 250,
     borderRadius: 12,
     overflow: "hidden",
     marginHorizontal: 10,
   },
 
-  recent: {
-    marginLeft: 78,
-    marginTop: 32,
-    marginBottom: 6,
-    fontSize: 10,
-  },
   recentItem: {
     flexDirection: "row",
     alignItems: "flex-start",
-    marginBottom: 16,
+    marginBottom: 10,
   },
 
   review: {
-    backgroundColor: "#CABFAB",
+    backgroundColor: "#00d2c6",
     height: 100,
-    marginTop: 24,
+    marginTop: 5,
+    borderRadius: 12,
+    overflow: "hidden",
+    textAlign: "center",
+    alignSelf: "center",
+    width: 395,
+    color: "#41444B",
+    fontWeight: "300",
   },
 
   publicartionCard: {
-    backgroundColor: "#CABFAB",
+    backgroundColor: "#00d2c6",
     height: 100,
+    width: 395,
+    borderRadius: 12,
+    overflow: "hidden",
+    textAlign: "center",
+    alignSelf: "center",
+    color: "#41444B",
+    fontWeight: "300",
   },
 });
