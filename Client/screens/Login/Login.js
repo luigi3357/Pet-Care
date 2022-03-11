@@ -1,10 +1,11 @@
 import { useNavigation } from '@react-navigation/native'
-import { Button, Image, Input, NativeBaseProvider, Text} from 'native-base'
+import { Button, Image, Input, NativeBaseProvider, Text, Icon} from 'native-base'
 import React, { useEffect, useState } from 'react'
 import { StyleSheet, TouchableOpacity, View, ActivityIndicator,Alert } from 'react-native'
 import { useDispatch, useSelector } from 'react-redux'
 import { getLogin, getUser } from '../../Store/Actions/index'
 import   bcrypt from 'bcryptjs'
+import { FontAwesome5,MaterialIcons } from '@expo/vector-icons'
 
 
 
@@ -16,6 +17,7 @@ const Login = () => {
     const [password,onChangePassword] = useState("")
     const [loading, setLoading]=useState(false)
     const [visible,setVisible]=useState(100)
+    const [show, setShow] = React.useState(false);
     function errorAlert(){
   return(
     Alert.alert(
@@ -60,6 +62,7 @@ const Login = () => {
       const navigation = useNavigation();
 
 
+
     return(
         <View>
         <View opacity={visible}>
@@ -70,16 +73,49 @@ const Login = () => {
                 alt="."
                />
             </View>
-            <View>
-            <Input                          
+            <View style={{ alignItems:'center', marginTop:50}}>
+            <Input   
+             width={'5/6'}                        
              type="text"     
               onChangeText={onChangeEmail}
               placeholder = "Email"
+              InputLeftElement={
+                <Icon
+                   as={<FontAwesome5  name="user"/>}
+                   size="sm"
+                   m={2}
+                   _ligth={{
+                       color:'black'
+                   }}
+                   _dark={{
+                    color:'white'
+                   }}
+                />
+            }
              />
             <Input
-             type="password"
+             width={'5/6'}  
+             type={show ? "text" : "password"} 
+             InputRightElement={<Icon 
+              as={<MaterialIcons name={show ? "visibility" : "visibility-off"} 
+              />} 
+             size={5} mr="2" color="muted.400" onPress={() => setShow(!show)} 
+             />}
              onChangeText={onChangePassword}
              placeholder = "Contraseña"
+             InputLeftElement={
+              <Icon
+                 as={<FontAwesome5  name="key"/>}
+                 size="sm"
+                 m={2}
+                 _ligth={{
+                     color:'black'
+                 }}
+                 _dark={{
+                  color:'white'
+                 }}
+              />
+          }
               />
 
             <View style={styles.buttonStyle}>
