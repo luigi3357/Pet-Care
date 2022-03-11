@@ -2,8 +2,8 @@ import React, { useEffect } from "react";
 import {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {postPayment} from "../../Store/Actions/index.js";
-import {View, Text, TouchableOpacity, StyleSheet, TextInput, Linking } from "react-native";
-
+import {View, Text, TouchableOpacity, StyleSheet, TextInput } from "react-native";
+import * as Linking from 'expo-linking'
 export default function Payment (navigation) {
 
     const dispatch = useDispatch()
