@@ -2,16 +2,12 @@ import ACTION_TYPES from "../Actions/ActionTypes";
 
 const initialState = {
   loading: false,
+  users: '',
+  error: '',
   all_posts: [],
   filtered_posts: [],
-  users: "",
-  error: "",
-  true: "true",
-  false: "false",
-  check: "",
-  name: "",
-  last_name: "",
-  checkout_link: ""
+  checkout_link: "",
+  login:[]
 };
 
 const apiReducer = (state = initialState, action) => {
@@ -33,6 +29,7 @@ const apiReducer = (state = initialState, action) => {
         error: action.payload,
         loading: false,
       };
+
     case ACTION_TYPES.GET_TRUE:
       return {
         ...state,
@@ -54,12 +51,10 @@ const apiReducer = (state = initialState, action) => {
         last_name: action.payload,
       };
     case ACTION_TYPES.GET_CHECK:
-      console.log(action.payload);
-      cambio =
-        action.payload === "notEmail" ? state.check === "true" : state.check;
-      return {
+console.log(action.payload)
+    return {
         ...state,
-        check: cambio,
+        login: action.payload,
       };
     case ACTION_TYPES.POST_PUBLIC:
       return {
@@ -81,6 +76,11 @@ const apiReducer = (state = initialState, action) => {
         all_posts: action.payload,
         filtered_posts: action.payload,
       };
+    case ACTION_TYPES.GET_FILTERED:
+      return {
+        ...state,
+        filtered_posts: action.payload,
+      }
     default:
       return state;
   }

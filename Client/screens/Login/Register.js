@@ -1,10 +1,10 @@
-import { FontAwesome5 } from '@expo/vector-icons';
+import { FontAwesome5,MaterialIcons  } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import { Button, Icon, Image, Input, NativeBaseProvider } from 'native-base';
 import React, { useState } from 'react';
 import { Alert, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { useDispatch } from "react-redux";
-import { registerBack } from '../../Store/Actions';
+import { registerBack } from '../../Store/Actions/index';
 
 
 const Register = () => {
@@ -12,13 +12,17 @@ const Register = () => {
   const dispatch = useDispatch();
   const [email,onChangeEmail] = useState("");
   const [password,onChangePassword] = useState("");
+  const [repeatPassword,onChangeRepeat] = useState("");
   const [name,onChangeName] = useState("");
   const[last_name,onChangeLastName] = useState("");
   const [refresh, setRefresh] = useState(false)
   const data = { email: email, password :password, name:name, last_name:last_name};
-  const [showModal, setShowModal] = useState(false);
+
   const navigation = useNavigation();
- 
+  const [show, setShow] = useState(false);
+  const [showrepeat, setShowrepeat] = useState(false);
+
+
   const pullMe = ()=>{
    setRefresh(true)
 
@@ -35,9 +39,22 @@ const Register = () => {
         { text: "Inicia Sesion", onPress: ()=>navigation.navigate("HomeScreen") }
       ]
     )};
+  function errorPassword(){
+      Alert.alert(
+        "Error",
+        "Las contraseñas no coinciden.",
+        [
+          { text: "Volver", onPress: ()=>navigation.navigate("Register") }
+        ]
+      )};
+
  function handlesubmit(e){
+   if(password!==repeatPassword){
+        errorPassword()
+   }else{
     dispatch(registerBack(data)) 
     registerLog()
+   }
   }
   
   return (
@@ -64,27 +81,120 @@ const Register = () => {
             <View style={styles.middle}>
                 <Text style={styles.loginText}>Registrate</Text>
             </View>
-                    <Input                            
+            <View style={{ alignItems:'center'}}>
+                    <Input 
+                    style={{marginTop:10}}  
+                    width={'5/6'}                          
                     type="text"     
                     onChangeText={onChangeName}
                         placeholder = "Nombre"
+                    InputLeftElement={
+                          <Icon
+                             as={<FontAwesome5  name="user"/>}
+                             size="sm"
+                             m={2}
+                             _ligth={{
+                                 color:'black'
+                             }}
+                             _dark={{
+                              color:'white'
+                             }}
+                          />
+                      }
                     />
-                    <Input                            
+                    <Input 
+                    style={{marginTop:10}}  
+                    width={'5/6'}                           
                     type="text"     
                     onChangeText={onChangeLastName}
                         placeholder = "Apellido"
+                    InputLeftElement={
+                          <Icon
+                             as={<FontAwesome5  name="user"/>}
+                             size="sm"
+                             m={2}
+                             _ligth={{
+                                 color:'black'
+                             }}
+                             _dark={{
+                              color:'white'
+                             }}
+                          />
+                      }
                     />
-                    <Input                            
+                    <Input 
+                    style={{marginTop:10}}  
+                    width={'5/6'}                            
                     type="text"     
                     onChangeText={onChangeEmail}
-                        placeholder = "Email"
+                    placeholder = "Email"
+                    InputLeftElement={
+                      <Icon
+                         as={<FontAwesome5  name="user"/>}
+                         size="sm"
+                         m={2}
+                         _ligth={{
+                             color:'black'
+                         }}
+                         _dark={{
+                          color:'white'
+                         }}
+                      />
+                  }
                     />
+                    <View>
                     <Input
-                    type="password"
+                    style={{marginTop:10}} 
+                    width={'5/6'}  
                     onChangeText={onChangePassword}
-                        placeholder = "Contraseña"
+                    placeholder = "Contraseña"
+                    type={show ? "text" : "password"} 
+                    InputRightElement={<Icon 
+                      as={<MaterialIcons name={show ? "visibility" : "visibility-off"} 
+                      />} 
+                     size={5} mr="2" color="muted.400" onPress={() => setShow(!show)} 
+                     />}              
+                     InputLeftElement={
+                      <Icon
+                         as={<FontAwesome5  name="key"/>}
+                         size="sm"
+                         m={2}
+                         _ligth={{
+                             color:'black'
+                         }}
+                         _dark={{
+                          color:'white'
+                         }}
+                      />
+                  }
                     />
-                  
+                    </View>
+                    <Input
+                    style={{marginTop:50}} 
+                    width={'5/6'}  
+                    onChangeText={onChangeRepeat}
+                    placeholder = "Contraseña"
+                    type={showrepeat ? "text" : "password"} 
+                    InputRightElement={<Icon 
+                      as={<MaterialIcons name={showrepeat ? "visibility" : "visibility-off"} 
+                      />} 
+                     size={5} mr="2" color="muted.400" onPress={() => setShowrepeat(!showrepeat)} 
+                     />}
+                     InputLeftElement={
+                      <Icon
+                         as={<FontAwesome5  name="key"/>}
+                         size="sm"
+                         m={2}
+                         _ligth={{
+                             color:'black'
+                         }}
+                         _dark={{
+                          color:'white'
+                         }}
+                      />
+                  }
+                    />
+                  </View>
             <View style={styles.buttonStyle}>
                 <Button 
                 onPress={handlesubmit}

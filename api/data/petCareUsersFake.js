@@ -169,7 +169,7 @@ const feedback = [
         "message": "Es el mejor!!! Mi gato es feliz con Lucas. Yo lo dejo con los ojos cerrados, confío en el 100%.",
         "rate": "2"
     },{        
-            "email1": "juanparaducha@gmail.com",
+            "email1": "sebastianguerra@gmail.com",
             "email2": "lucasduran@gmail.com",
             "message": "No lo recomiendo. El día que acordamos entregar a Jero llegó tarde!! y casi pierso mi vuelo.",
             "rate": "1"

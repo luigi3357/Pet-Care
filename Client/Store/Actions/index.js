@@ -3,13 +3,14 @@ import axios from 'axios';
 import ACTION_TYPES from './ActionTypes.js';
 import {fetchData, fetchSuccess, fetchError} from './ApiAction';
 
-const localhost ='localhost' ; //'192.168.0.11' '192.168.100.16' 'localhost'
+const localhost ='localhost' ; //'192.168.0.11'
 
 
 
 
-const getUser = (payload) => (dispatch) => {
+export const getUser = (payload) => (dispatch) => {
     dispatch(fetchData());
+
     return new Promise(() => {
       axios
         .get(`http://${localhost}:3001/users`)
@@ -17,20 +18,22 @@ const getUser = (payload) => (dispatch) => {
           dispatch(fetchSuccess(response.data));         
         })
         .catch((error) => {
+
           dispatch(fetchError(error));
           console.error(error);
         });
     });
   };
 
-export const getLogin = (payload) =>  {
+export const getLogin = (email) =>  {
   try {
-    return async (dispatch)=>{                        
-        let json = await axios.post(`http://${localhost}:3001/login`, payload)
-        return {
+    return async (dispatch)=>{ 
+      console.log(email,"soy el action")                       
+        let json = await axios.get(`http://${localhost}:3001/login/`+ email)
+        return dispatch({
             type: ACTION_TYPES.GET_CHECK,
             payload: json.data
-        }
+        })
     }
 } catch (error) {
     console.error(error)
@@ -118,16 +121,18 @@ export function fetchAllPosts(){
   }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+export function getFiltered(filter){
+  return function(dispatch){
+    axios.get(`http://${localhost}:3001/orderAndFilter`,
+    {
+      params : {
+        order : filter
+      }
+    }).then((res)=>{
+      dispatch({
+        type : ACTION_TYPES.GET_FILTERED,
+        payload : res.data
+      })
+    })
+  }
+}

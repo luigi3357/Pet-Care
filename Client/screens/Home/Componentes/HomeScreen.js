@@ -4,9 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchAllPosts } from "../../../Store/Actions";
 import Footer from "../../Profile/Componentes/Footer";
 import Bottomplus from "./BottomForm/Bottomplus";
-// import {AspectRatio,NativeBaseProvider} from 'native-base'
-// import SearchBar from './SearchBar'
-// import Filtrado from './FilterButton'
 import Navbar from "./NavBar";
 import PostCard from "./PostCard";
 
@@ -25,7 +22,7 @@ export default function HomeScreens() {
 
   return (
     <>
-      <View style={{ height: "13%", width: "100%" }}>
+      <View style={{ height: "20%", width: "100%" }}>
         <Navbar />
       </View>
       <View>
@@ -42,7 +39,7 @@ export default function HomeScreens() {
                   key={post.id}
                   title={post.title}
                   description={post.description}
-                  reviews={post.author.reviews}
+                  reviews={post.author.reviews.length>0 ? post.author.reviews : null}
                   rating={post.author.rating}
                   bookings={post.author.bookings}
                 />
@@ -75,34 +72,3 @@ const styles = StyleSheet.create({
     padding: 4,
   }
 });
-
-//   var reviewsPostCard = [];
-
-//   for(let i =0; i<5; i++){
-//     let arrAux = [];
-//   for(let i =0; i<8;i++){
-
-//     let obj = {
-//       titulo : getRandomName(3),
-//       rating : Math.ceil(Math.random()*5),
-//       usuario: getRandomName(2)
-//      ,review : getRandomName(Math.ceil(Math.random()*17))
-//     }
-//     arrAux.push(obj);
-
-//   }
-//   reviewsPostCard.push(arrAux);
-// }
-
-// function getRandomName(q) {
-//   const loremIpsum =
-//     "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
-//   var string = "";
-//   for (let i = 0; i < q; i++) {
-//     string +=
-//       loremIpsum.split(" ")[
-//         Math.floor(Math.random() * loremIpsum.split(" ").length)
-//       ] + " ";
-//   }
-//   return string.trim();
-// }

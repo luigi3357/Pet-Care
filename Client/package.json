@@ -16,6 +16,7 @@
     "@react-navigation/native": "^6.0.8",
     "@react-navigation/stack": "^6.1.1",
     "axios": "^0.24.0",
+    "bcryptjs": "^2.4.3",
     "expo": "~44.0.0",
     "expo-facebook": "~12.1.0",
     "expo-status-bar": "~1.2.0",

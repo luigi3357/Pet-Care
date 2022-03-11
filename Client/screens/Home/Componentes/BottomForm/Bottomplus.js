@@ -4,6 +4,7 @@ import {Icon,NativeBaseProvider} from 'native-base'
 import { AntDesign  } from '@expo/vector-icons';
 import { TouchableOpacity } from 'react-native';
 import {useNavigation} from '@react-navigation/native'
+import { FontAwesome } from '@expo/vector-icons';
 
 
 export default function Button() {
@@ -13,12 +14,19 @@ export default function Button() {
     <View style={styles.viewBody}>
       <TouchableOpacity
       
-      onPress={()=> navigation.navigate("Form")}
+      onPress={()=> 
+        navigation.navigate("Form")
+        // console.log('boton crear')
+      }
       >
+        <Icon 
+         style={styles.btnContainer2}
+        size="60px"
+        color="black" 
+        as={<FontAwesome name="circle" />} />
       <Icon 
        style={styles.btnContainer}
-      ml="2" 
-      size="12" 
+      size="50px"
       color="#00D2C6" 
       as={<AntDesign name="pluscircle"  />} />
    </TouchableOpacity>
@@ -36,8 +44,11 @@ btnContainer:{
 position:"absolute",
 bottom:50,
 right:8,
-
-
+},
+btnContainer2:{
+position:"absolute",
+bottom:45,
+right:-1.2,
 }
 })
 
