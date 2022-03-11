@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   StyleSheet,
   Text,
@@ -10,9 +10,23 @@ import {
 import { useNavigation } from "@react-navigation/native";
 import { AntDesign } from "@expo/vector-icons";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import axios from "axios";
+import { localhost } from "../../Store/Actions/index";
 
-export default function App() {
+console.log("entro");
+
+export default function Profile() {
   const navigation = useNavigation();
+  const id = "2d77cdf2-9cb6-4380-9f07-a0b3deb0fbce";
+  const [user, setUser] = useState({});
+
+  useEffect(async () => {
+    const info = await axios
+      .get(`http://${localhost}:3001/users/${id}`)
+      .then((response) => setUser(response.data));
+  }, []);
+
+  console.log(user.rating);
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
@@ -21,7 +35,7 @@ export default function App() {
             <AntDesign name={"left"} size={24} color="#52575D" />
           </TouchableOpacity>
 
-          <TouchableOpacity onPress={() => navigation.navigate("Login")}>
+          <TouchableOpacity onPress={() => console.log("Edit")}>
             <AntDesign name={"edit"} size={24} color="#52575D" />
           </TouchableOpacity>
         </View>
@@ -47,17 +61,32 @@ export default function App() {
         </View>
 
         <View style={styles.infoContainer}>
-          <Text style={[styles.text, { fontWeight: "200", fontSize: 36 }]}>
-            Carla
+          <Text
+            style={[
+              styles.text,
+              { fontWeight: "200", fontSize: 36, textTransform: "capitalize" },
+            ]}
+          >
+            {user.name}
           </Text>
-          <Text style={[styles.text, { color: "#AEB5BC", fontSize: 14 }]}>
-            "Descripcion corta o frase"
+          <Text
+            style={[
+              styles.text,
+              {
+                color: "#AEB5BC",
+                fontSize: 14,
+                marginHorizontal: 20,
+                textAlign: "center",
+              },
+            ]}
+          >
+            {user.posteos[0].description}
           </Text>
         </View>
 
         <View style={styles.statsContainer}>
           <View style={styles.statsBox}>
-            <Text style={[styles.text, { fontSize: 24 }]}>4</Text>
+            <Text style={[styles.text, { fontSize: 24 }]}>{user.rating}</Text>
             <Text style={[styles.text, styles.subText]}>RATING</Text>
           </View>
           <View
@@ -70,7 +99,7 @@ export default function App() {
               },
             ]}
           >
-            <Text style={[styles.text, { fontSize: 24 }]}>12</Text>
+            <Text style={[styles.text, { fontSize: 24 }]}>{user.bookings}</Text>
             <Text style={[styles.text, styles.subText]}>CONTRATACIONES</Text>
           </View>
         </View>
