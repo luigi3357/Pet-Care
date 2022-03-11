@@ -19,7 +19,7 @@ const Stack = createStackNavigator();
 function App() {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="LandingPage" component={LandingPage} />
+      {/* <Stack.Screen name="LandingPage" component={LandingPage} /> */}
       <Stack.Screen name="Login" component={Login} />
       <Stack.Screen name="MailCode" component={MailCode} />
       <Stack.Screen name="ForgetPassword" component={ForgetPassword} />

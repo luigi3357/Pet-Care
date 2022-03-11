@@ -29,7 +29,7 @@ export default function FormCard(){
     if (!form.title) errors.title="Campo Requerido";
     if (!form.description) errors.description="Campo Requerido";
     if (!form.price) errors.price="Campo Requerido";
-    // if (!form.image) errors.image="Campo Requerido";
+    //if (!form.image) errors.image="Campo Requerido";
     if (!form.type) errors.type="Campo Requerido";
     if (!form.size) errors.size="Campo Requerido";
     if (!form.address) errors.address="Campo Requerido";
@@ -43,7 +43,7 @@ useEffect(() => {
      !errors.title.hasOwnProperty("title") &&
      !errors.description.hasOwnProperty("description") &&
      !errors.price.hasOwnProperty("price") &&
-    //  !errors.image.hasOwnProperty("image") &&
+    //!errors.image.hasOwnProperty("image") &&
      !errors.type.hasOwnProperty("type") &&
      !errors.size.hasOwnProperty("size") &&
      !errors.addres.hasOwnProperty("addres") &&

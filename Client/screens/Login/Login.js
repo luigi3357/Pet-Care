@@ -3,7 +3,7 @@ import { Button, Image, Input, NativeBaseProvider, Text} from 'native-base'
 import React, { useEffect, useState } from 'react'
 import { StyleSheet, TouchableOpacity, View, ActivityIndicator,Alert } from 'react-native'
 import { useDispatch, useSelector } from 'react-redux'
-import { getUser } from '../../Store/Actions/index'
+import { getLogin, getUser } from '../../Store/Actions/index'
 import   bcrypt from 'bcryptjs'
 
 
@@ -44,6 +44,8 @@ const Login = () => {
       console.log(verifyPassword, "pass")
       console.log(passVerify)
       console.log(verifyEmail, "email")
+
+      dispatch(getLogin(email))
 
       if(verifyPassword===true){
         setLoading(false)

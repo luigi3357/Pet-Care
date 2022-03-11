@@ -4,7 +4,7 @@ import { NativeBaseProvider,Button,Icon } from 'native-base'
 import {useNavigation} from '@react-navigation/native'
 import InputsLogin from './Componentes/InpuntsLogin'
 import {FontAwesome5} from '@expo/vector-icons'
-import { forgotPassword } from '../../Store/Actions'
+import { forgotPassword, getLogin } from '../../Store/Actions'
 import { useDispatch } from 'react-redux'
 
 
@@ -19,9 +19,10 @@ function ForgetPassword(){
 
     function handlesubmit(){     
 
-      dispatch(forgotPassword(data));
+      dispatch(forgotPassword(data));      
+      dispatch(getLogin(email)); 
+      navigation.navigate("MailCode");    
       
-      navigation.navigate("MailCode");      
     }
     
     return(

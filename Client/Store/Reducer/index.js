@@ -6,7 +6,8 @@ const initialState = {
   error: '',
   all_posts: [],
   filtered_posts: [],
-  checkout_link: ""
+  checkout_link: "",
+  login:[]
 };
 
 const apiReducer = (state = initialState, action) => {
@@ -50,12 +51,10 @@ const apiReducer = (state = initialState, action) => {
         last_name: action.payload,
       };
     case ACTION_TYPES.GET_CHECK:
-      console.log(action.payload);
-      cambio =
-        action.payload === "notEmail" ? state.check === "true" : state.check;
-      return {
+console.log(action.payload)
+    return {
         ...state,
-        check: cambio,
+        login: action.payload,
       };
     case ACTION_TYPES.POST_PUBLIC:
       return {

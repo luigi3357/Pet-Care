@@ -3,12 +3,12 @@ const { verifyEmail, hash, create, search, compare } = require('../services/logi
 const { key, validate } = require('../services/resetPassword');
 const { sendEmail } = require('../services/SendEmail');
 const { Update } = require('../services/updateUser');
-const  UserRoutes  = require('./users');
-const PostsRoutes  = require('./posts');
-const ReviewRoutes  = require('./reviews');
-const UploadRoutes  = require('./uploadform');
-const SearchRoutes  = require('./searchBar');
-const FilterRoutes  = require('./Filters');
+const UserRoutes = require('./users');
+const PostsRoutes = require('./posts');
+const ReviewRoutes = require('./reviews');
+const UploadRoutes = require('./uploadform');
+const SearchRoutes = require('./searchBar');
+const FilterRoutes = require('./Filters');
 
 
 const MercadoPagoRoutes = require("./mercadoPago")
@@ -20,8 +20,8 @@ const router = Router();
 router.use("/users", UserRoutes)
 router.use('/posts', PostsRoutes)
 router.use('/reviews', ReviewRoutes)
-router.use('/upload', UploadRoutes )
-router.use('/search', SearchRoutes )
+router.use('/upload', UploadRoutes)
+router.use('/search', SearchRoutes)
 router.use("/mercadoPago", MercadoPagoRoutes)
 router.use("/filter", FilterRoutes)
 
@@ -29,9 +29,9 @@ router.use("/filter", FilterRoutes)
 
 router.post("/register", async (req, res) => {
     let { email, password, name, last_name } = req.body
-    console.log(req.body,"soy el body")
+    console.log(req.body, "soy el body")
     let user = await search({ email: email.toLowerCase() })
-    console.log(user," soy el user")
+    console.log(user, " soy el user")
     if (!user) {
         try {
             let verify = verifyEmail(email.toLowerCase())
@@ -43,7 +43,7 @@ router.post("/register", async (req, res) => {
             if (verify === false) {
                 return res.status(404).send("Email invalido")
             }
-            if (password.length<8){
+            if (password.length < 8) {
                 return res.status(404).send("La contraseña debe contener al menos 8 caracteres")
             }
         } catch (error) {
@@ -74,12 +74,23 @@ router.put("/forgot-password", async (req, res) => {
 
 router.put("/reset", async (req, res) => {
     const { email, token, password } = req.body
-    let up = await validate({ email: email, token: token, password:password})
-    if(up){
+    let up = await validate({ email: email, token: token, password: password })
+    if (up) {
         return res.send(up)
     }
     return res.status(404).send("error")
 })
 
+router.get("/login/:email", async (req, res) => {
+    const { email } = req.params
+    if (email) {
+        let user = await search({ email: email })
+
+        if (user) {
+            return res.send(user)
+        }
+        return res.send("error")
+    }
+})
 
 module.exports = router;
