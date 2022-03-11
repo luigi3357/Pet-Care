@@ -3,13 +3,14 @@ import axios from 'axios';
 import ACTION_TYPES from './ActionTypes.js';
 import {fetchData, fetchSuccess, fetchError} from './ApiAction';
 
-const localhost ='192.168.100.8' ; //'192.168.0.11'
+const localhost ='192.168.65.107' ; //'192.168.0.11'
 
 
 
 
-const getUser = (payload) => (dispatch) => {
+export const getUser = (payload) => (dispatch) => {
     dispatch(fetchData());
+
     return new Promise(() => {
       axios
         .get(`http://${localhost}:3001/users`)
@@ -17,6 +18,7 @@ const getUser = (payload) => (dispatch) => {
           dispatch(fetchSuccess(response.data));         
         })
         .catch((error) => {
+
           dispatch(fetchError(error));
           console.error(error);
         });
@@ -115,5 +117,21 @@ export function fetchAllPosts(){
       })
     })
     .catch((e)=>{throw new Error('No se pudo conectar al servidor')})
+  }
+}
+
+export function getFiltered(filter){
+  return function(dispatch){
+    axios.get(`http://${localhost}:3001/orderAndFilter`,
+    {
+      params : {
+        order : filter
+      }
+    }).then((res)=>{
+      dispatch({
+        type : ACTION_TYPES.GET_FILTERED,
+        payload : res.data
+      })
+    })
   }
 }

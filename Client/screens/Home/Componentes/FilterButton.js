@@ -1,8 +1,12 @@
 import { Text, View , StyleSheet, TouchableOpacity} from 'react-native'
 import React, { useState } from 'react'
 import { Entypo } from '@expo/vector-icons';
+import { getFiltered } from '../../../Store/Actions';
+import { useDispatch } from 'react-redux';
 
 export default function FilterSelect(){
+  const dispatch = useDispatch();
+
   const [show, setShow] = useState(false);
   const [filter, setFilter] = useState('');
   const [showFilter, setShowFilter] = useState(false);
@@ -41,17 +45,27 @@ export default function FilterSelect(){
 
   function handleFilterChange(e){
     setFilter(e);
+    setCategory('');
+    setSize('');
     handleShow();
+    dispatch(getFiltered(e));
+
   }
 
   function handleCategoryChange(e){
     setCategory(e);
     handleShow();
+    setFilter('');
+    setSize('');
+    dispatch(getFiltered(e.toLowerCase()))
   }
 
   function handleSizeChange(e){
     setSize(e);
     handleShow();
+    setFilter('');
+    setCategory('');
+    dispatch(getFiltered(e));
   }
 
   function handleShowSizes(){
@@ -71,37 +85,49 @@ export default function FilterSelect(){
       { show ?
       <View style={styles.dropdown}>
         <TouchableOpacity style={styles.filters} onPress={()=>cleanFilters()}>
-          <Text>Limpiar filtros</Text>
+          <Text>Limpiar filtros y ordenamientos</Text>
         </TouchableOpacity>
         
-        <TouchableOpacity style={styles.filters} backgroundColor={"white"} onPress={()=> console.log("botón ordenamiento")}>
+        <TouchableOpacity style={styles.filters} backgroundColor={"white"}>
           <TouchableOpacity onPress={()=> handleShowFilter()}>
-            <Text>Ordenar por: <Text style={{color:'#55F'}}>{filter}</Text></Text>
+             <Text>Ordenar por: {/*<Text style={{color:'#55F'}}>{filter}</Text>*/}</Text> 
           </TouchableOpacity>
         </TouchableOpacity>
         {
           showFilter ? 
           <View>
-          <TouchableOpacity style={styles.options} onPress={()=> handleFilterChange('Zona')}>
-            <Text>Zona</Text>
+          <TouchableOpacity style={styles.options} onPress={()=> handleFilterChange('descRating')}>
+            <Text>Mayor rating</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.options} onPress={()=> handleFilterChange('Precio')}>
-            <Text>Precio</Text>
+          <TouchableOpacity style={styles.options} onPress={()=> handleFilterChange('ascRating')}>
+            <Text>Menor rating</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.options} onPress={()=> handleFilterChange('descPrice')}>
+            <Text>Mayor precio</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.options} onPress={()=> handleFilterChange('ascPrice')}>
+            <Text>Menor precio</Text>
           </TouchableOpacity>
           </View>
           : null
         }
         <TouchableOpacity style={styles.filters}  onPress={()=> handleShowCategories()}>
-          <Text>Elegir categoría: <Text style={{color:'#55F'}}>{category}</Text></Text>
+          <Text>Elegir categoría:{/* <Text style={{color:'#55F'}}>{category}</Text>*/}</Text>
         </TouchableOpacity>
         {
           showCategories ?
           <View>
-            <TouchableOpacity style={styles.options} onPress={()=> handleCategoryChange('Categoría 1')}>
-              <Text>Categoría 1</Text>
+            <TouchableOpacity style={styles.options} onPress={()=> handleCategoryChange('Perro')}>
+              <Text>Perro</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.options} onPress={()=> handleCategoryChange('Categoría 2')}>
-              <Text>Categoría 2</Text>
+            <TouchableOpacity style={styles.options} onPress={()=> handleCategoryChange('Gato')}>
+              <Text>Gato</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.options} onPress={()=> handleCategoryChange('Aves')}>
+              <Text>Aves</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.options} onPress={()=> handleCategoryChange('Roedores')}>
+              <Text>Roedores</Text>
             </TouchableOpacity>
           </View>
           : null
@@ -113,13 +139,13 @@ export default function FilterSelect(){
         {
           showSizes ?
           <View>
-            <TouchableOpacity style={styles.options}  onPress={()=> handleSizeChange('Pequeño')}>
+            <TouchableOpacity style={styles.options}  onPress={()=> handleSizeChange('pequeño')}>
               <Text>Pequeño</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.options} onPress={()=> handleSizeChange('Mediano')}>
+            <TouchableOpacity style={styles.options} onPress={()=> handleSizeChange('mediano')}>
               <Text>Mediano</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.options}  onPress={()=> handleSizeChange('Grande')}>
+            <TouchableOpacity style={styles.options}  onPress={()=> handleSizeChange('grande')}>
               <Text>Grande</Text>
             </TouchableOpacity>
           </View>

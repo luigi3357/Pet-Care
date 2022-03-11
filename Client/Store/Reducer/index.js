@@ -2,15 +2,10 @@ import ACTION_TYPES from "../Actions/ActionTypes";
 
 const initialState = {
   loading: false,
+  users: '',
+  error: '',
   all_posts: [],
   filtered_posts: [],
-  users: "",
-  error: "",
-  true: "true",
-  false: "false",
-  check: "",
-  name: "",
-  last_name: "",
   checkout_link: ""
 };
 
@@ -33,6 +28,7 @@ const apiReducer = (state = initialState, action) => {
         error: action.payload,
         loading: false,
       };
+
     case ACTION_TYPES.GET_TRUE:
       return {
         ...state,
@@ -81,6 +77,11 @@ const apiReducer = (state = initialState, action) => {
         all_posts: action.payload,
         filtered_posts: action.payload,
       };
+    case ACTION_TYPES.GET_FILTERED:
+      return {
+        ...state,
+        filtered_posts: action.payload,
+      }
     default:
       return state;
   }
