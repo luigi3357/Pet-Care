@@ -27,12 +27,17 @@ router.post("/checkout", (req, res) => {
                  title: req.body.carer,
                 unit_price: parseInt(req.body.amount),
                  quantity: 1,
+                 currency_id: 'ARS'
              }
-         ], back_urls:{
-               "success": "http//localhost:3001/feedback",
-              "pending": "http//localhost:3001/feedback",   
-              "failure": "http//localhost:3001/feedback"
-            }, auto_return: "approved",
+         ],
+         payer: {
+           email: 'demo@mail.com'
+         },
+         back_urls:{
+               "success": "https://petcare.com/success",
+              "pending": "https://petcare.com/pending",   
+              "failure": "https://petcare.com/failure"
+            },
      };
 
      /* let preference = {
@@ -47,13 +52,13 @@ router.post("/checkout", (req, res) => {
   
   mercadopago.preferences
     .create(preference)
-    .then(function (response) {
+    .then(function (data) {
       // Este valor reemplazará el string "<%= global.id %>" en tu HTML
       //global.id = response.body.id;
 
-      console.log(response.body);
+      console.log(data.response);
       //res.redirect(response.body.init_point)
-      res.send(response.body.init_point)
+      res.send(JSON.stringify(data.response.init_point))
     })
     .catch(function (error) {
       console.log(error);
