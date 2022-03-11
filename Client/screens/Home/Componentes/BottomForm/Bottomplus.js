@@ -13,8 +13,8 @@ export default function Button() {
       <TouchableOpacity
       
       onPress={()=> 
-        //navigation.navigate("Form")
-        console.log('boton crear')
+        navigation.navigate("Form")
+        // console.log('boton crear')
       }
       >
         <Icon 

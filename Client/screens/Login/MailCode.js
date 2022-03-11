@@ -4,10 +4,12 @@ import { NativeBaseProvider,Button,Icon } from 'native-base'
 import {useNavigation} from '@react-navigation/native'
 import InputsLogin from './Componentes/InpuntsLogin'
 import {FontAwesome5} from '@expo/vector-icons'
+import { useSelector } from 'react-redux'
 function MailCode(){
 
     const navigation = useNavigation()
-
+    const email = useSelector((state) => state.login)
+    console.log(email,"hola")
 
     return(
      <View style={styles.container}>

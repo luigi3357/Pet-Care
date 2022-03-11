@@ -25,14 +25,15 @@ export const getUser = (payload) => (dispatch) => {
     });
   };
 
-export const getLogin = (payload) =>  {
+export const getLogin = (email) =>  {
   try {
-    return async (dispatch)=>{                        
-        let json = await axios.post(`http://${localhost}:3001/login`, payload)
-        return {
+    return async (dispatch)=>{ 
+      console.log(email,"soy el action")                       
+        let json = await axios.get(`http://${localhost}:3001/login/`+ email)
+        return dispatch({
             type: ACTION_TYPES.GET_CHECK,
             payload: json.data
-        }
+        })
     }
 } catch (error) {
     console.error(error)

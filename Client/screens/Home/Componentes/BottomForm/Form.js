@@ -31,52 +31,35 @@ export default function FormCard() {
   const [errors, setErrors] = useState({}); //estado para setear errores en caso que los haya
   const [disabled, setDisabled] = useState(true);
 
-  //   function validate(input) {//valida y setea errores
-  //     let errors = {};
+  function validate(input) {//valida y setea errores
+    let errors = {};    
 
-  //     if (!form.title) errors.title="Campo Requerido";
-  //     if (!form.description) errors.description="Campo Requerido";
-  //     if (!form.price) errors.price="Campo Requerido";
-  //     // if (!form.image) errors.image="Campo Requerido";
-  //     if (!form.type) errors.type="Campo Requerido";
-  //     if (!form.size) errors.size="Campo Requerido";
-  //     if (!form.address) errors.address="Campo Requerido";
-  //     if (!form.phone) errors.phone="Campo Requerido";
+    if (!form.title) errors.title="Campo Requerido";
+    if (!form.description) errors.description="Campo Requerido";
+    if (!form.price) errors.price="Campo Requerido";
+    //if (!form.image) errors.image="Campo Requerido";
+    if (!form.type) errors.type="Campo Requerido";
+    if (!form.size) errors.size="Campo Requerido";
+    if (!form.address) errors.address="Campo Requerido";
+    if (!form.phone) errors.phone="Campo Requerido";
+   
+        return errors;
+}
 
-  //         return errors;
-  // }
-
-  // useEffect(() => {
-  //   if (
-  //      !errors.title.hasOwnProperty("title") &&
-  //      !errors.description.hasOwnProperty("description") &&
-  //      !errors.price.hasOwnProperty("price") &&
-  //     //  !errors.image.hasOwnProperty("image") &&
-  //      !errors.type.hasOwnProperty("type") &&
-  //      !errors.size.hasOwnProperty("size") &&
-  //      !errors.addres.hasOwnProperty("addres") &&
-  //      !errors.phone.hasOwnProperty("phone")
-  //   ) {
-  //       setDisabled(false);
-  //   } else {
-  //       setDisabled(true);
-  //   }
-  // }, [errors, setDisabled]);
-
-  const [titleC, setTitle] = useState("");
-  const [descriptionC, setDescription] = useState("");
-  const [priceC, setPrice] = useState("");
-  const [imgC, setImg] = useState("");
-  const [address, setAddress] = useState("");
-  const [tel, setTel] = useState("");
-  function titleTxt(txtt) {
-    setTitle(txtt);
-
-    console.log(titleC);
-    setForm({
-      ...form,
-      title: titleC,
-    });
+useEffect(() => {
+  if (
+     !errors.title.hasOwnProperty("title") &&
+     !errors.description.hasOwnProperty("description") &&
+     !errors.price.hasOwnProperty("price") &&
+    //!errors.image.hasOwnProperty("image") &&
+     !errors.type.hasOwnProperty("type") &&
+     !errors.size.hasOwnProperty("size") &&
+     !errors.addres.hasOwnProperty("addres") &&
+     !errors.phone.hasOwnProperty("phone")     
+  ) {
+      setDisabled(false);
+  } else {
+      setDisabled(true);
   }
   function descripTxt(txtt) {
     setDescription(txtt);
