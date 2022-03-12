@@ -3,7 +3,7 @@ import axios from 'axios';
 import ACTION_TYPES from './ActionTypes.js';
 import {fetchData, fetchSuccess, fetchError} from './ApiAction';
 
-const localhost ='192.168.100.8' ; //'192.168.0.11'
+const localhost ='192.168.65.107' ; //'192.168.0.11'
 
 
 
@@ -63,6 +63,19 @@ export const forgotPassword = payload => {
       console.error(error)
   }    
 }
+export const resetPassword = payload => {
+  
+  try {
+      return async (dispatch)=>{                        
+          let json = await axios.put(`http://${localhost}:3001/reset`, payload)
+          return json
+      }
+  } catch (error) {
+      console.error(error)
+  }    
+}
+
+
 
 
 export default function postPublic (payload){

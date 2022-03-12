@@ -10,16 +10,17 @@ import { FontAwesome5,MaterialIcons } from '@expo/vector-icons'
 
 
 const Login = () => {   
-        
-
+      
     const dispatch = useDispatch()
     const [email,onChangeEmail] = useState("")
     const [password,onChangePassword] = useState("")
     const [loading, setLoading]=useState(false)
     const [visible,setVisible]=useState(100)
     const [show, setShow] = React.useState(false);
+    
+  
     function errorAlert(){
-  return(
+    return(
     Alert.alert(
       "ERROR",
       "Ingrese correctamente sus datos para iniciar sesion",
@@ -32,10 +33,12 @@ const Login = () => {
 
     useEffect(() => {
       dispatch(getUser())
-    },[])
+    },[dispatch])
+
     
     const user = useSelector((state=>(state.users)))
-    //console.log(user)
+
+
   async function handlesubmit(){ 
     setLoading(true)
     setVisible(0)
@@ -219,7 +222,7 @@ export default () => {
     },
     loading:{
        position:'relative',
-       top:-60,
+       top:-100,
 
 
     }
