@@ -15,17 +15,26 @@ import { localhost } from "../../Store/Actions/index";
 import ReviewCard from "./Componentes/ReviewCard";
 import Footer from "./Componentes/Footer";
 import PublicationCard from "./Componentes/PublicationCard";
+import { useDispatch, useSelector } from "react-redux";
 
-export default function Profile() {
+export default function Profile(id) {
   const navigation = useNavigation();
-  const id = "95567447-7910-4943-bff9-c3a52d81c830";
+  // const id = "3371f76b-55be-4dba-9006-2e6cbaa1b3bd";
   const [user, setUser] = useState({});
+  const dispatch = useDispatch();
+  const userLogin = useSelector((state) => state.login);
 
-  useEffect(async () => {
-    const info = await axios
-      .get(`http://${localhost}:3001/users/${id}`)
-      .then((response) => setUser(response.data));
-  }, []);
+  if (id.route.params) {
+    useEffect(async () => {
+      const info = await axios
+        .get(`http://${localhost}:3001/users/${id.route.params}`)
+        .then((response) => setUser(response.data));
+    }, []);
+  } else {
+    useEffect(() => {
+      setUser(userLogin);
+    }, []);
+  }
 
   return (
     <>
@@ -44,7 +53,9 @@ export default function Profile() {
           <View style={styles.headerProfile}>
             <View style={styles.profileImage}>
               <Image
-                source={{ uri: `${user.profileImgURL}` }}
+                source={{
+                  uri: `${user.profileImgURL}`,
+                }}
                 style={styles.imageProfile}
               ></Image>
             </View>
@@ -171,7 +182,9 @@ export default function Profile() {
           </View>
         </ScrollView>
       </SafeAreaView>
-      <Footer />
+      <View style={{ height: "8%", width: "100%" }}>
+        <Footer />
+      </View>
     </>
   );
 }
@@ -268,9 +281,8 @@ const styles = StyleSheet.create({
     overflow: "hidden",
     marginHorizontal: 10,
   },
-
   recentItem: {
-    flexDirection: "row",
+    flexDirection: "column",
     alignItems: "flex-start",
     marginBottom: 10,
   },

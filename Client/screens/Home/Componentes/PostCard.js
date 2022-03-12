@@ -8,9 +8,11 @@ import {
   View,
 } from "react-native";
 import ReviewCard from "./ReviewCard";
+import { useNavigation } from "@react-navigation/native";
 
 export default function PostCard({
   id,
+  autorId,
   date,
   title,
   image = require("../../../assets/profile.png"),
@@ -20,7 +22,7 @@ export default function PostCard({
   reviews,
 }) {
   const [detailsView, setDetailsView] = useState(false);
-
+  const navigation = useNavigation();
   function showDetails() {
     if (detailsView) {
       setDetailsView(false);
@@ -41,16 +43,21 @@ export default function PostCard({
           paddingLeft: 20,
         }}
       >
-        <Image
-          style={{
-            width: 80,
-            height: 80,
-            borderRadius: 5,
-            borderWidth: 1,
-            borderColor: "#FFF",
-          }}
-          source={image}
-        />
+        <TouchableOpacity
+          onPress={() => navigation.navigate("Profile", autorId)}
+        >
+          <Image
+            style={{
+              width: 80,
+              height: 80,
+              borderRadius: 5,
+              borderWidth: 1,
+              borderColor: "#FFF",
+            }}
+            source={image}
+          />
+        </TouchableOpacity>
+
         <View
           style={{
             display: "flex",
