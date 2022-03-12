@@ -18,7 +18,7 @@ import PublicationCard from "./Componentes/PublicationCard";
 
 export default function Profile() {
   const navigation = useNavigation();
-  const id = "bc3a7124-c965-4c4b-acb6-dafb80fdea40";
+  const id = "95567447-7910-4943-bff9-c3a52d81c830";
   const [user, setUser] = useState({});
 
   useEffect(async () => {
@@ -113,7 +113,7 @@ export default function Profile() {
             ) : (
               user.myImages.map((image, index) => {
                 return (
-                  <View style={styles.mediaImageContainer}>
+                  <View id={index} style={styles.mediaImageContainer}>
                     <Image
                       id={index}
                       source={{ uri: `${image}` }}
