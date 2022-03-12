@@ -58,7 +58,7 @@ const user = useSelector((state=>(state.users)))
  function handlesubmit(e){
 
   const verifyEmail =  user.filter(e=>e.email===email)
-   if(verifyEmail){
+   if(verifyEmail.length){
      existsAlert()
    }else{
     if(password!==repeatPassword){
