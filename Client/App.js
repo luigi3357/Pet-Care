@@ -35,15 +35,16 @@ function App() {
 
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
-      {/* <Stack.Screen name="LandingPage" component={LandingPage} />
+      <Stack.Screen name="LandingPage" component={LandingPage} />
+      <Stack.Screen name="Login" component={Login} />
       <Stack.Screen name="MailCode" component={MailCode} />
       <Stack.Screen name="ForgetPassword" component={ForgetPassword} />
-      <Stack.Screen name="NewPassword" component={NewPassword} />  
-      <Stack.Screen name="Payment" component={Payment} />
-    <Stack.Screen name="Form" component={FormCard} />*/}
-      {/* <Stack.Screen name="Register" component={Register} />
-      <Stack.Screen name="Login" component={Login} /> */}
+      <Stack.Screen name="Register" component={Register} />
+      <Stack.Screen name="NewPassword" component={NewPassword} />
       <Stack.Screen name="HomeScreen" component={HomeScreen} />
+      <Stack.Screen name="Review" component={Review} />
+      <Stack.Screen name="Form" component={FormCard} />
+      {/* <Stack.Screen name="Payment" component={Payment} /> */}
       <Stack.Screen name="Profile" component={Profile} />
     </Stack.Navigator>
   );

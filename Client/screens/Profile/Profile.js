@@ -41,7 +41,7 @@ export default function Profile(id) {
       <SafeAreaView style={styles.container}>
         <ScrollView showsVerticalScrollIndicator={false}>
           <View style={styles.titleBar}>
-            <TouchableOpacity onPress={() => navigation.navigate("Login")}>
+            <TouchableOpacity onPress={() => navigation.goBack()}>
               <AntDesign name={"left"} size={24} color="#52575D" />
             </TouchableOpacity>
 
@@ -53,9 +53,13 @@ export default function Profile(id) {
           <View style={styles.headerProfile}>
             <View style={styles.profileImage}>
               <Image
-                source={{
-                  uri: `${user.profileImgURL}`,
-                }}
+                source={
+                  user.profileImgURL
+                    ? {
+                        uri: `${user.profileImgURL}`,
+                      }
+                    : require("./img/imgProfile.jpg")
+                }
                 style={styles.imageProfile}
               ></Image>
             </View>
