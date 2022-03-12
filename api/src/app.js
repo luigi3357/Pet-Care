@@ -16,7 +16,7 @@ server.use(('/uploads'),express.static('uploadedImages'));//me genera una carpet
 server.use(cookieParser());
 server.use(morgan('dev'));
 server.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', 'http://localhost:19006'); 
+  res.header('Access-Control-Allow-Origin', 'exp://192.168.65.107:19000'); 
   res.header('Access-Control-Allow-Credentials', 'true');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');

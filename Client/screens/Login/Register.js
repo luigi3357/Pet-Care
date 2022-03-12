@@ -1,10 +1,10 @@
 import { FontAwesome5,MaterialIcons  } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import { Button, Icon, Image, Input, NativeBaseProvider } from 'native-base';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Alert, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { useDispatch } from "react-redux";
-import { registerBack } from '../../Store/Actions/index';
+import { useDispatch, useSelector } from "react-redux";
+import { getUser, registerBack } from '../../Store/Actions/index';
 
 
 const Register = () => {
@@ -15,21 +15,20 @@ const Register = () => {
   const [repeatPassword,onChangeRepeat] = useState("");
   const [name,onChangeName] = useState("");
   const[last_name,onChangeLastName] = useState("");
-  const [refresh, setRefresh] = useState(false)
   const data = { email: email, password :password, name:name, last_name:last_name};
-
   const navigation = useNavigation();
   const [show, setShow] = useState(false);
   const [showrepeat, setShowrepeat] = useState(false);
 
 
-  const pullMe = ()=>{
-   setRefresh(true)
-
-   setTimeout(()=>{
-     setRefresh(false)
-   },2000)
-  }
+  function existsAlert(){
+    Alert.alert(
+      "Error",
+      "El email ya tiene una cuenta creada",
+      [
+        { text: "Ok", onPress: ()=>navigation.navigate("Login") }
+      ]
+    )};
 
   function registerLog(){
     Alert.alert(
@@ -48,13 +47,28 @@ const Register = () => {
         ]
       )};
 
+ 
+useEffect(() => {
+        dispatch(getUser())
+      },[dispatch])
+
+const user = useSelector((state=>(state.users)))
+  
+
  function handlesubmit(e){
-   if(password!==repeatPassword){
-        errorPassword()
+
+  const verifyEmail =  user.filter(e=>e.email===email)
+   if(verifyEmail){
+     existsAlert()
    }else{
-    dispatch(registerBack(data)) 
-    registerLog()
+    if(password!==repeatPassword){
+      errorPassword()
+      }else{
+       dispatch(registerBack(data)) 
+       registerLog()
+     }
    }
+
   }
   
   return (
