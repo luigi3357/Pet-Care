@@ -14,20 +14,18 @@ import Profile from "./screens/Profile/Profile";
 import Payment from "./screens/Payment/Payment";
 import Store from "./Store";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
-import * as Linking from 'expo-linking';
+import * as Linking from "expo-linking";
+import Review from "./screens/Review/Review";
 
 const Stack = createStackNavigator();
 
 function App() {
-
   //   const [data, setData] = useState(null);
 
   //   function handleDeepLink(e){
   //     let data = Linking.parse(e.url);
   //     setData(data);
   //   }
-
-
 
   // useEffect(()=>{
   //   Linking.addEventListener('url', handleDeepLink);
@@ -36,21 +34,20 @@ function App() {
   //   })
   // }, []);
 
-
-
   return (
-      <Stack.Navigator screenOptions={{ headerShown: false }}>
-        {/* <Stack.Screen name="LandingPage" component={LandingPage} />
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+      {/* <Stack.Screen name="LandingPage" component={LandingPage} />
       <Stack.Screen name="Login" component={Login} />
       <Stack.Screen name="MailCode" component={MailCode} />
       <Stack.Screen name="ForgetPassword" component={ForgetPassword} />
       <Stack.Screen name="Register" component={Register} />
-    <Stack.Screen name="NewPassword" component={NewPassword} />  */}
-        <Stack.Screen name="HomeScreen" component={HomeScreen} />
-        <Stack.Screen name="Payment" component={Payment} />
-        <Stack.Screen name="Form" component={FormCard} />
-        <Stack.Screen name="Profile" component={Profile} />
-      </Stack.Navigator>
+      <Stack.Screen name="NewPassword" component={NewPassword} /> */}
+      <Stack.Screen name="Review" component={Review} />
+      <Stack.Screen name="Form" component={FormCard} />
+      <Stack.Screen name="HomeScreen" component={HomeScreen} />
+      <Stack.Screen name="Payment" component={Payment} />
+      <Stack.Screen name="Profile" component={Profile} />
+    </Stack.Navigator>
   );
 }
 
