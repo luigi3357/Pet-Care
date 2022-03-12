@@ -1,11 +1,14 @@
 import { Text, View, StyleSheet, Image } from "react-native";
 import React from "react";
+
 import { Octicons } from "@expo/vector-icons";
 
 export default function ReviewCard({ id, titulo, rating, usuario, message }) {
   return (
     <View style={styles.reviewContainer}>
-      <Text style={styles.reviewTitle}>{titulo}</Text>
+      <Text style={styles.reviewTitle}>
+        {titulo ? titulo : "Review sin titulo"}
+      </Text>
       <View
         style={{
           display: "flex",
@@ -18,10 +21,10 @@ export default function ReviewCard({ id, titulo, rating, usuario, message }) {
           style={{
             display: "flex",
             flexDirection: "column",
-            alignItems: "flex-end",
+            alignItems: "center",
           }}
         >
-          <Octicons name="star" size={24} color="black" />
+          <Octicons name="star" size={24} color="white" />
           <Text style={styles.reviewRating}>{rating}</Text>
         </View>
         <Text style={styles.reviewUsuario}>{usuario}</Text>
@@ -38,35 +41,26 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     justifyContent: "center",
     alignItems: "center",
-    minWidth: 300,
-    marginVertical: 2,
-    marginHorizontal: 15,
     padding: 10,
   },
-
   reviewTitle: {
-    // fontFamily : "Courier New",
     fontWeight: "bold",
-    marginTop: 1,
+    color: "white",
+    marginBottom: 2,
   },
   reviewRating: {
     fontWeight: "bold",
     fontSize: 14,
     margin: 0,
+    color: "white",
   },
   reviewUsuario: {
-    fontWeight: "300",
-    // ,fontFamily : "Helvetica"
-    color: "#00F",
-    margin: 0,
+    color: "white",
   },
   message: {
-    fontSize: 10,
-    // borderTopColor : "#0F0",
-    // borderTopWidth : 4,
+    fontSize: 14,
     overflow: "scroll",
-    // ,maxWidth : 60
-    // ,fontFamily : 'Times New Roman'
+    color: "white",
     marginHorizontal: 15,
   },
 });

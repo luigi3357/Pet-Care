@@ -14,13 +14,14 @@ const styles = StyleSheet.create({
   container: {
     display: "flex",
     backgroundColor: "#00d2c6",
-    borderRadius: 10,
+    borderBottomRightRadius: 100,
+    borderTopLeftRadius: 100,
     justifyContent: "center",
     alignItems: "center",
-    minWidth: 300,
-    marginVertical: 2,
-    marginHorizontal: 15,
-    padding: 10,
+    paddingBottom: 30,
+    paddingTop: 30,
+    paddingHorizontal: 10,
+    marginTop: 10,
   },
   title: {
     marginTop: 10,
@@ -29,11 +30,13 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: "bold",
     textAlign: "center",
+    color: "white",
   },
   description: {
     fontSize: 16,
     textAlign: "center",
     marginBottom: 10,
     marginHorizontal: 5,
+    color: "white",
   },
 });

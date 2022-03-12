@@ -14,6 +14,7 @@ import Profile from "./screens/Profile/Profile";
 import Store from "./Store";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import * as Linking from "expo-linking";
+import Review from "./screens/Review/Review";
 
 const Stack = createStackNavigator();
 
