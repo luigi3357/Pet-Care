@@ -17,16 +17,16 @@ console.log("entro");
 
 export default function Profile() {
   const navigation = useNavigation();
-  const id = "2d77cdf2-9cb6-4380-9f07-a0b3deb0fbce";
+  const id = "b67efb2c-95f5-4f99-bf23-92e3f1bb80a8";
+  const id2 = "0542bf66-08e2-4fe0-954c-ee33e5447da0";
   const [user, setUser] = useState({});
 
   useEffect(async () => {
     const info = await axios
-      .get(`http://${localhost}:3001/users/${id}`)
+      .get(`http://${localhost}:3001/users/${id2}`)
       .then((response) => setUser(response.data));
   }, []);
 
-  console.log(user.rating);
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
@@ -43,7 +43,7 @@ export default function Profile() {
         <View style={styles.headerProfile}>
           <View style={styles.profileImage}>
             <Image
-              source={require("./img/media1.jpg")}
+              source={{ uri: `${user.profileImgURL}` }}
               style={styles.imageProfile}
             ></Image>
           </View>
@@ -80,7 +80,7 @@ export default function Profile() {
               },
             ]}
           >
-            {user.posteos[0].description}
+            {user.bio}
           </Text>
         </View>
 
@@ -106,48 +106,19 @@ export default function Profile() {
 
         <View style={{ marginTop: 32 }}>
           <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-            <View style={styles.mediaImageContainer}>
-              <Image
-                source={require("./img/media1.jpg")}
-                style={styles.image}
-                resizeMode="cover"
-              ></Image>
-            </View>
-            <View style={styles.mediaImageContainer}>
-              <Image
-                source={require("./img/media2.jpg")}
-                style={styles.image}
-                resizeMode="cover"
-              ></Image>
-            </View>
-            <View style={styles.mediaImageContainer}>
-              <Image
-                source={require("./img/media3.jpg")}
-                style={styles.image}
-                resizeMode="cover"
-              ></Image>
-            </View>
-            <View style={styles.mediaImageContainer}>
-              <Image
-                source={require("./img/media3.jpg")}
-                style={styles.image}
-                resizeMode="cover"
-              ></Image>
-            </View>
-            <View style={styles.mediaImageContainer}>
-              <Image
-                source={require("./img/media3.jpg")}
-                style={styles.image}
-                resizeMode="cover"
-              ></Image>
-            </View>
-            <View style={styles.mediaImageContainer}>
-              <Image
-                source={require("./img/media3.jpg")}
-                style={styles.image}
-                resizeMode="cover"
-              ></Image>
-            </View>
+            {console.log(user)}
+            {user.myImages.map((element, index) => {
+              return (
+                <View style={styles.mediaImageContainer}>
+                  <Image
+                    id={index}
+                    source={{ uri: `${element}` }}
+                    style={styles.image}
+                    resizeMode="cover"
+                  ></Image>
+                </View>
+              );
+            })}
           </ScrollView>
         </View>
         <Text style={styles.title}>PUBLICACION</Text>
