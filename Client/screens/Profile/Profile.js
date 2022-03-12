@@ -27,149 +27,158 @@ export default function Profile() {
       .then((response) => setUser(response.data));
   }, []);
 
-  console.log("SOY EL USER COMPLETO", user);
-
   return (
-    <SafeAreaView style={styles.container}>
-      <ScrollView showsVerticalScrollIndicator={false}>
-        <View style={styles.titleBar}>
-          <TouchableOpacity onPress={() => navigation.navigate("Login")}>
-            <AntDesign name={"left"} size={24} color="#52575D" />
-          </TouchableOpacity>
+    <>
+      <SafeAreaView style={styles.container}>
+        <ScrollView showsVerticalScrollIndicator={false}>
+          <View style={styles.titleBar}>
+            <TouchableOpacity onPress={() => navigation.navigate("Login")}>
+              <AntDesign name={"left"} size={24} color="#52575D" />
+            </TouchableOpacity>
 
-          <TouchableOpacity onPress={() => console.log("Edit")}>
-            <AntDesign name={"edit"} size={24} color="#52575D" />
-          </TouchableOpacity>
-        </View>
-
-        <View style={styles.headerProfile}>
-          <View style={styles.profileImage}>
-            <Image
-              source={{ uri: `${user.profileImgURL}` }}
-              style={styles.imageProfile}
-            ></Image>
-          </View>
-          <View style={styles.dm}>
-            <TouchableOpacity>
-              <AntDesign name={"message1"} size={24} color="#fff" />
+            <TouchableOpacity onPress={() => console.log("Edit")}>
+              <AntDesign name={"edit"} size={24} color="#52575D" />
             </TouchableOpacity>
           </View>
 
-          <View style={styles.add}>
-            <TouchableOpacity>
-              <AntDesign name={"plus"} size={24} color="#fff" />
-            </TouchableOpacity>
-          </View>
-        </View>
+          <View style={styles.headerProfile}>
+            <View style={styles.profileImage}>
+              <Image
+                source={{ uri: `${user.profileImgURL}` }}
+                style={styles.imageProfile}
+              ></Image>
+            </View>
+            <View style={styles.dm}>
+              <TouchableOpacity>
+                <AntDesign name={"message1"} size={24} color="#fff" />
+              </TouchableOpacity>
+            </View>
 
-        <View style={styles.infoContainer}>
-          <Text
-            style={[
-              styles.text,
-              { fontWeight: "200", fontSize: 36, textTransform: "capitalize" },
-            ]}
-          >
-            {user.name}
-          </Text>
-          <Text
-            style={[
-              styles.text,
-              {
-                color: "#AEB5BC",
-                fontSize: 14,
-                marginHorizontal: 20,
-                textAlign: "center",
-              },
-            ]}
-          >
-            {user.bio}
-          </Text>
-        </View>
-
-        <View style={styles.statsContainer}>
-          <View style={styles.statsBox}>
-            <Text style={[styles.text, { fontSize: 24 }]}>{user.rating}</Text>
-            <Text style={[styles.text, styles.subText]}>RATING</Text>
+            <View style={styles.add}>
+              <TouchableOpacity>
+                <AntDesign name={"plus"} size={24} color="#fff" />
+              </TouchableOpacity>
+            </View>
           </View>
-          <View
-            style={[
-              styles.statsBox,
-              {
-                borderColor: "#DFD8C8",
-                borderLeftWidth: 1,
-                borderRightWidth: 1,
-              },
-            ]}
-          >
-            <Text style={[styles.text, { fontSize: 24 }]}>{user.bookings}</Text>
-            <Text style={[styles.text, styles.subText]}>CONTRATACIONES</Text>
-          </View>
-        </View>
 
-        <View style={{ marginTop: 32 }}>
-          <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-            {!user.myImages ? (
-              <View style={styles.mediaImageContainer}></View>
-            ) : (
-              user.myImages.map((image, index) => {
-                return (
-                  <View id={index} style={styles.mediaImageContainer}>
-                    <Image
-                      id={index}
-                      source={{ uri: `${image}` }}
-                      style={styles.image}
-                      resizeMode="cover"
-                    ></Image>
-                  </View>
-                );
-              })
-            )}
-          </ScrollView>
-        </View>
-        <Text style={styles.title}>PUBLICACION</Text>
-        <View style={{ alignItems: "center" }}>
-          <View style={styles.recentItem}>
-            <View>
-              {user.posteos ? (
-                <PublicationCard
-                  id={user.id}
-                  key={user.id}
-                  title={user.posteos[0].title}
-                  description={user.posteos[0].description}
-                />
+          <View style={styles.infoContainer}>
+            <Text
+              style={[
+                styles.text,
+                {
+                  fontWeight: "200",
+                  fontSize: 36,
+                  textTransform: "capitalize",
+                },
+              ]}
+            >
+              {user.name}
+            </Text>
+            <Text
+              style={[
+                styles.text,
+                {
+                  color: "#AEB5BC",
+                  fontSize: 14,
+                  marginHorizontal: 20,
+                  textAlign: "center",
+                },
+              ]}
+            >
+              {user.bio}
+            </Text>
+          </View>
+
+          <View style={styles.statsContainer}>
+            <View style={styles.statsBox}>
+              <Text style={[styles.text, { fontSize: 24 }]}>{user.rating}</Text>
+              <Text style={[styles.text, styles.subText]}>RATING</Text>
+            </View>
+            <View
+              style={[
+                styles.statsBox,
+                {
+                  borderColor: "#DFD8C8",
+                  borderLeftWidth: 1,
+                  borderRightWidth: 1,
+                },
+              ]}
+            >
+              <Text style={[styles.text, { fontSize: 24 }]}>
+                {user.bookings}
+              </Text>
+              <Text style={[styles.text, styles.subText]}>CONTRATACIONES</Text>
+            </View>
+          </View>
+
+          <View style={{ marginTop: 32 }}>
+            <ScrollView
+              horizontal={true}
+              showsHorizontalScrollIndicator={false}
+            >
+              {!user.myImages ? (
+                <View style={styles.mediaImageContainer}></View>
               ) : (
-                <View></View>
+                user.myImages.map((image, index) => {
+                  return (
+                    <View id={index} style={styles.mediaImageContainer}>
+                      <Image
+                        id={index}
+                        source={{ uri: `${image}` }}
+                        style={styles.image}
+                        resizeMode="cover"
+                      ></Image>
+                    </View>
+                  );
+                })
+              )}
+            </ScrollView>
+          </View>
+          <Text style={styles.title}>PUBLICACION</Text>
+          <View style={{ alignItems: "center" }}>
+            <View style={styles.recentItem}>
+              <View>
+                {user.posteos ? (
+                  <PublicationCard
+                    id={user.id}
+                    key={user.id}
+                    title={user.posteos[0].title}
+                    description={user.posteos[0].description}
+                  />
+                ) : (
+                  <View></View>
+                )}
+              </View>
+            </View>
+            <Text style={styles.title}>REVIEWS</Text>
+            <View style={styles.recentItem}>
+              {user.reviews ? (
+                user.reviews.map((review, index) => {
+                  return (
+                    <ReviewCard
+                      id={index}
+                      rating={review.rate}
+                      message={review.message}
+                    />
+                  );
+                })
+              ) : (
+                <View>
+                  <Text>Este cuidador no tiene reviews</Text>
+                </View>
               )}
             </View>
           </View>
-          <Text style={styles.title}>REVIEWS</Text>
-          <View style={styles.recentItem}>
-            {user.reviews ? (
-              user.reviews.map((review, index) => {
-                return (
-                  <ReviewCard
-                    id={index}
-                    rating={review.rate}
-                    message={review.message}
-                  />
-                );
-              })
-            ) : (
-              <View>
-                <Text>Este cuidador no tiene reviews</Text>
-              </View>
-            )}
-          </View>
-        </View>
-      </ScrollView>
+        </ScrollView>
+      </SafeAreaView>
       <Footer />
-    </SafeAreaView>
+    </>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flex: 16,
     backgroundColor: "#f9f9f9",
   },
   headerProfile: {
