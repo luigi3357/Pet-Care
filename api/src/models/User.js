@@ -31,6 +31,10 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
 
     },
+    bio: {
+      type: DataTypes.STRING,
+
+    },
     phone: {
       type: DataTypes.STRING,
     },
@@ -49,11 +53,12 @@ module.exports = (sequelize) => {
     bookings: {
       type: DataTypes.INTEGER,
       defaultValue: 0
-
     },
     profileImgURL: {
       type: DataTypes.STRING,
-
+    },
+    myImages: {
+      type: DataTypes.ARRAY(DataTypes.STRING),
     }
     },
   );

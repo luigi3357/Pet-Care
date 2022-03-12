@@ -16,7 +16,7 @@ function Footer() {
               <Icon mb="1" as={<MaterialCommunityIcons name={selected === 0 ? "home" : "home-outline"} />} color="#00D2C6"size="sm" />
               </TouchableOpacity>
               <Text color="#00D2C6"fontSize="12">
-                Home
+                Inicio
               </Text>
             </Center>
           </Pressable>
@@ -26,7 +26,7 @@ function Footer() {
               <Icon mb="1" as={<MaterialCommunityIcons name="human-greeting"/>} color="#00D2C6"size="sm" />
               </TouchableOpacity>
               <Text color="#00D2C6" fontSize="12">
-                Account
+                Perfil
               </Text>
             </Center>
           </Pressable>

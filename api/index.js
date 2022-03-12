@@ -15,7 +15,12 @@ conn.sync({ force: true }).then(async () => {
         email:element.email,
         name:element.name,
         last_name:element.last_name,
+        bio:element.bio,
         password:element.password,
+        rating:element.rating,
+        bookings:element.bookings,
+        profileImgURL:element.profileImgURL,
+        myImages:element.myImages
       }
       })
     });     

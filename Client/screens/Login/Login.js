@@ -38,12 +38,17 @@ const Login = () => {
     
     const user = useSelector((state=>(state.users)))
 
-  async function handlesubmit(e){ 
+
+  async function handlesubmit(){ 
     setLoading(true)
     setVisible(0)
     const verifyEmail =  user.filter(e=>e.email===email)
     const passVerify = verifyEmail.map(e=>e.password).toString()
       const verifyPassword = await bcrypt.compare(password, passVerify)
+      //console.log(password)
+      //console.log(verifyPassword, "pass")
+      //console.log(passVerify)
+      //console.log(verifyEmail, "email")
 
       dispatch(getLogin(email))
 
