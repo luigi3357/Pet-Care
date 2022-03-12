@@ -48,14 +48,14 @@ export default function FormCard() {
 
 useEffect(() => {
   if (
-     !errors.title.hasOwnProperty("title") &&
-     !errors.description.hasOwnProperty("description") &&
-     !errors.price.hasOwnProperty("price") &&
+     !errors.hasOwnProperty("title") &&
+     !errors.hasOwnProperty("description") &&
+     !errors.hasOwnProperty("price") &&
     //!errors.image.hasOwnProperty("image") &&
-     !errors.type.hasOwnProperty("type") &&
-     !errors.size.hasOwnProperty("size") &&
-     !errors.addres.hasOwnProperty("addres") &&
-     !errors.phone.hasOwnProperty("phone")     
+     !errors.hasOwnProperty("type") &&
+     !errors.hasOwnProperty("size") &&
+     !errors.hasOwnProperty("addres") &&
+     !errors.hasOwnProperty("phone")     
   ) {
       setDisabled(false);
   } else {

@@ -46,6 +46,16 @@ export const registerBack = (payload) => {
     console.error(error);
   }
 };
+export const resetPassword = (payload) => {
+  try {
+    return async (dispatch) => {
+      let json = await axios.put(`http://${localhost}:3001/reset`, payload);
+      return json;
+    };
+  } catch (error) {
+    console.error(error);
+  }
+};
 
 export const forgotPassword = (payload) => {
   try {
