@@ -2,6 +2,7 @@ const { Router } = require('express');
 const { User, Post, Review } = require('../db');
 const { checkUUIDV } = require('../services/checkUUID');
 const { infoTotalDb } = require('../services/getDb');
+const { ratingUpdate } = require('../services/ratingCalculation');
 
 const router = Router();
 
@@ -39,5 +40,15 @@ router.get('/:id', async (req, res, next)=>{
       const infoUser = await infoTotalDb()
       res.send(infoUser)
   })
+
+/*         rating test          */
+  router.post('/rate', async (req, res, next)=>{
+        //const { email } = req.body
+
+        const user = await ratingUpdate('sebastianguerra@gmail.com')
+        console.log(user.reviews[0].id)
+        res.send(user)
+  })
+
 
 module.exports = router;
