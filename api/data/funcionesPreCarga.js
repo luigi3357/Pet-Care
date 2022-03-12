@@ -61,6 +61,7 @@
     });
     const newReview = await Review.create({
         from_id:user2.id,
+        name: user2.name + ' ' + user2.last_name,
         message,
         rate,
         reviewedUser_id:user1.id
