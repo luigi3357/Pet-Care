@@ -9,8 +9,16 @@ import {
 } from "react-native";
 import ReviewCard from "./ReviewCard";
 
-export default function PostCard({id, date, title, image = require("../../../assets/profile.png"), rating, bookings, description, reviews}) {
-  
+export default function PostCard({
+  id,
+  date,
+  title,
+  image = require("../../../assets/profile.png"),
+  rating,
+  bookings,
+  description,
+  reviews,
+}) {
   const [detailsView, setDetailsView] = useState(false);
 
   function showDetails() {
@@ -97,9 +105,23 @@ export default function PostCard({id, date, title, image = require("../../../ass
               horizontal={true}
               showsHorizontalScrollIndicator={false}
             >
-              {reviews
-                ? reviews.map((i) => {return <ReviewCard id={i.id} key={i.id} rating={i.rate} message={i.message} from={i.from_id}/>})
-                : <Text style={styles.notReview}>El usuario aún no posee reviews</Text>}
+              {reviews ? (
+                reviews.map((i) => {
+                  return (
+                    <ReviewCard
+                      id={i.id}
+                      key={i.id}
+                      rating={i.rate}
+                      message={i.message}
+                      from={i.from_id}
+                    />
+                  );
+                })
+              ) : (
+                <Text style={styles.notReview}>
+                  El usuario aún no posee reviews
+                </Text>
+              )}
             </ScrollView>
           </View>
         </View>
@@ -158,7 +180,7 @@ const styles = StyleSheet.create({
     //   ,width : 100
     //   ,marginLeft : '2px solid green'
   },
-  notReview:{
+  notReview: {
     fontSize: 10,
-  }
+  },
 });

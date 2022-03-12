@@ -12,20 +12,22 @@ import { AntDesign } from "@expo/vector-icons";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import axios from "axios";
 import { localhost } from "../../Store/Actions/index";
-
-console.log("entro");
+import ReviewCard from "./Componentes/ReviewCard";
+import Footer from "./Componentes/Footer";
+import PublicationCard from "./Componentes/PublicationCard";
 
 export default function Profile() {
   const navigation = useNavigation();
-  const id = "b67efb2c-95f5-4f99-bf23-92e3f1bb80a8";
-  const id2 = "0542bf66-08e2-4fe0-954c-ee33e5447da0";
+  const id = "bc3a7124-c965-4c4b-acb6-dafb80fdea40";
   const [user, setUser] = useState({});
 
   useEffect(async () => {
     const info = await axios
-      .get(`http://${localhost}:3001/users/${id2}`)
+      .get(`http://${localhost}:3001/users/${id}`)
       .then((response) => setUser(response.data));
   }, []);
+
+  console.log("SOY EL USER COMPLETO", user);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -106,39 +108,61 @@ export default function Profile() {
 
         <View style={{ marginTop: 32 }}>
           <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-            {console.log(user)}
-            {user.myImages.map((element, index) => {
-              return (
-                <View style={styles.mediaImageContainer}>
-                  <Image
-                    id={index}
-                    source={{ uri: `${element}` }}
-                    style={styles.image}
-                    resizeMode="cover"
-                  ></Image>
-                </View>
-              );
-            })}
+            {!user.myImages ? (
+              <View style={styles.mediaImageContainer}></View>
+            ) : (
+              user.myImages.map((image, index) => {
+                return (
+                  <View style={styles.mediaImageContainer}>
+                    <Image
+                      id={index}
+                      source={{ uri: `${image}` }}
+                      style={styles.image}
+                      resizeMode="cover"
+                    ></Image>
+                  </View>
+                );
+              })
+            )}
           </ScrollView>
         </View>
         <Text style={styles.title}>PUBLICACION</Text>
         <View style={{ alignItems: "center" }}>
           <View style={styles.recentItem}>
             <View>
-              <Text style={styles.publicartionCard}>CARD PUBLICACION </Text>
+              {user.posteos ? (
+                <PublicationCard
+                  id={user.id}
+                  key={user.id}
+                  title={user.posteos[0].title}
+                  description={user.posteos[0].description}
+                />
+              ) : (
+                <View></View>
+              )}
             </View>
           </View>
           <Text style={styles.title}>REVIEWS</Text>
           <View style={styles.recentItem}>
-            <View>
-              <Text style={styles.review}> REVIEW 1 </Text>
-              <Text style={styles.review}> REVIEW 3 </Text>
-              <Text style={styles.review}> REVIEW 4 </Text>
-              <Text style={styles.review}> REVIEW 5 </Text>
-            </View>
+            {user.reviews ? (
+              user.reviews.map((review, index) => {
+                return (
+                  <ReviewCard
+                    id={index}
+                    rating={review.rate}
+                    message={review.message}
+                  />
+                );
+              })
+            ) : (
+              <View>
+                <Text>Este cuidador no tiene reviews</Text>
+              </View>
+            )}
           </View>
         </View>
       </ScrollView>
+      <Footer />
     </SafeAreaView>
   );
 }
@@ -251,18 +275,6 @@ const styles = StyleSheet.create({
     textAlign: "center",
     alignSelf: "center",
     width: 395,
-    color: "#41444B",
-    fontWeight: "300",
-  },
-
-  publicartionCard: {
-    backgroundColor: "#00d2c6",
-    height: 100,
-    width: 395,
-    borderRadius: 12,
-    overflow: "hidden",
-    textAlign: "center",
-    alignSelf: "center",
     color: "#41444B",
     fontWeight: "300",
   },
