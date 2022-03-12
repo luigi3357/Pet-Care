@@ -2,7 +2,7 @@ const { Router } = require('express');
 const { User, Review } = require('../db');
 
 const router = Router();
-/////////////// FALTA MODIFICAR ESTA RUTA ////////////////////
+
 router.post('/create', async (req,res,next)=>{
     const { from_id, message, rate, reviewedUser_id } = req.body;
     try {
@@ -12,8 +12,10 @@ router.post('/create', async (req,res,next)=>{
         if(!rate){
             return res.status(400).send('Debe ingresar una puntuacion')
         }
+        const author = await User.findOne({where: {id: from_id}})
         const newReview = await Review.create({
             from_id,
+            name: author.name + ' ' + author.last_name,
             message,
             rate,
             reviewedUser_id
