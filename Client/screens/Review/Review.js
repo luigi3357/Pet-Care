@@ -29,7 +29,7 @@ export default function Review() {
     setForm({ ...form, rate: rating, title: titles[rating - 1] });
   }
   function submitHandler() {
-    Alert.alert("Enviado", 'Evaluacion enviada correctamente')
+    Alert.alert("Enviado", 'Evaluacion enviada correctamente', [{text: 'Ok', onPress: ()=>{navigation.navigate('HomeScreen')}, style: "default"}])
   }
   useEffect(() => {
 

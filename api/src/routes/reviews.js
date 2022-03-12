@@ -2,7 +2,7 @@ const { Router } = require('express');
 const { User, Review } = require('../db');
 
 const router = Router();
-
+/////////////// FALTA MODIFICAR ESTA RUTA ////////////////////
 router.post('/create', async (req,res,next)=>{
     const { from_id, message, rate, reviewedUser_id } = req.body;
     try {
