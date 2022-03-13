@@ -9,13 +9,14 @@ import {
 } from "react-native";
 import ReviewCard from "./ReviewCard";
 import { useNavigation } from "@react-navigation/native";
+import { Octicons } from "@expo/vector-icons";
 
 export default function PostCard({
   id,
   autorId,
   date,
   title,
-  image = require("../../../assets/profile.png"),
+  image = require("../../../assets/profile.jpg"),
   rating,
   bookings,
   description,
@@ -50,7 +51,7 @@ export default function PostCard({
             style={{
               width: 80,
               height: 80,
-              borderRadius: 5,
+              borderRadius: 100,
               borderWidth: 1,
               borderColor: "#FFF",
             }}
@@ -78,15 +79,12 @@ export default function PostCard({
               justifyContent: "space-around",
             }}
           >
-            <Text>Rating: </Text>
-            <Image
-              style={{ width: 20, height: 20 }}
-              source={require("../../../assets/Gold_Star.png")}
-            />
+            <Text style={styles.text}>Rating: </Text>
+            <Octicons name="star" size={24} color="white" />
             <Text style={styles.rating}>{rating}</Text>
           </View>
           <Image />
-          <Text>Contrataciones: {bookings}</Text>
+          <Text style={styles.text}>Contrataciones: {bookings}</Text>
           <View style={{ alignSelf: "flex-end" }}>
             <TouchableOpacity title="detalles" onPress={() => showDetails()}>
               <Text style={styles.button}>Detalles</Text>
@@ -99,9 +97,11 @@ export default function PostCard({
           <Text
             style={{
               justifyContent: "center",
-              margin: 12,
+              margin: 15,
               overflow: "hidden",
+              color: "white",
               fontStyle: "italic",
+              fontSize: 16,
             }}
           >
             {description}
@@ -125,9 +125,7 @@ export default function PostCard({
                   );
                 })
               ) : (
-                <Text style={styles.notReview}>
-                  El usuario aún no posee reviews
-                </Text>
+                <Text style={styles.text}>El usuario aún no posee reviews</Text>
               )}
             </ScrollView>
           </View>
@@ -140,38 +138,44 @@ export default function PostCard({
 const styles = StyleSheet.create({
   container: {
     display: "flex",
-    backgroundColor: "#60D394",
+    backgroundColor: "#00d2c6",
     borderRadius: 10,
-    borderWidth: 4,
-    borderColor: "#CCC",
     justifyContent: "center",
     alignItems: "flex-start",
     minWidth: 300,
     marginVertical: 2,
     marginHorizontal: 15,
     padding: 10,
-    // ,zIndex : 4
   },
   title: {
     fontSize: 14,
     fontWeight: "bold",
+    color: "white",
+    textTransform: "uppercase",
+  },
+  text: {
+    color: "white",
+    fontSize: 16,
   },
   rating: {
     fontSize: 1.2,
     color: "gold",
-    // fontFamily : "Courier New",
     fontWeight: "bold",
     textShadowColor: "#FFF",
     textShadowOffset: { width: 1, height: 1 },
   },
   button: {
     backgroundColor: "#8aF",
-    marginTop: 0.5,
+    marginTop: 1,
+    textTransform: "uppercase",
     color: "#FFF",
     display: "flex",
     alignSelf: "flex-end",
-    // ,flex:1
-    padding: 4,
+    padding: 10,
+    borderRadius: 10,
+    fontWeight: "bold",
+    overflow: "hidden",
+    borderBottomStartRadius: 30,
   },
   details: {
     display: "flex",
@@ -184,10 +188,5 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignContent: "center",
     justifyContent: "center",
-    //   ,width : 100
-    //   ,marginLeft : '2px solid green'
-  },
-  notReview: {
-    fontSize: 10,
   },
 });
