@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react'
+import React, { useState,useMemo,useEffect } from 'react'
 import { Picker,Text, View, StyleSheet,TextInput,  TouchableOpacity,FlatList} from 'react-native'
 import {useDispatch,useSelector} from 'react-redux'
 import postPublic from '../../../../Store/Actions'
@@ -7,85 +7,138 @@ import postPublic from '../../../../Store/Actions'
 //titulo|| descripcion  ||precio|| tipo de mascota|| tamaño de mascota pequeño,mediano,grande|| imagenes del lugar donde va cuidar
 
 export default function FormCard(){
+ 
+  const validarLetra = (name) => {
+    const regex = new RegExp(/^[A-Z]+$/i);
+    return regex.test(name);
+};
+
  const dispatch= useDispatch()
+
     const [form,setForm]= useState({
     title:'',
     description:'',
     price:'',
-    image:'',
+    image:[],
     type:[],
     size:[],
     address:'',
     phone:'',
     author_Id:'5345674',
   })
-
-  const [errors, setErrors] = useState({});//estado para setear errores en caso que los haya
-  const [disabled, setDisabled] = useState(true);
-
-  function validate(input) {//valida y setea errores
-    let errors = {};    
-
-    if (!form.title) errors.title="Campo Requerido";
-    if (!form.description) errors.description="Campo Requerido";
-    if (!form.price) errors.price="Campo Requerido";
-    //if (!form.image) errors.image="Campo Requerido";
-    if (!form.type) errors.type="Campo Requerido";
-    if (!form.size) errors.size="Campo Requerido";
-    if (!form.address) errors.address="Campo Requerido";
-    if (!form.phone) errors.phone="Campo Requerido";
-   
-        return errors;
-}
-
-useEffect(() => {
-  if (
-     !errors.title.hasOwnProperty("title") &&
-     !errors.description.hasOwnProperty("description") &&
-     !errors.price.hasOwnProperty("price") &&
-    //!errors.image.hasOwnProperty("image") &&
-     !errors.type.hasOwnProperty("type") &&
-     !errors.size.hasOwnProperty("size") &&
-     !errors.addres.hasOwnProperty("addres") &&
-     !errors.phone.hasOwnProperty("phone")     
-  ) {
-      setDisabled(false);
-  } else {
-      setDisabled(true);
+  function validate(form){ 
+    let errors = {};
+    if(!form.title){
+        errors.title = 'Se requiere un titulo'
+  
+    } if (form.title && !validarLetra(form.title))
+    {errors.title = "Solo Letras en el titulo"
+    }
+     if (!form.description  ){
+        errors.description = 'Se requiere una descripcion'
+    } 
+     if (!form.price){
+        errors.price = 'Introduzca el precio de su servicio'
+    }
+     if (form.price <= 0 ){
+        errors.price = 'El precio no puede ser 0 o menor'
+    } if (form.type.length <= 0 ){
+        errors.type = 'Se solicita el tipo de mascota'
+    } if (form.type.length > 3 ){
+        errors.type = 'No puede seleccionar 2 veces el mismo'
+    } if (form.size.length <= 0  ){
+      errors.size = 'Se solicita el tamaño de mascota'
+  } if (form.size.length > 3 ){
+      errors.size = 'No puede seleccionar 2 veces el mismo'
+  } if(!form.address){
+    errors.address = 'Se requiere su direccion'
+  } if(!form.phone){
+    errors.phone = 'Se requiere su numero de telefono'
   }
-}, [errors, setDisabled]);
+    
+    
+    return errors;
+}
+
+
+const [errors,setErrors]= useState({})
   
-const [titleC,setTitle]= useState('')
-const [descriptionC,setDescription]= useState('')
-const [priceC,setPrice]= useState('')
+ 
+  const disableSubmit = useMemo(() =>{
+    if(
+        form.title.length > 0 &&
+        form.title.length < 30 &&
+        validarLetra(form.title)&&
+        form.description.length > 0 &&
+        form.description.length < 2000 &&
+        form.price  >= 1 &&
+        form.price <= 5000 &&
+        form.phone.length  >= 1 &&
+        form.phone.length <= 30 &&
+       form.type.length >= 1 &&
+       form.type.length < 4 &&
+       form.size.length >= 1 &&
+       form.size.length < 4 &&
+       form.address.length > 0 &&
+       form.address.length < 30 
+       ){
+          return false;
+       }else{
+           return true;
+       }
+   },[form]);
+         
+
 const [imgC,setImg]= useState('')
-const [address,setAddress]=useState('')
-const [tel, setTel] = useState('')
+
+
+useEffect(()=> {
+
+},[form])
+
+
+
+
 function titleTxt (txtt){
-  setTitle(txtt)
-  
-  console.log(titleC)
-  setForm({
-    ...form,    
-    title:titleC
-  })
+  console.log(txtt)
+  setForm({...form,
+  title:txtt
+})
+setErrors(validate({
+  ...form, 
+ 
+  title:txtt
+}))
 }
+
+
 function descripTxt (txtt){
-  setDescription(txtt)
-  console.log(descriptionC)
+ 
   setForm({
     ...form,
-    description:descriptionC
+    
+    description:txtt
   })
+  setErrors(validate({
+    ...form,    
+    description:txtt
+  }))
 }
+  
+
 function priceTxt (txtt){
-  setPrice(txtt)
-  console.log(priceC)
+ 
   setForm({
     ...form,
-    price:priceC
+    price:txtt
   })
+    
+  setErrors(validate({
+    ...form,    
+    price:txtt
+  }))
 }
+   
 function imgTxt (txtt){
   setImg(txtt)
   console.log(imgC)
@@ -95,21 +148,30 @@ function imgTxt (txtt){
   })
 }
 function addressTxt(e){
-  setAddress(e)
-  console.log(address)
+ 
   setForm({
     ...form,
-    address:address
+   
+    address:e
   })
+  setErrors(validate({
+    ...form,    
+    address:e
+  }))
 }
 function telTxt(e){
-setTel(e)
-console.log(tel)
+
 setForm({
   ...form,
-  phone:tel
+  
+  phone:e
 })
+setErrors(validate({
+  ...form,    
+  phone:e
+}))
 }
+  
  function typeCheck (e){
   if(e ==="tipo"){
     setForm({
@@ -122,6 +184,10 @@ setForm({
       ...form,
       type:[...form.type,e]
     })
+    setErrors(validate({
+      ...form,    
+      type:[...form.type,e]
+    }))
   }
   console.log(form.type)
   }
@@ -143,7 +209,12 @@ setForm({
         ...form,
         size:[...form.size,a]
       })
-    }
+       setErrors(validate({
+      ...form,    
+      size:[...form.size,a]
+    }))
+  }
+    
     console.log(form.size)
     }
     function handleDelSize(el){
@@ -152,9 +223,15 @@ setForm({
         size: form.size.filter(oc => oc !== el)
       })
     }
-    
+  
+   
   function handleSubmit(){
-       dispatch(postPublic(form))
+    setForm({
+      ...form
+    })
+      dispatch(postPublic(form))
+  
+      
         console.log(form)
         alert('publicacion creada!')
         // setForm({
@@ -173,35 +250,39 @@ setForm({
 
   
     return (
-      <View>
+      <View style={styles.container}>
       <View>
         <Text>FORMULARIO DE CUIDADOR</Text>
       </View>
 
         <View>
+      <View><Text>Titulo publicacion</Text></View>
+      <View>
 
+     <View>
         <TextInput
         placeholder="Title"
         onChangeText={(text)=> {
           titleTxt(text)
         }}
                 />
+      </View>
                 <View>
                 {errors.title && (
                         <Text className="errors" >{errors.title}</Text>
                     )}
                 </View>
                
-                
+                </View>  
         </View>
-        <View   style={{
-        
-        backgroundColor: '#eee',
-        borderBottomColor: '#000000',
-        borderBottomWidth: 1,
-      }}>
+        <View>
+          <View><Text>Descripcion de la publicacion</Text></View>
+          <View>
 
-        <TextInput
+        
+     
+<View>
+<TextInput
       placeholder='description'
       editable
       maxLength={40}
@@ -209,15 +290,20 @@ setForm({
         descripTxt(text)
       }}
       />
+</View>
+      
                       <View>
                 {errors.description && (
                         <Text className="errors" >{errors.description}</Text>
                     )}
                 </View>
+                </View>
       </View>
 
        <View>
-
+<View><Text>Precio del servicio</Text></View>
+   <View>
+      <View>
        <TextInput
        placeholder='Precio de su servicio'
        keyboardType = 'numeric'
@@ -226,12 +312,13 @@ setForm({
          priceTxt(text)
        }}
        />
+            </View>
                        <View>
                 {errors.price && (
                         <Text className="errors" >{errors.price}</Text>
                     )}
                 </View>
-       
+                </View>
        </View>
        <View>
          <View>
@@ -349,6 +436,8 @@ setForm({
         </View>
 
         <View>
+          <View><Text>Numero de telefono</Text></View>
+          <View>
       <TextInput
 placeholder='Numero de telefono...'
  keyboardType = 'numeric'
@@ -357,6 +446,7 @@ onChangeText={(text)=>{
 }}
 
 />
+</View>
 <View>
                 {errors.phone && (
                         <Text className="errors" >{errors.phone}</Text>
@@ -366,13 +456,17 @@ onChangeText={(text)=>{
 
 
       <View>
+        <View><Text>Direccion</Text></View>
+
+       
+        <View>
       <TextInput
 placeholder='Direccion'
 onChangeText={(text)=>{
   addressTxt(text)
 }}
-
 />
+</View>
 <View>
                 {errors.address && (
                         <Text className="errors" >{errors.address}</Text>
@@ -407,7 +501,7 @@ onChangeText={(text)=>{
 
 <View>
 <TouchableOpacity
-disabled={disabled}
+disabled={disableSubmit}
 onPress={(e)=>handleSubmit(e)}
 >
 <Text>Send</Text>
@@ -421,6 +515,7 @@ onPress={(e)=>handleSubmit(e)}
       </View>
     )
   }
+
 
 const styles = StyleSheet.create({
   container:{}
