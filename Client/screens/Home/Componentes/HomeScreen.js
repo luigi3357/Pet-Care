@@ -76,9 +76,16 @@ export default function HomeScreens() {
                 })
               : null}
           </ScrollView>
-          <View>
-            <Bottomplus />
-          </View>
+          {/* <View>
+            <TouchableOpacity
+              onPress={
+                () => navigation.navigate("SelectPublic") //SelectPublic
+                // console.log('boton crear')
+              }
+            >
+              <Bottomplus />
+            </TouchableOpacity>
+          </View> */}
           <View style={{ height: "8%", width: "100%" }}>
             <Footer />
           </View>
