@@ -19,7 +19,6 @@ import { useDispatch, useSelector } from "react-redux";
 
 export default function Profile(id) {
   const navigation = useNavigation();
-  // const id = "3371f76b-55be-4dba-9006-2e6cbaa1b3bd";
   const [user, setUser] = useState({});
   const dispatch = useDispatch();
   const userLogin = useSelector((state) => state.login);
@@ -42,12 +41,26 @@ export default function Profile(id) {
         <ScrollView showsVerticalScrollIndicator={false}>
           <View style={styles.titleBar}>
             <TouchableOpacity onPress={() => navigation.goBack()}>
-              <AntDesign name={"left"} size={24} color="#52575D" />
+              <AntDesign name={"left"} size={24} color="#00d2c6" />
             </TouchableOpacity>
+            {!id.route.params ? (
+              <TouchableOpacity onPress={() => console.log("Edit")}>
+                <AntDesign name={"edit"} size={24} color="#00d2c6" />
+              </TouchableOpacity>
+            ) : (
+              <Text></Text>
+            )}
 
-            <TouchableOpacity onPress={() => console.log("Edit")}>
-              <AntDesign name={"edit"} size={24} color="#52575D" />
-            </TouchableOpacity>
+            {!id.route.params ? (
+              <TouchableOpacity
+                style={{ alignItems: "center" }}
+                onPress={() => navigation.navigate("Login")}
+              >
+                <AntDesign name="logout" size={24} color="#00d2c6" />
+              </TouchableOpacity>
+            ) : (
+              <Text></Text>
+            )}
           </View>
 
           <View style={styles.headerProfile}>
@@ -63,7 +76,7 @@ export default function Profile(id) {
                 style={styles.imageProfile}
               ></Image>
             </View>
-            <View style={styles.dm}>
+            {/* <View style={styles.dm}>
               <TouchableOpacity>
                 <AntDesign name={"message1"} size={24} color="#fff" />
               </TouchableOpacity>
@@ -73,7 +86,7 @@ export default function Profile(id) {
               <TouchableOpacity>
                 <AntDesign name={"plus"} size={24} color="#fff" />
               </TouchableOpacity>
-            </View>
+            </View> */}
           </View>
 
           <View style={styles.infoContainer}>
@@ -149,7 +162,12 @@ export default function Profile(id) {
               )}
             </ScrollView>
           </View>
-          <Text style={styles.title}>PUBLICACION</Text>
+          {user.posteos ? (
+            <Text style={styles.title}>PUBLICACION</Text>
+          ) : (
+            <Text></Text>
+          )}
+
           <View style={{ alignItems: "center" }}>
             <View style={styles.recentItem}>
               <View>
@@ -165,7 +183,12 @@ export default function Profile(id) {
                 )}
               </View>
             </View>
-            <Text style={styles.title}>REVIEWS</Text>
+            {user.reviews ? (
+              <Text style={styles.title}>REVIEWS</Text>
+            ) : (
+              <Text></Text>
+            )}
+
             <View style={styles.recentItem}>
               {user.reviews ? (
                 user.reviews.map((review, index) => {
@@ -178,9 +201,7 @@ export default function Profile(id) {
                   );
                 })
               ) : (
-                <View>
-                  <Text>Este cuidador no tiene reviews</Text>
-                </View>
+                <View></View>
               )}
             </View>
           </View>
