@@ -25,14 +25,14 @@ export default function Profile(id) {
 
   if (id.route.params) {
     useEffect(async () => {
-      const info = await axios
+      await axios
         .get(`http://${localhost}:3001/users/${id.route.params}`)
         .then((response) => setUser(response.data));
-    }, []);
+    }, [user]);
   } else {
     useEffect(() => {
       setUser(userLogin);
-    }, []);
+    }, [user]);
   }
 
   return (
@@ -43,13 +43,13 @@ export default function Profile(id) {
             <TouchableOpacity onPress={() => navigation.goBack()}>
               <AntDesign name={"left"} size={24} color="#00d2c6" />
             </TouchableOpacity>
-            {!id.route.params ? (
+            {/* {!id.route.params ? (
               <TouchableOpacity onPress={() => console.log("Edit")}>
-                <AntDesign name={"edit"} size={24} color="#00d2c6" />
+                <AntDesign name={"edit"} size={24} color="#00d2c6" /> *comentado hasta conectar el edit*
               </TouchableOpacity>
             ) : (
               <Text></Text>
-            )}
+            )} */}
 
             {!id.route.params ? (
               <TouchableOpacity
