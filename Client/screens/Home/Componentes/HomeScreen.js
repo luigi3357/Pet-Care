@@ -90,7 +90,6 @@ export default function HomeScreens() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-
     alignItems: "flex-end",
     justifyContent: "flex-end",
   },
@@ -100,7 +99,6 @@ const styles = StyleSheet.create({
     color: "#FFF",
     display: "flex",
     alignSelf: "flex-end",
-    // ,flex:1
     padding: 4,
   },
   loading: {
