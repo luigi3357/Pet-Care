@@ -14,7 +14,11 @@ import {
   Center,
   Pressable,
 } from "native-base";
-import { MaterialCommunityIcons, MaterialIcons } from "@expo/vector-icons";
+import {
+  MaterialCommunityIcons,
+  MaterialIcons,
+  AntDesign,
+} from "@expo/vector-icons";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { useNavigation } from "@react-navigation/native";
 function Footer() {
@@ -42,15 +46,25 @@ function Footer() {
                       name={selected === 0 ? "home" : "home-outline"}
                     />
                   }
-                  color="#00D2C6"
+                  color="#000"
                   size="sm"
                 />
               </TouchableOpacity>
-              <Text color="#00D2C6" fontSize="12">
+              <Text color="#000" fontSize="12">
                 Inicio
               </Text>
             </Center>
           </Pressable>
+          <Center>
+            <TouchableOpacity
+              onPress={() => navigation.navigate("SelectPublic")}
+            >
+              <AntDesign name="pluscircle" size={24} color="black" />
+            </TouchableOpacity>
+            <Text color="#000" fontSize="12">
+              Inicio
+            </Text>
+          </Center>
           <Pressable
             opacity={selected === 3 ? 1 : 1}
             py="2"
@@ -62,11 +76,11 @@ function Footer() {
                 <Icon
                   mb="1"
                   as={<MaterialCommunityIcons name="human-greeting" />}
-                  color="#00D2C6"
+                  color="#000"
                   size="sm"
                 />
               </TouchableOpacity>
-              <Text color="#00D2C6" fontSize="12">
+              <Text color="#000" fontSize="12">
                 Perfil
               </Text>
             </Center>
