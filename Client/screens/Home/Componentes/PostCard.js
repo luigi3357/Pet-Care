@@ -8,11 +8,21 @@ import {
   View,
 } from "react-native";
 import ReviewCard from "./ReviewCard";
+import { useNavigation } from "@react-navigation/native";
 
-export default function PostCard({id, date, title, image = require("../../../assets/profile.png"), rating, bookings, description, reviews}) {
-  
+export default function PostCard({
+  id,
+  autorId,
+  date,
+  title,
+  image = require("../../../assets/profile.png"),
+  rating,
+  bookings,
+  description,
+  reviews,
+}) {
   const [detailsView, setDetailsView] = useState(false);
-
+  const navigation = useNavigation();
   function showDetails() {
     if (detailsView) {
       setDetailsView(false);
@@ -33,16 +43,21 @@ export default function PostCard({id, date, title, image = require("../../../ass
           paddingLeft: 20,
         }}
       >
-        <Image
-          style={{
-            width: 80,
-            height: 80,
-            borderRadius: 5,
-            borderWidth: 1,
-            borderColor: "#FFF",
-          }}
-          source={image}
-        />
+        <TouchableOpacity
+          onPress={() => navigation.navigate("Profile", autorId)}
+        >
+          <Image
+            style={{
+              width: 80,
+              height: 80,
+              borderRadius: 5,
+              borderWidth: 1,
+              borderColor: "#FFF",
+            }}
+            source={image}
+          />
+        </TouchableOpacity>
+
         <View
           style={{
             display: "flex",
@@ -97,9 +112,23 @@ export default function PostCard({id, date, title, image = require("../../../ass
               horizontal={true}
               showsHorizontalScrollIndicator={false}
             >
-              {reviews
-                ? reviews.map((i) => {return <ReviewCard id={i.id} key={i.id} rating={i.rate} message={i.message} from={i.from_id}/>})
-                : <Text style={styles.notReview}>El usuario aún no posee reviews</Text>}
+              {reviews ? (
+                reviews.map((i) => {
+                  return (
+                    <ReviewCard
+                      id={i.id}
+                      key={i.id}
+                      rating={i.rate}
+                      message={i.message}
+                      from={i.from_id}
+                    />
+                  );
+                })
+              ) : (
+                <Text style={styles.notReview}>
+                  El usuario aún no posee reviews
+                </Text>
+              )}
             </ScrollView>
           </View>
         </View>
@@ -158,7 +187,7 @@ const styles = StyleSheet.create({
     //   ,width : 100
     //   ,marginLeft : '2px solid green'
   },
-  notReview:{
+  notReview: {
     fontSize: 10,
-  }
+  },
 });

@@ -1,10 +1,8 @@
-import React from 'react'
-import {View,StyleSheet} from 'react-native'
-import {Icon,NativeBaseProvider} from 'native-base'
-import { AntDesign  } from '@expo/vector-icons';
-import { TouchableOpacity } from 'react-native';
-import {useNavigation} from '@react-navigation/native'
-import { FontAwesome } from '@expo/vector-icons';
+import { AntDesign, FontAwesome } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
+import { Icon, NativeBaseProvider } from 'native-base';
+import React from 'react';
+import { StyleSheet, TouchableOpacity, View } from 'react-native';
 
 
 export default function Button() {

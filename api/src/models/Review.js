@@ -1,13 +1,17 @@
 const { DataTypes } = require("sequelize");
 
 module.exports = (sequelize) => {
-  sequelize.define("review",{
+  sequelize.define("review", {
     id: {
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
-      primaryKey: true
+      primaryKey: true,
     },
     from_id: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    name: {
       type: DataTypes.STRING,
       allowNull: false,
     },
@@ -16,13 +20,12 @@ module.exports = (sequelize) => {
       allowNull: false,
     },
     rate: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        validate: {
-            max: 5,
-            min: 1
-        }
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      validate: {
+        max: 5,
+        min: 1,
+      },
     },
-    },
-  );
+  });
 };
