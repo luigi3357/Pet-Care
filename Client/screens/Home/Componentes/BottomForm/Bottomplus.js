@@ -13,7 +13,7 @@ export default function Button() {
       <TouchableOpacity
       
       onPress={()=> 
-        navigation.navigate("Form")
+        navigation.navigate("SelectPublic") //SelectPublic
         // console.log('boton crear')
       }
       >
