@@ -47,14 +47,9 @@ function App() {
       <Stack.Screen name="Review" component={Review} />
       <Stack.Screen name="SelectPublic" component={SelectPublic} />
       <Stack.Screen name="Form" component={FormCard} />
-<<<<<<< HEAD
       <Stack.Screen name="ServicioForm" component={ServicioForm} />
       <Stack.Screen name="Payment" component={Payment} /> 
        <Stack.Screen name="Profile" component={Profile} />
-=======
-      <Stack.Screen name="Payment" component={Payment} />
-      <Stack.Screen name="Profile" component={Profile} />
->>>>>>> 349c35601b5c4caa7d5f94f6db6b30dc717803c2
     </Stack.Navigator>
   );
 }
