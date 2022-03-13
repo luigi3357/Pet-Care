@@ -76,9 +76,9 @@ export default function HomeScreens() {
                 })
               : null}
           </ScrollView>
-          {/* <View>
+          <View>
             <Bottomplus />
-          </View> */}
+          </View>
           <View style={{ height: "8%", width: "100%" }}>
             <Footer />
           </View>
