@@ -76,9 +76,9 @@ export default function HomeScreens() {
                 })
               : null}
           </ScrollView>
-          <View>
+          {/* <View>
             <Bottomplus />
-          </View>
+          </View> */}
           <View style={{ height: "8%", width: "100%" }}>
             <Footer />
           </View>
@@ -95,11 +95,16 @@ const styles = StyleSheet.create({
   },
   button: {
     backgroundColor: "#8aF",
-    marginTop: 0.5,
+    marginTop: 1,
+    textTransform: "uppercase",
     color: "#FFF",
     display: "flex",
     alignSelf: "flex-end",
-    padding: 4,
+    padding: 10,
+    borderRadius: 10,
+    fontWeight: "bold",
+    overflow: "hidden",
+    borderBottomStartRadius: 30,
   },
   loading: {
     position: "absolute",
