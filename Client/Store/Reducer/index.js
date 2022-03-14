@@ -7,12 +7,8 @@ const initialState = {
   all_posts: [],
   filtered_posts: [],
   checkout_link: "",
-<<<<<<< HEAD
   login:[],
   activeFilters: []
-=======
-  login: [],
->>>>>>> 8b27d3d0130aac3ababffa11a79b9e5a2b1e475f
 };
 
 const apiReducer = (state = initialState, action) => {
@@ -85,7 +81,6 @@ const apiReducer = (state = initialState, action) => {
       return {
         ...state,
         filtered_posts: action.payload,
-<<<<<<< HEAD
       }
     case ACTION_TYPES.ADD_FILTER:
       return {
@@ -114,9 +109,6 @@ const apiReducer = (state = initialState, action) => {
         ...state,
         filtered_posts: new_filtered_posts,
       }
-=======
-      };
->>>>>>> 8b27d3d0130aac3ababffa11a79b9e5a2b1e475f
     default:
       return state;
   }
