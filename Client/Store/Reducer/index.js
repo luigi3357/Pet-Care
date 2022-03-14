@@ -2,12 +2,13 @@ import ACTION_TYPES from "../Actions/ActionTypes";
 
 const initialState = {
   loading: false,
-  users: '',
-  error: '',
+  users: "",
+  error: "",
   all_posts: [],
   filtered_posts: [],
   checkout_link: "",
-  login:[]
+  login:[],
+  activeFilters: []
 };
 
 const apiReducer = (state = initialState, action) => {
@@ -51,8 +52,8 @@ const apiReducer = (state = initialState, action) => {
         last_name: action.payload,
       };
     case ACTION_TYPES.GET_CHECK:
-console.log(action.payload)
-    return {
+      console.log(action.payload);
+      return {
         ...state,
         login: action.payload,
       };
@@ -60,11 +61,11 @@ console.log(action.payload)
       return {
         ...state,
       };
-    case ACTION_TYPES.PAYMENT_CHECKOUT: 
-      return{
+    case ACTION_TYPES.PAYMENT_CHECKOUT:
+      return {
         ...state,
-        checkout_link: action.payload                
-      } ;
+        checkout_link: action.payload,
+      };
     case ACTION_TYPES.SEARCH_KEYWORD:
       return {
         ...state,
