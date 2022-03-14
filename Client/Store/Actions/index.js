@@ -140,7 +140,6 @@ export function fetchAllPosts() {
   };
 }
 
-<<<<<<< HEAD
 /*        ADDING FILTERS         */
 
 export function storeFilter(newFilter){
@@ -173,15 +172,6 @@ export function getFiltered(filter){
       dispatch({
         type : ACTION_TYPES.GET_FILTERED,
         payload : res.data
-=======
-export function getFiltered(filter) {
-  return function (dispatch) {
-    axios
-      .get(`http://${localhost}:3001/orderAndFilter`, {
-        params: {
-          order: filter,
-        },
->>>>>>> 8b27d3d0130aac3ababffa11a79b9e5a2b1e475f
       })
       .then((res) => {
         dispatch({
@@ -189,5 +179,5 @@ export function getFiltered(filter) {
           payload: res.data,
         });
       });
-  };
-}
+  }
+    )}}
