@@ -3,7 +3,7 @@ import axios from "axios";
 import ACTION_TYPES from "./ActionTypes.js";
 import { fetchData, fetchSuccess, fetchError } from "./ApiAction";
 
-export const localhost = "192.168.65.104"; //'192.168.0.11'
+export const localhost = "192.168.1.7"; //'192.168.0.11'
 
 export const getUser = (payload) => (dispatch) => {
   dispatch(fetchData());

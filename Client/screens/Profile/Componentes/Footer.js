@@ -21,10 +21,22 @@ import {
 } from "@expo/vector-icons";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { useNavigation } from "@react-navigation/native";
+import { useDispatch, useSelector } from "react-redux";
+import { getLogin } from "../../../Store/Actions";
+
+
 
 function Footer() {
+  const user = useSelector((state) => state.login)
+  const dispatch = useDispatch();
   const navigation = useNavigation();
   const [selected, setSelected] = React.useState(1);
+
+  function handleRedirect(){
+    dispatch(getLogin(user.email));
+    navigation.navigate("SelectPublic")
+  }
+
   return (
     <NativeBaseProvider>
       <Box flex={1} bg="red" width="100%" alignSelf="center">
@@ -57,7 +69,7 @@ function Footer() {
           </Pressable>
           <Center>
             <TouchableOpacity
-              onPress={() => navigation.navigate("SelectPublic")}
+               onPress={handleRedirect}
             >
               <AntDesign name="pluscircle" size={35} color="black" />
             </TouchableOpacity>

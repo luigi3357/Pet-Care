@@ -15,6 +15,7 @@ router.get('/all', async (req, res, next)=>{
 router.post('/create', async (req, res, next)=>{
     try{
         const {title, description, author_id, price, type, size, address, phone } = req.body;
+        console.log(req.body)
         if (!title){
             return res.status(400).send('La publicacion debe tener un titulo válido')
         }

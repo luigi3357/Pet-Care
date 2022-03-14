@@ -9,7 +9,7 @@ import {
   KeyboardAvoidingViewBase,
 } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchAllPosts } from "../../../Store/Actions";
+import { fetchAllPosts, getLogin } from "../../../Store/Actions";
 import Footer from "../../Profile/Componentes/Footer";
 import Bottomplus from "./BottomForm/Bottomplus";
 import Navbar from "./NavBar";
@@ -24,9 +24,10 @@ export default function HomeScreens() {
   const filtered_posts = useSelector((state) => state.filtered_posts);
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
-
+  
   useEffect(() => {
     dispatch(fetchAllPosts());
+    dispatch(getLogin(user.email));
   }, []);
   useEffect(() => {
     setInterval(() => {
@@ -35,7 +36,7 @@ export default function HomeScreens() {
       setLoading(false);
     }, 2000);
   }, [filtered_posts]);
-
+  const user = useSelector((state) => state.login);
   const navigation = useNavigation();
 
   return (
