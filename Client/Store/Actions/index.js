@@ -25,11 +25,14 @@ export const getLogin = (email) => {
   try {
     return async (dispatch) => {
       console.log(email, "soy el action");
-      let json = await axios.get(`http://${localhost}:3001/login/` + email);
-      return dispatch({
-        type: ACTION_TYPES.GET_CHECK,
-        payload: json.data,
-      });
+      let json = await axios
+        .get(`http://${localhost}:3001/login/` + email)
+        .then((response) => {
+          dispatch({
+            type: ACTION_TYPES.GET_CHECK,
+            payload: response.data,
+          });
+        });
     };
   } catch (error) {
     console.error(error);
@@ -142,24 +145,22 @@ export function fetchAllPosts() {
 
 /*        ADDING FILTERS         */
 
-export function storeFilter(newFilter){
+export function storeFilter(newFilter) {
   return {
     type: ACTION_TYPES.ADD_FILTER,
-    payload: newFilter
-  }
+    payload: newFilter,
+  };
 }
-export function cleanUpFilters(){
+export function cleanUpFilters() {
   return {
-    type: ACTION_TYPES.CLEAN_FILTER
-  }
+    type: ACTION_TYPES.CLEAN_FILTER,
+  };
 }
-export function applyFilters(){
+export function applyFilters() {
   return {
-    type: ACTION_TYPES.APPLY_FILTERS
-  }
+    type: ACTION_TYPES.APPLY_FILTERS,
+  };
 }
-
-
 
 // export function getFiltered(filter){
 //   return function(dispatch){
@@ -181,13 +182,11 @@ export function applyFilters(){
 //       });
 //   }
 
-
-export function getFiltered(filter){
-  
-  return function(dispatch){
+export function getFiltered(filter) {
+  return function (dispatch) {
     dispatch({
-      type : ACTION_TYPES.GET_FILTERED,
-      payload : filter
-    })
-  }
+      type: ACTION_TYPES.GET_FILTERED,
+      payload: filter,
+    });
+  };
 }
