@@ -22,9 +22,9 @@ const AccordionList = () => {
   }
 
 
-  useEffect(async () => {
+  useEffect(() => {
     if (activeFilters.length>0) {
-      await dispatch(applyFilters());
+      dispatch(applyFilters());
       console.log(activeFilters);
     }
   }, [activeFilters]);

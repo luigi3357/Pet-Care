@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#8aF",
+    backgroundColor: "#7C169E",
     borderRadius: 3,
     width: 300,
     height: 80,
@@ -52,7 +52,6 @@ const styles = StyleSheet.create({
   reviewRating: {
     fontWeight: "bold",
     fontSize: 14,
-
     color: "white",
   },
   reviewUsuario: {

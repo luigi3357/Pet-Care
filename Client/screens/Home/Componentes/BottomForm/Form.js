@@ -2,13 +2,13 @@
 
 import React, { useState,useMemo,useEffect } from 'react'
 import { Picker,Text, View, StyleSheet,TextInput,  TouchableOpacity,FlatList,ScrollView,Image} from 'react-native'
-
+import { useNavigation } from "@react-navigation/native";
 import {useDispatch,useSelector} from 'react-redux'
 import postPublic from '../../../../Store/Actions'
-
+import { AntDesign } from "@expo/vector-icons";
 
 export default function FormCard(){
- 
+  const navigation = useNavigation();
   const validarLetra = (name) => {
     const regex = new RegExp(/^[A-Z]+$/i);
     return regex.test(name);
@@ -68,20 +68,20 @@ const [errors,setErrors]= useState({})
   const disableSubmit = useMemo(() =>{
     if(
         form.title.length > 0 &&
-        form.title.length < 30 &&
+        form.title.length < 150 &&
        
         form.description.length > 0 &&
         form.description.length < 2000 &&
-        form.price  >= 1 &&
-        form.price <= 5000 &&
+        form.price.length  >= 1 &&
+        form.price.length <= 5000 &&
         form.phone.length  >= 1 &&
-        form.phone.length <= 30 &&
+        form.phone.length <= 50 &&
        form.type.length >= 1 &&
        form.type.length < 5 &&
        form.size.length >= 1 &&
        form.size.length < 4 &&
        form.address.length > 0 &&
-       form.address.length < 30 
+       form.address.length < 150 
        ){
           return false;
        }else{
@@ -139,28 +139,65 @@ function priceTxt (txtt){
 }
    
 function ImageSelect (){
-  return (
+
+  function setHome(e){
+   
+    setForm({
+      ...form,
+      image:['Casa']
+
+    })
+    console.log(form.image)
+  }
+  function setDpto(e){
+   
+    setForm({
+      ...form,
+      image:['Departamento']
+
+    })
+    console.log(form.image)
+  }
   
+
+  
+  return (
+  <View>
       <View style={{flex:1,flexDirection:'row',marginRight:10,height:100,width:'100%',
     backgroundcolor:'#e3e3e3'}}>
     
-<TouchableOpacity>
+<TouchableOpacity
+
+onPress={(e)=>setDpto(e)}
+>
 <Image
 style={{width:100,height:'100%',}}
 source={{uri:'https://cdn-icons-png.flaticon.com/512/3530/3530068.png'}}
 />
 </TouchableOpacity>
 
-<TouchableOpacity>
+<TouchableOpacity
+onPress={(e)=>setHome(e)}
+>
 <Image
 style={{width:100,height:'100%'}}
 source={{uri:'https://cdn-icons.flaticon.com/png/512/2544/premium/2544087.png?token=exp=1647205419~hmac=4039a4c601e1267f5546f04639848938'}}
 />
 </TouchableOpacity>
 
-</View>
 
- 
+
+</View>
+<View>
+  { 
+  form.image.length > 0 ?
+  <Text style={{textAlign:'center',alignItems:'center',justifyContent:'center', fontWeight:'bold',backgroundColor:'skyblue',margin:10,height:30}}
+  >La cuidare en mi {form.image}</Text>
+:
+null
+}
+  </View>
+</View>
   )
 }
 function addressTxt(e){
@@ -250,26 +287,32 @@ setErrors(validate({
       
         console.log(form)
         alert('publicacion creada!')
-        // setForm({
-        //   title:'',
-        //   description:'',
-        //   price:'',
-        //   image:'',
-        //   type:[],
-        //   size:[],
-        //   address:'',
-        //   phone:'',
-        //   author_Id:'',
-        // })
-
+        setForm({
+          title:'',
+          description:'',
+          price:'',
+          image:'',
+          type:[],
+          size:[],
+          address:'',
+          phone:'',
+          author_Id:idautor.id,
+        })
+        navigation.navigate("HomeScreen")
   }
 
   
     return (
         <View style={styles.container}>
-      <View>
+      <View style={{flexDirection:'row'}}>
+      <TouchableOpacity 
+      style={{marginTop:10}}
+      onPress={() => navigation.goBack()}>
+              <AntDesign name={"left"} size={30} color="black" />
+            </TouchableOpacity>
+
         <Text
-        style={styles.title}>FORMULARIO DE CUIDADOR</Text>
+        style={styles.title}>Formulario de cuidador</Text>
       </View>
 <ScrollView>
         <View>
@@ -279,7 +322,7 @@ setErrors(validate({
      <View>
         <TextInput
         style={styles.input}
-        placeholder="Title"
+        placeholder="Titulo..."
         onChangeText={(text)=> {
           titleTxt(text)
         }}
@@ -302,9 +345,10 @@ setErrors(validate({
 <View>
 <TextInput
 style={[styles.input,styles.textArea]}
-      placeholder='description'
+      placeholder='Descripcion...'
       editable
-      maxLength={40}
+      multiline
+      numberOfLines={4}
       onChangeText={(text)=>{
         descripTxt(text)
       }}
@@ -388,7 +432,7 @@ style={[styles.input,styles.textArea]}
                    onPress={()=> {handleDelType(el)}}
                    key={idx}
                    > 
-                   <Text> X </Text> 
+                   <Text style={{color:'red'}}> X </Text> 
                    </TouchableOpacity>
                    </View>
                  </View>  
@@ -447,7 +491,7 @@ style={[styles.input,styles.textArea]}
                onPress={()=> {handleDelSize(el)}}
                key={idx}
                >
-                  <Text> X </Text> 
+                  <Text style={{color:'red'}}> X </Text> 
                </TouchableOpacity>
               </View> 
             </View>
