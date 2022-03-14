@@ -59,11 +59,8 @@ function Footer() {
             <TouchableOpacity
               onPress={() => navigation.navigate("SelectPublic")}
             >
-              <AntDesign name="pluscircle" size={24} color="black" />
+              <AntDesign name="pluscircle" size={35} color="black" />
             </TouchableOpacity>
-            <Text color="#000" fontSize="12">
-              Inicio
-            </Text>
           </Center>
           <Pressable
             opacity={selected === 3 ? 1 : 1}

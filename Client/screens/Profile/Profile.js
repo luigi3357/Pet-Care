@@ -28,11 +28,11 @@ export default function Profile(id) {
       await axios
         .get(`http://${localhost}:3001/users/${id.route.params}`)
         .then((response) => setUser(response.data));
-    }, [user]);
+    }, [dispatch]);
   } else {
     useEffect(() => {
       setUser(userLogin);
-    }, [user]);
+    }, [dispatch]);
   }
   console.log("soy user ", user);
 
