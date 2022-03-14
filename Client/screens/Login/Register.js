@@ -46,29 +46,42 @@ const Register = () => {
           { text: "Volver", onPress: ()=>navigation.navigate("Register") }
         ]
       )};
+  function minPassword(){
+        Alert.alert(
+          "Error",
+          "La contraseña debe tener como minimo 8 caracteres.",
+          [
+            { text: "Volver", onPress: ()=>navigation.navigate("Register") }
+          ]
+        )};
 
- 
-useEffect(() => {
-        dispatch(getUser())
-      },[dispatch])
+  
 
-const user = useSelector((state=>(state.users)))
+
+  useEffect(() => {
+          dispatch(getUser())
+        },[dispatch])
+
+  const user = useSelector((state=>(state.users)))
   
 
  function handlesubmit(e){
 
   const verifyEmail =  user.filter(e=>e.email===email)
+  if(email.length && name.length && last_name.length && password.length && repeatPassword.length){
    if(verifyEmail.length){
      existsAlert()
    }else{
     if(password!==repeatPassword){
       errorPassword()
-      }else{
+      }else if(password.length<8){
+        minPassword()
+       }else{
        dispatch(registerBack(data)) 
        registerLog()
      }
    }
-
+  }
   }
   
   return (

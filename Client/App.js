@@ -48,7 +48,7 @@ function App() {
       <Stack.Screen name="SelectPublic" component={SelectPublic} />
       <Stack.Screen name="Form" component={FormCard} />
       <Stack.Screen name="ServicioForm" component={ServicioForm} />
-      <Stack.Screen name="Payment" component={Payment} />
+      <Stack.Screen name="Payment" component={Payment} /> 
       <Stack.Screen name="Profile" component={Profile} />
     </Stack.Navigator>
   );
