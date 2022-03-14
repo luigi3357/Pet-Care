@@ -23,13 +23,10 @@ export default function Navbar() {
 }
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#00D2C6", //Green
+    backgroundColor: "#00d2c6", //Green
     flex: 1,
     flexDirection: "row",
     justifyContent: "center",
-
-    // ,position: "absolute"
-    // ,top: 15
   },
   searchBar: {
     flex:1,

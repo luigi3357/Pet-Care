@@ -1,17 +1,20 @@
 import { Text, View, StyleSheet, Image } from "react-native";
 import React from "react";
+
 import { Octicons } from "@expo/vector-icons";
 
 export default function ReviewCard({ id, titulo, rating, usuario, message }) {
   return (
     <View style={styles.reviewContainer}>
-      <Text style={styles.reviewTitle}>{titulo}</Text>
+      <Text style={styles.reviewTitle}>
+        {titulo ? titulo : "Review sin titulo"}
+      </Text>
       <View
         style={{
           display: "flex",
           flexDirection: "row",
           textAlign: "center",
-          justifyContent: "space-evenly",
+          alignItems: "center",
         }}
       >
         <View
@@ -34,35 +37,30 @@ export default function ReviewCard({ id, titulo, rating, usuario, message }) {
 const styles = StyleSheet.create({
   reviewContainer: {
     display: "flex",
-    flexDirection: "row",
+    backgroundColor: "#00d2c6",
+    borderRadius: 10,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#8aF",
-    borderRadius: 3,
-    width: 300,
-    height: 80,
-    marginHorizontal: 10,
-    padding: 5,
+    padding: 10,
   },
-
   reviewTitle: {
     fontWeight: "bold",
-    marginTop: 1,
+    color: "white",
+    marginBottom: 2,
   },
   reviewRating: {
     fontWeight: "bold",
     fontSize: 14,
-
+    margin: 0,
     color: "white",
   },
   reviewUsuario: {
-    fontWeight: "300",
+    color: "white",
   },
   message: {
-    fontSize: 13,
-    color: "white",
+    fontSize: 14,
     overflow: "scroll",
-    width: 200,
-    marginLeft: 10,
+    color: "white",
+    marginHorizontal: 15,
   },
 });

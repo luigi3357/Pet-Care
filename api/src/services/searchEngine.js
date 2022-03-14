@@ -100,5 +100,5 @@ module.exports = {
   queryToKeywordArray,
   searchingMachine,
   foundPostsSelector,
-  findPostsForHomeScreen
+  findPostsForHomeScreen,
 };

@@ -1,5 +1,5 @@
-import ACTION_TYPES from './ActionTypes.js';
-import axios from 'axios';
+import ACTION_TYPES from "./ActionTypes.js";
+import axios from "axios";
 export const fetchData = () => ({
   type: ACTION_TYPES.API_PENDING,
 });
@@ -14,19 +14,15 @@ export const fetchError = (error) => ({
   payload: error,
 });
 
-
 export const getId = (name) => async (dispatch) => {
-  try{
-      
+  try {
+    const json = await axios.get("http://192.168.1.7:3001/register/" + name);
 
-      const json = await axios.get("http://192.168.1.7:3001/register/" + name )
-
-  dispatch({
+    dispatch({
       type: ACTION_TYPES.GET_ID,
       payload: name,
-  })
-  
-  } catch(error) {
-    console.log(error)
+    });
+  } catch (error) {
+    console.log(error);
   }
 };

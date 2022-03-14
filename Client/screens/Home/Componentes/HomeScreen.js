@@ -7,8 +7,7 @@ import Bottomplus from "./BottomForm/Bottomplus";
 import Navbar from "./NavBar";
 import PostCard from "./PostCard";
 import LottieView from "lottie-react-native";
-
-import { useNavigation } from '@react-navigation/native'
+import { useNavigation } from "@react-navigation/native";
 import PetLover from "../../Animations/petLover";
 import { SafeAreaView } from "react-native-safe-area-context";
 import PublishButton from "./PublishButton";
@@ -16,8 +15,7 @@ import PublishButton from "./PublishButton";
 export default function HomeScreens() {
   const filtered_posts = useSelector((state) => state.filtered_posts);
   const dispatch = useDispatch();
-  const [loading, setLoading]=useState(true)
-
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     dispatch(fetchAllPosts());

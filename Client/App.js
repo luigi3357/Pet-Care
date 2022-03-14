@@ -16,7 +16,8 @@ import Store from "./Store";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import * as Linking from "expo-linking";
 import Review from "./screens/Review/Review";
-
+import { SelectPublic } from "./screens/Home/Componentes/BottomForm/SelectPublic";
+import ServicioForm from "./screens/Home/Componentes/BottomForm/ServicioForm";
 const Stack = createStackNavigator();
 
 function App() {
@@ -36,15 +37,17 @@ function App() {
 
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
-      {/* <Stack.Screen name="LandingPage" component={LandingPage} />
+      <Stack.Screen name="LandingPage" component={LandingPage} />
       <Stack.Screen name="Login" component={Login} />
       <Stack.Screen name="MailCode" component={MailCode} />
       <Stack.Screen name="ForgetPassword" component={ForgetPassword} />
       <Stack.Screen name="Register" component={Register} />
-    <Stack.Screen name="NewPassword" component={NewPassword} /> */}
-    <Stack.Screen name="HomeScreen" component={HomeScreen} />
+      <Stack.Screen name="NewPassword" component={NewPassword} />
+      <Stack.Screen name="HomeScreen" component={HomeScreen} />
       <Stack.Screen name="Review" component={Review} />
+      <Stack.Screen name="SelectPublic" component={SelectPublic} />
       <Stack.Screen name="Form" component={FormCard} />
+      <Stack.Screen name="ServicioForm" component={ServicioForm} />
       <Stack.Screen name="Payment" component={Payment} />
       <Stack.Screen name="Profile" component={Profile} />
     </Stack.Navigator>

@@ -1,5 +1,4 @@
 
-
 import React, { useState,useMemo,useEffect } from 'react'
 import { Picker,Text, View, StyleSheet,TextInput,  TouchableOpacity,FlatList,ScrollView,Image} from 'react-native'
 
@@ -269,11 +268,11 @@ setErrors(validate({
         <View style={styles.container}>
       <View>
         <Text
-        style={styles.title}>FORMULARIO DE CUIDADOR</Text>
+        style={styles.title}>Servicio que solicita</Text>
       </View>
 <ScrollView>
         <View>
-      <View><Text style={styles.fontInput}>Titulo publicacion</Text></View>
+      <View><Text style={styles.fontInput}>Titulo de la publicacion</Text></View>
       <View>
 
      <View>
@@ -294,7 +293,7 @@ setErrors(validate({
                 </View>  
         </View>
         <View>
-          <View><Text  style={styles.fontInput}>Descripcion de la publicacion</Text></View>
+          <View><Text  style={styles.fontInput}>Descripcion del cuidado que requiere</Text></View>
           <View>
 
         
@@ -322,7 +321,7 @@ style={[styles.input,styles.textArea]}
       </View>
 
        <View>
-<View><Text  style={styles.fontInput}>Precio del servicio</Text></View>
+<View><Text  style={styles.fontInput}>Precio dispuesto a pagar </Text></View>
    <View>
       <View>
        <TextInput
@@ -346,7 +345,7 @@ style={[styles.input,styles.textArea]}
        </View>
        <View>
          <View>
-           <Text  style={styles.fontInput}>Tipo de mascota</Text>
+           <Text  style={styles.fontInput}>Tipo de mascota que posee</Text>
          </View>
       <View>
       <Picker
@@ -404,7 +403,7 @@ style={[styles.input,styles.textArea]}
         
         <View>
 <View>
-  <Text  style={styles.fontInput}>Tamaño de mascota</Text>
+  <Text  style={styles.fontInput}>Tamaño de su mascota</Text>
   </View>
         
         <View>
@@ -460,7 +459,7 @@ style={[styles.input,styles.textArea]}
         </View>
 <View>
 
-  <View><Text  style={styles.fontInput}>¿Donde mantedra la mascota?</Text></View>
+  <View><Text  style={styles.fontInput}>¿Donde vive  su mascota?</Text></View>
 
 <View>
 <ImageSelect/>
@@ -490,7 +489,7 @@ onChangeText={(text)=>{
 
 
       <View>
-        <View><Text  style={styles.fontInput}>Direccion</Text></View>
+        <View><Text  style={styles.fontInput}>Direccion donde vive la mascota</Text></View>
 
        
         <View>
