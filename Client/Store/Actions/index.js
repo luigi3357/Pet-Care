@@ -161,23 +161,33 @@ export function applyFilters(){
 
 
 
+// export function getFiltered(filter){
+//   return function(dispatch){
+//     axios.get(`http://${localhost}:3001/orderAndFilter`,
+//     {
+//       params : {
+//         order : filter
+//       }
+//     }).then((res)=>{
+//       dispatch({
+//         type : ACTION_TYPES.GET_FILTERED,
+//         payload : res.data
+//       })
+//       .then((res) => {
+//         dispatch({
+//           type: ACTION_TYPES.GET_FILTERED,
+//           payload: res.data,
+//         });
+//       });
+//   }
+
+
 export function getFiltered(filter){
+  
   return function(dispatch){
-    axios.get(`http://${localhost}:3001/orderAndFilter`,
-    {
-      params : {
-        order : filter
-      }
-    }).then((res)=>{
-      dispatch({
-        type : ACTION_TYPES.GET_FILTERED,
-        payload : res.data
-      })
-      .then((res) => {
-        dispatch({
-          type: ACTION_TYPES.GET_FILTERED,
-          payload: res.data,
-        });
-      });
+    dispatch({
+      type : ACTION_TYPES.GET_FILTERED,
+      payload : filter
+    })
   }
-    )}}
+}
