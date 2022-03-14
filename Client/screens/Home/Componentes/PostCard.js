@@ -139,11 +139,12 @@ const styles = StyleSheet.create({
   container: {
     display: "flex",
     backgroundColor: "#00d2c6",
-    borderRadius: 10,
+    minHeight: 200,
+
     justifyContent: "center",
     alignItems: "flex-start",
     minWidth: 300,
-    marginVertical: 2,
+    marginVertical: 10,
     marginHorizontal: 15,
     padding: 10,
   },
