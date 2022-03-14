@@ -82,6 +82,11 @@ const apiReducer = (state = initialState, action) => {
         ...state,
         activeFilters: [...state.activeFilters, action.payload],
       };
+    case ACTION_TYPES.DELETE_SINGLE_FILTER:
+      return {
+        ...state,
+        activeFilters: action.payload,
+      };
     case ACTION_TYPES.CLEAN_FILTER:
       return {
         ...state,
@@ -111,50 +116,36 @@ const apiReducer = (state = initialState, action) => {
         filtered_posts: new_filtered_posts,
       };
     case ACTION_TYPES.GET_FILTERED:
+      let filtered_posts_copy = [...state.filtered_posts];
+      let orderedPosts
+      if(action.payload === "descRating"){
+        orderedPosts = filtered_posts_copy.sort((a, b) => {
+            if (a.author.rating > b.author.rating) return -1;
+            if (a.author.rating < b.author.rating) return 1;
+            return 0;
+          })
+      }else if(action.payload === "ascRating"){
+        orderedPosts = filtered_posts_copy.sort((a, b) => {
+           if (a.author.rating > b.author.rating) return 1;
+           if (a.author.rating < b.author.rating) return -1;
+           return 0;
+         })
+      }else if(action.payload === "ascPrice"){
+        orderedPosts = filtered_posts_copy.sort((a, b) => {
+             if (a.price > b.price) return 1;
+             if (a.price < b.price) return -1;
+             return 0;
+          })
+      }else if(action.payload === "descPrice"){
+        orderedPosts = filtered_posts_copy.sort((a, b) => {
+            if (a.price > b.price) return -1;
+            if (a.price < b.price) return 1;
+            return 0;
+          })
+      }
       return {
         ...state,
-
-        filtered_posts:
-          action.payload === "all"
-            ? all_posts
-            : action.payload === "descRating"
-            ? filtered_posts.sort((a, b) => {
-                if (a.rating > b.rating) return -1;
-                if (a.rating < b.rating) return 1;
-                return 0;
-              })
-            : action.payload === "ascRating"
-            ? filtered_posts.sort((a, b) => {
-                if (a.rating > b.rating) return 1;
-                if (a.rating < b.rating) return -1;
-                return 0;
-              })
-            : action.payload === "ascPrice"
-            ? filtered_posts.sort((a, b) => {
-                if (a.price > b.price) return 1;
-                if (a.price < b.price) return -1;
-                return 0;
-              })
-            : action.payload === "descPrice"
-            ? filtered_posts.sort((a, b) => {
-                if (a.price > b.price) return -1;
-                if (a.price < b.price) return 1;
-                return 0;
-              })
-            : action.payload === "pequeño" ||
-              action.payload === "mediano" ||
-              action.payload === "grande"
-            ? filtered_posts.filter(
-                (el) => el.size.toLowerCase() === action.payload.toLowerCase()
-              )
-            : action.payload === "perro" ||
-              action.payload === "gato" ||
-              action.payload === "aves" ||
-              action.payload === "roedores"
-            ? filtered_posts.filter(
-                (el) => el.types.toLowerCase() === action.payload.toLowerCase()
-              )
-            : all_posts,
+        filtered_posts: orderedPosts
       };
     default:
       return state;
