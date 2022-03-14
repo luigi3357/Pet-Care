@@ -34,6 +34,7 @@ export default function Profile(id) {
       setUser(userLogin);
     }, [user]);
   }
+  console.log("soy user ", user);
 
   return (
     <>

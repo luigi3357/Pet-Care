@@ -24,10 +24,16 @@ import { useNavigation } from "@react-navigation/native";
 function Footer() {
   const navigation = useNavigation();
   const [selected, setSelected] = React.useState(1);
-  return <NativeBaseProvider >
-      <Box flex={1} bg="red"  width="100%"  alignSelf="center" >
-        <HStack bg="#f9f9f9" alignItems="center"  shadow={1}>
-          <Pressable  opacity={selected === 0 ? 1 : 1} py="3" flex={1} onPress={() => setSelected(0)}>
+  return (
+    <NativeBaseProvider>
+      <Box flex={1} bg="red" width="100%" alignSelf="center">
+        <HStack bg="#f9f9f9" alignItems="center" shadow={1}>
+          <Pressable
+            opacity={selected === 0 ? 1 : 1}
+            py="3"
+            flex={1}
+            onPress={() => setSelected(0)}
+          >
             <Center>
               <TouchableOpacity
                 onPress={() => navigation.navigate("HomeScreen")}
