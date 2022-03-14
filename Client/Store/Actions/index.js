@@ -134,6 +134,27 @@ export function fetchAllPosts(){
   }
 }
 
+/*        ADDING FILTERS         */
+
+export function storeFilter(newFilter){
+  return {
+    type: ACTION_TYPES.ADD_FILTER,
+    payload: newFilter
+  }
+}
+export function cleanUpFilters(){
+  return {
+    type: ACTION_TYPES.CLEAN_FILTER
+  }
+}
+export function applyFilters(){
+  return {
+    type: ACTION_TYPES.APPLY_FILTERS
+  }
+}
+
+
+
 export function getFiltered(filter){
   return function(dispatch){
     axios.get(`http://${localhost}:3001/orderAndFilter`,

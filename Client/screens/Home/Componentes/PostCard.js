@@ -118,7 +118,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "flex-start",
     minWidth: 300,
-    marginVertical: 2,
+    marginVertical: 5,
     marginHorizontal: 15,
     padding: 10,
     // ,zIndex : 4
