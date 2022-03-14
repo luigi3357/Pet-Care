@@ -136,3 +136,13 @@ export function getFiltered(filter){
     })
   }
 }
+
+export function getFiltered(filter){
+  
+  return function(dispatch){
+    dispatch({
+      type : ACTION_TYPES.GET_FILTERED,
+      payload : filter
+    })
+  }
+}

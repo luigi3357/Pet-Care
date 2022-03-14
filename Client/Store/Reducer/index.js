@@ -81,6 +81,35 @@ console.log(action.payload)
         ...state,
         filtered_posts: action.payload,
       }
+
+    case ACTION_TYPES.GET_FILTERED:
+      return {
+        ...state,
+        
+        filtered_posts: action.payload=== "all" ? all_posts :
+        action.payload === "descRating" ? filtered_posts.sort((a, b)=>{
+          if (a.rating > b.rating) return -1;
+          if (a.rating < b.rating) return 1;
+          return 0
+      }):
+        action.payload === "ascRating" ? filtered_posts.sort((a, b)=>{
+          if (a.rating > b.rating) return 1;
+          if (a.rating < b.rating) return -1;
+          return 0;
+      }):
+        action.payload === "ascPrice" ? filtered_posts.sort((a, b)=>{
+          if (a.price > b.price) return 1;
+          if (a.price < b.price) return -1;
+          return 0;
+      }):
+        action.payload === "descPrice" ? filtered_posts.sort((a, b)=>{
+          if (a.price > b.price) return -1;
+          if (a.price < b.price) return 1;
+          return 0;
+      }):
+        action.payload === "pequeño" || action.payload === "mediano" || action.payload ==="grande" ? filtered_posts.filter(el=> el.size.toLowerCase() === action.payload.toLowerCase()):
+        action.payload === "perro" || action.payload === "gato" || action.payload === "aves" || action.payload === "roedores" ? filtered_posts.filter(el=> el.types.toLowerCase() === action.payload.toLowerCase()): all_posts
+      }
     default:
       return state;
   }
