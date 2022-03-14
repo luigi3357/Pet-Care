@@ -95,7 +95,7 @@ function Footer() {
         </HStack>
       </Box>
     </NativeBaseProvider>
-  ;
+  )
 }
 
 export default Footer;
