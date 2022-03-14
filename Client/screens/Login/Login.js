@@ -1,24 +1,26 @@
+import { FontAwesome5, MaterialIcons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
+import bcrypt from "bcryptjs";
 import {
   Button,
+  Icon,
   Image,
   Input,
   NativeBaseProvider,
   Text,
-  Icon,
 } from "native-base";
 import React, { useEffect, useState } from "react";
 import {
-  StyleSheet,
-  TouchableOpacity,
-  View,
   ActivityIndicator,
   Alert,
+  StyleSheet,
+  TouchableOpacity,
+  KeyboardAvoidingView,
+  View,
 } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { useDispatch, useSelector } from "react-redux";
 import { getLogin, getUser } from "../../Store/Actions/index";
-import bcrypt from "bcryptjs";
-import { FontAwesome5, MaterialIcons } from "@expo/vector-icons";
 
 function Login() {
   const dispatch = useDispatch();
@@ -70,7 +72,7 @@ function Login() {
   const navigation = useNavigation();
 
   return (
-    <View>
+    <SafeAreaView>
       <View opacity={visible}>
         <View style={styles.logoPos}>
           <Image
@@ -79,84 +81,86 @@ function Login() {
             alt="."
           />
         </View>
-        <View style={{ alignItems: "center", marginTop: 50 }}>
-          <Input
-            width={"5/6"}
-            type="text"
-            onChangeText={onChangeEmail}
-            placeholder="Email"
-            InputLeftElement={
-              <Icon
-                as={<FontAwesome5 name="user" />}
-                size="sm"
-                m={2}
-                _ligth={{
-                  color: "black",
-                }}
-                _dark={{
-                  color: "white",
-                }}
-              />
-            }
-          />
-          <Input
-            width={"5/6"}
-            type={show ? "text" : "password"}
-            InputRightElement={
-              <Icon
-                as={
-                  <MaterialIcons
-                    name={show ? "visibility" : "visibility-off"}
-                  />
-                }
-                size={5}
-                mr="2"
-                color="muted.400"
-                onPress={() => setShow(!show)}
-              />
-            }
-            onChangeText={onChangePassword}
-            placeholder="Contraseña"
-            InputLeftElement={
-              <Icon
-                as={<FontAwesome5 name="key" />}
-                size="sm"
-                m={2}
-                _ligth={{
-                  color: "black",
-                }}
-                _dark={{
-                  color: "white",
-                }}
-              />
-            }
-          />
+        <KeyboardAvoidingView behavior="position" keyboardVerticalOffset={20} >
+          <View style={{ alignItems: "center", marginTop: 50 }}>
+            <Input
+              width={"5/6"}
+              type="text"
+              onChangeText={onChangeEmail}
+              placeholder="Email"
+              InputLeftElement={
+                <Icon
+                  as={<FontAwesome5 name="user" />}
+                  size="sm"
+                  m={2}
+                  _ligth={{
+                    color: "black",
+                  }}
+                  _dark={{
+                    color: "white",
+                  }}
+                />
+              }
+            />
+            <Input
+              width={"5/6"}
+              type={show ? "text" : "password"}
+              InputRightElement={
+                <Icon
+                  as={
+                    <MaterialIcons
+                      name={show ? "visibility" : "visibility-off"}
+                    />
+                  }
+                  size={5}
+                  mr="2"
+                  color="muted.400"
+                  onPress={() => setShow(!show)}
+                />
+              }
+              onChangeText={onChangePassword}
+              placeholder="Contraseña"
+              InputLeftElement={
+                <Icon
+                  as={<FontAwesome5 name="key" />}
+                  size="sm"
+                  m={2}
+                  _ligth={{
+                    color: "black",
+                  }}
+                  _dark={{
+                    color: "white",
+                  }}
+                />
+              }
+            />
 
-          <View style={styles.buttonStyle}>
-            <Button onPress={handlesubmit} style={styles.buttonDesing}>
-              Inicia Sesion
-            </Button>
+            <View style={styles.buttonStyle}>
+              <Button onPress={handlesubmit} style={styles.buttonDesing}>
+                Inicia Sesion
+              </Button>
+            </View>
           </View>
-          <View style={styles.text2}>
-            <TouchableOpacity
-              onPress={() => navigation.navigate("ForgetPassword")}
-            >
-              <Text style={styles.singupText}>Olvidaste tu Contraseña?</Text>
-            </TouchableOpacity>
-          </View>
+        </KeyboardAvoidingView>
+        <View style={styles.text2}>
+          <TouchableOpacity
+            onPress={() => navigation.navigate("ForgetPassword")}
+          >
+            <Text style={styles.singupText}>Olvidaste tu Contraseña?</Text>
+          </TouchableOpacity>
+        </View>
 
-          <View style={styles.text2}>
-            <Text>No tienes cuenta?</Text>
-            <TouchableOpacity onPress={() => navigation.navigate("Register")}>
-              <Text style={styles.singupText}>REGISTRATE</Text>
-            </TouchableOpacity>
-          </View>
+        <View style={styles.text2}>
+          <Text>No tienes cuenta?</Text>
+          <TouchableOpacity onPress={() => navigation.navigate("Register")}>
+            <Text style={styles.singupText}>REGISTRATE</Text>
+          </TouchableOpacity>
         </View>
       </View>
       <View style={styles.loading}>
         <ActivityIndicator size="large" color="#00d2c6" animating={loading} />
       </View>
-    </View>
+    </SafeAreaView>
   );
 }
 export default () => {
@@ -195,7 +199,8 @@ const styles = StyleSheet.create({
   buttonStyle: {
     marginRight: 15,
     marginLeft: 15,
-    marginTop: 30,
+    marginTop: 25,
+    marginBottom: 15,
   },
   buttonStyleX: {
     marginTop: 12,
