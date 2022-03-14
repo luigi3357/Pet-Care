@@ -120,14 +120,14 @@ const apiReducer = (state = initialState, action) => {
       let orderedPosts
       if(action.payload === "descRating"){
         orderedPosts = filtered_posts_copy.sort((a, b) => {
-            if (a.rating > b.rating) return -1;
-            if (a.rating < b.rating) return 1;
+            if (a.author.rating > b.author.rating) return -1;
+            if (a.author.rating < b.author.rating) return 1;
             return 0;
           })
       }else if(action.payload === "ascRating"){
         orderedPosts = filtered_posts_copy.sort((a, b) => {
-           if (a.rating > b.rating) return 1;
-           if (a.rating < b.rating) return -1;
+           if (a.author.rating > b.author.rating) return 1;
+           if (a.author.rating < b.author.rating) return -1;
            return 0;
          })
       }else if(action.payload === "ascPrice"){

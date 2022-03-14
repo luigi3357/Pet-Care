@@ -35,6 +35,7 @@ const AccordionList = () => {
     }
   }
   function giveOrder(order){
+    console.log(order)
     dispatch(getFiltered(order));
     setOrder(order)
   }
@@ -43,6 +44,8 @@ const AccordionList = () => {
     if (activeFilters.length > 0) {
       dispatch(applyFilters());
       console.log(activeFilters);
+    }else{
+      dispatch(fetchAllPosts());
     }
   }, [activeFilters]);
 

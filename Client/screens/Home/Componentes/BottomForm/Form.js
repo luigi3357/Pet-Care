@@ -4,7 +4,7 @@ import React, { useState,useMemo,useEffect } from 'react'
 import { Picker,Text, View, StyleSheet,TextInput,  TouchableOpacity,FlatList,ScrollView,Image} from 'react-native'
 import { useNavigation } from "@react-navigation/native";
 import {useDispatch,useSelector} from 'react-redux'
-import postPublic from '../../../../Store/Actions'
+import postPublic, { fetchAllPosts } from '../../../../Store/Actions'
 import { AntDesign } from "@expo/vector-icons";
 
 export default function FormCard(){
@@ -27,7 +27,7 @@ const  idautor = useSelector((state)=> state.login)
     size:[],
     address:'',
     phone:'',
-    author_Id:idautor.id,
+    author_id:idautor.id,
   })
   function validate(form){ 
     let errors = {};
@@ -296,8 +296,9 @@ setErrors(validate({
           size:[],
           address:'',
           phone:'',
-          author_Id:idautor.id,
+          author_id:idautor.id,
         })
+        dispatch(fetchAllPosts())
         navigation.navigate("HomeScreen")
   }
 
