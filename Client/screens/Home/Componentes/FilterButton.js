@@ -41,6 +41,7 @@ export default function FilterSelect(){
     setFilter('');
     setCategory('');
     setSize('');
+    dispatch(getFiltered('all'))
   }
 
   function handleFilterChange(e){

@@ -1,5 +1,5 @@
 import React, { useEffect, useState }	from 'react'
-import {View, StyleSheet, Text, Alert} from 'react-native'
+import {View, StyleSheet, Text, Alert,ActivityIndicator,TouchableOpacity} from 'react-native'
 import { NativeBaseProvider,Button,Icon, Input } from 'native-base'
 import {useNavigation} from '@react-navigation/native'
 import InputsLogin from './Componentes/InpuntsLogin'
@@ -8,15 +8,18 @@ import { forgotPassword, getLogin, getUser } from '../../Store/Actions'
 import { useDispatch, useSelector } from 'react-redux'
 
 
+
 function ForgetPassword(){
 
     const navigation = useNavigation();
     const [email,onChangeEmail] = useState("")
     const data = { email: email}
-
     const dispatch = useDispatch();
-    
-function notexistsEmail(){
+    const [loading, setLoading]=useState(false)
+    const [visible,setVisible]=useState(100)
+
+
+    function notexistsEmail(){
       return(
       Alert.alert(
         "ERROR",
@@ -26,6 +29,8 @@ function notexistsEmail(){
         ]
       )
   
+
+
     )};
   
 
@@ -38,21 +43,48 @@ useEffect(() => {
   const user = useSelector((state=>(state.users)))  
 
 
+
+
     
-function handlesubmit(){     
+function handlesubmit(){   
+  if(email.length){
+  setLoading(true)
+  setVisible(0)  
   const verifyEmail = user.filter(e=>e.email===email)
      console.log(verifyEmail,"xdxdxd")
   if(!verifyEmail.length){
-        notexistsEmail()
+
+    setTimeout(() => {
+      setLoading(false)
+      setVisible(100)
+      notexistsEmail()
+    }, 2000);
       }else{
+      
       dispatch(forgotPassword(data));      
       dispatch(getLogin(email));  
-      navigation.navigate("MailCode");   
+      setTimeout(() => {
+        setLoading(false)
+        setVisible(100)
+        navigation.navigate("MailCode");
+      }, 2000);
+         
       }
+    }
     }
     
     return(
      <View style={styles.container}>
+       <View opacity={visible}>
+         <View style={{position:'relative', top:30}}>
+         <TouchableOpacity onPress={()=> navigation.goBack()}>
+            <Icon
+             as={<FontAwesome5  name="angle-left"/>}
+             size="sm"
+             m={2}
+               />
+               </TouchableOpacity>
+         </View>
         <View style={styles.move}>
        
           <Text style={styles.text}>Ingrese email de la cuenta</Text>
@@ -81,7 +113,10 @@ function handlesubmit(){
                     Enviar
                 </Button>
             </View>
-        
+            </View>
+            <View style={styles.loading}>
+            <ActivityIndicator size="large" color="#00d2c6" animating={loading}/>
+            </View>
     </View>
     )
 
@@ -109,6 +144,10 @@ const styles = StyleSheet.create({
   buttonDesing:{
     backgroundColor:"#00d2c6"
   },
+  loading:{
+    position:'relative',
+    top:160,
+ }
   
   })
 

@@ -20,13 +20,19 @@ import { getLogin, getUser } from "../../Store/Actions/index";
 import bcrypt from "bcryptjs";
 import { FontAwesome5, MaterialIcons } from "@expo/vector-icons";
 
-const Login = () => {
+function Login() {
   const dispatch = useDispatch();
   const [email, onChangeEmail] = useState("");
   const [password, onChangePassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [visible, setVisible] = useState(100);
   const [show, setShow] = React.useState(false);
+
+  useEffect(() => {
+    dispatch(getUser());
+  }, [dispatch]);
+
+  const user = useSelector((state) => state.users);
 
   function errorAlert() {
     return Alert.alert(
@@ -36,33 +42,29 @@ const Login = () => {
     );
   }
 
-  useEffect(() => {
-    dispatch(getUser());
-  }, [dispatch]);
-
-  const user = useSelector((state) => state.users);
-
   async function handlesubmit() {
-    setLoading(true);
-    setVisible(0);
-    const verifyEmail = user.filter((e) => e.email === email);
-    const passVerify = verifyEmail.map((e) => e.password).toString();
-    const verifyPassword = await bcrypt.compare(password, passVerify);
-    //console.log(password)
-    //console.log(verifyPassword, "pass")
-    //console.log(passVerify)
-    //console.log(verifyEmail, "email")
+    if (email.length && password.length) {
+      setLoading(true);
+      setVisible(0);
+      const verifyEmail = user.filter((e) => e.email === email);
+      const passVerify = verifyEmail.map((e) => e.password).toString();
+      const verifyPassword = await bcrypt.compare(password, passVerify);
+      //console.log(password)
+      //console.log(verifyPassword, "pass")
+      //console.log(passVerify)
+      //console.log(verifyEmail, "email")
 
-    dispatch(getLogin(email));
-    console.log("soy el email en login", email);
-    if (verifyPassword === true) {
-      setLoading(false);
-      setVisible(100);
-      navigation.navigate("HomeScreen");
-    } else {
-      setLoading(false);
-      setVisible(100);
-      errorAlert();
+      dispatch(getLogin(email));
+
+      if (verifyPassword === true) {
+        setLoading(false);
+        setVisible(100);
+        navigation.navigate("HomeScreen");
+      } else {
+        setLoading(false);
+        setVisible(100);
+        errorAlert();
+      }
     }
   }
   const navigation = useNavigation();
@@ -156,7 +158,7 @@ const Login = () => {
       </View>
     </View>
   );
-};
+}
 export default () => {
   return (
     <NativeBaseProvider>

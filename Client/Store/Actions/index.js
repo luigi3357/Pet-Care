@@ -3,7 +3,7 @@ import axios from "axios";
 import ACTION_TYPES from "./ActionTypes.js";
 import { fetchData, fetchSuccess, fetchError } from "./ApiAction";
 
-export const localhost = "192.168.0.6"; //'192.168.0.11'
+export const localhost = "192.168.65.104"; //'192.168.0.11'
 
 export const getUser = (payload) => (dispatch) => {
   dispatch(fetchData());
@@ -162,24 +162,31 @@ export function applyFilters() {
   };
 }
 
+// export function getFiltered(filter){
+//   return function(dispatch){
+//     axios.get(`http://${localhost}:3001/orderAndFilter`,
+//     {
+//       params : {
+//         order : filter
+//       }
+//     }).then((res)=>{
+//       dispatch({
+//         type : ACTION_TYPES.GET_FILTERED,
+//         payload : res.data
+//       })
+//       .then((res) => {
+//         dispatch({
+//           type: ACTION_TYPES.GET_FILTERED,
+//           payload: res.data,
+//         });
+//       });
+//   }
+
 export function getFiltered(filter) {
   return function (dispatch) {
-    axios
-      .get(`http://${localhost}:3001/orderAndFilter`, {
-        params: {
-          order: filter,
-        },
-      })
-      .then((res) => {
-        dispatch({
-          type: ACTION_TYPES.GET_FILTERED,
-          payload: res.data,
-        }).then((res) => {
-          dispatch({
-            type: ACTION_TYPES.GET_FILTERED,
-            payload: res.data,
-          });
-        });
-      });
+    dispatch({
+      type: ACTION_TYPES.GET_FILTERED,
+      payload: filter,
+    });
   };
 }
