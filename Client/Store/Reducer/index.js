@@ -108,14 +108,8 @@ const apiReducer = (state = initialState, action) => {
       });
       return {
         ...state,
-        filtered_posts: new_filtered_posts
+        filtered_posts: new_filtered_posts,
       };
-    case ACTION_TYPES.GET_FILTERED:
-      return {
-        ...state,
-        filtered_posts: action.payload,
-      };
-
     case ACTION_TYPES.GET_FILTERED:
       return {
         ...state,
