@@ -37,7 +37,7 @@ function App() {
 
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
-      {/* <Stack.Screen name="LandingPage" component={LandingPage} /> */}
+      <Stack.Screen name="LandingPage" component={LandingPage} /> 
       <Stack.Screen name="Login" component={Login} />
       <Stack.Screen name="MailCode" component={MailCode} />
       <Stack.Screen name="ForgetPassword" component={ForgetPassword} />
@@ -49,7 +49,7 @@ function App() {
       <Stack.Screen name="Form" component={FormCard} />
       <Stack.Screen name="ServicioForm" component={ServicioForm} />
       <Stack.Screen name="Payment" component={Payment} /> 
-       <Stack.Screen name="Profile" component={Profile} />
+      <Stack.Screen name="Profile" component={Profile} />
     </Stack.Navigator>
   );
 }

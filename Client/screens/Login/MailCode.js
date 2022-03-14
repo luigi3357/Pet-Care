@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import {View, StyleSheet,Text, Alert,ActivityIndicator} from 'react-native'
+import {View, StyleSheet,Text, Alert,ActivityIndicator,TouchableOpacity} from 'react-native'
 import { NativeBaseProvider,Button,Icon, Input } from 'native-base'
 import {useNavigation} from '@react-navigation/native'
 import {FontAwesome5} from '@expo/vector-icons'
@@ -40,6 +40,7 @@ function errorAlert(){
     
 
     function handlesubmit(){ 
+      if(token.length){
       setLoading(true)
       setVisible(0)
      dispatch(getLogin(user.email))
@@ -55,12 +56,22 @@ function errorAlert(){
           setVisible(100)
           errorAlert()
         }
+      }
     }
     
 
     return(
      <View style={styles.container}>
         <View opacity={visible}>
+        <View style={{position:'relative', top:30}}>
+         <TouchableOpacity onPress={()=> navigation.goBack()}>
+            <Icon
+             as={<FontAwesome5  name="angle-left"/>}
+             size="sm"
+             m={2}
+               />
+               </TouchableOpacity>
+         </View>
         <View style={styles.move}>
         <Text style={styles.text}>Ingrese codigo enviado</Text>
             <Input
