@@ -13,7 +13,7 @@ import { Octicons } from "@expo/vector-icons";
 
 export default function PostCard({
   id,
-  autorId,
+  authorId,
   date,
   title,
   image = require("../../../assets/profile.jpg"),
@@ -45,7 +45,7 @@ export default function PostCard({
         }}
       >
         <TouchableOpacity
-          onPress={() => navigation.navigate("Profile", autorId)}
+          onPress={() => {navigation.navigate("Profile", authorId)}}
         >
           <Image
             style={{

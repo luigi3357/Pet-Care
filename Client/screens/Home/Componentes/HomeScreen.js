@@ -23,8 +23,8 @@ export default function HomeScreens() {
   useEffect(() => {
     setInterval(() => {
       if(filtered_posts.length>0){
-        }
         setLoading(false)
+      }
       }, 2000);
     }, [filtered_posts]);
 
@@ -48,6 +48,7 @@ export default function HomeScreens() {
           return (
             <PostCard
             id={post.id}
+            authorId={post.author.id}
             key={post.id}
             title={post.title}
             description={post.description}
