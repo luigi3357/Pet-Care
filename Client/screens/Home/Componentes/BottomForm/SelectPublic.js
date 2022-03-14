@@ -1,11 +1,24 @@
 import React from 'react'
 import {Text,Image, TouchableOpacity, View,StyleSheet,ImageBackground} from 'react-native'
 import { useNavigation } from "@react-navigation/native";
+import { AntDesign } from "@expo/vector-icons";
+
 export function SelectPublic () {
     const navigation = useNavigation();
 return (
-   
     <View style={styles.container}>
+   <View style={{zIndex:1, position:'absolute',flex:1,height:100,width:100,opacity:0.5,left:0,marginTop:340,
+
+}}>
+
+   
+   <TouchableOpacity 
+      style={{marginTop:10}}
+      onPress={() => navigation.goBack()}>
+              <AntDesign name={"left"} size={100} color="black" />
+            </TouchableOpacity>
+            </View>
+
 <View style={styles.containerbtn}>
     <TouchableOpacity
     onPress={()=> 
