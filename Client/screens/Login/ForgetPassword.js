@@ -61,19 +61,9 @@ function ForgetPassword() {
 
   return (
     <View style={styles.container}>
-      <Header
-      backgroundColor="#00d2c6"
-        placement="left"
-        containerStyle={{backgroundColor:'red'}}
-        leftComponent={
-          <TouchableOpacity onPress={() => navigation.goBack()}>
-            <Icon as={<FontAwesome5 name="angle-left" />} size="sm" m={2} />
-          </TouchableOpacity>
-        }
-        centerComponent={<Text style={styles.HeaderTitle}>RECUPERAR CONTRASEÑA</Text>}
-      />
+      
 
-      {/* <View opacity={visible}>
+      <View opacity={visible}>
         <View style={{ position: "relative", top: 30 }}>
           <TouchableOpacity onPress={() => navigation.goBack()}>
             <Icon as={<FontAwesome5 name="angle-left" />} size="sm" m={2} />
@@ -108,7 +98,7 @@ function ForgetPassword() {
       </View>
       <View style={styles.loading}>
         <ActivityIndicator size="large" color="#00d2c6" animating={loading} />
-      </View> */}
+      </View>
     </View>
   );
 }
