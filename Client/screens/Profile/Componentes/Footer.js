@@ -21,6 +21,7 @@ import {
 } from "@expo/vector-icons";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { useNavigation } from "@react-navigation/native";
+
 function Footer() {
   const navigation = useNavigation();
   const [selected, setSelected] = React.useState(1);
@@ -78,6 +79,16 @@ function Footer() {
               </TouchableOpacity>
               <Text color="#000" fontSize="12">
                 Perfil
+              </Text>
+            </Center>
+          </Pressable>
+          <Pressable  opacity={selected === 0 ? 1 : 1} py="3" flex={1} onPress={() => setSelected(0)}>
+            <Center>
+                <TouchableOpacity onPress={()=> navigation.navigate("Maps")}>
+              <Icon mb="1" as={<MaterialCommunityIcons name={"google-maps"} />} color="#00D2C6"size="sm" />
+              </TouchableOpacity>
+              <Text color="#00D2C6"fontSize="12">
+                Location
               </Text>
             </Center>
           </Pressable>
