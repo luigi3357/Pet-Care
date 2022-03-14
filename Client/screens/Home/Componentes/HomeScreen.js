@@ -1,5 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { ScrollView, StyleSheet, View, TouchableOpacity, Text, ActivityIndicator, KeyboardAvoidingViewBase } from "react-native";
+import {
+  ScrollView,
+  StyleSheet,
+  View,
+  TouchableOpacity,
+  Text,
+  ActivityIndicator,
+  KeyboardAvoidingViewBase,
+} from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAllPosts } from "../../../Store/Actions";
 import Footer from "../../Profile/Componentes/Footer";
@@ -68,32 +76,35 @@ export default function HomeScreens() {
     </>}
    
     </SafeAreaView>
-    );
-  }
-  const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      
-      alignItems: "flex-end",
-      justifyContent: "flex-end",
-    },button: {
-      backgroundColor: "#8aF",
-      marginTop: 0.5,
-      color: "#FFF",
-      display: "flex",
-      alignSelf: "flex-end",
-      // ,flex:1
-      padding: 4,
-    },
-    loading:{
-      position: "absolute",
-      top: "50%",
-      alignSelf: "center"
-    }
-  });
-  
-  {/* <View>
+  );
+}
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+
+    alignItems: "flex-end",
+    justifyContent: "flex-end",
+  },
+  button: {
+    backgroundColor: "#8aF",
+    marginTop: 0.5,
+    color: "#FFF",
+    display: "flex",
+    alignSelf: "flex-end",
+    // ,flex:1
+    padding: 4,
+  },
+  loading: {
+    position: "absolute",
+    top: "50%",
+    alignSelf: "center",
+  },
+});
+
+{
+  /* <View>
  <TouchableOpacity title="goToPay" onPress={() => navigation.navigate("Payment")}>  
  <Text style={styles.button}>Contratar!</Text> 
  </TouchableOpacity>  
- </View> */}
+ </View> */
+}

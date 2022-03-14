@@ -18,6 +18,8 @@ import * as Linking from "expo-linking";
 import Review from "./screens/Review/Review";
 import { SelectPublic } from "./screens/Home/Componentes/BottomForm/SelectPublic";
 import ServicioForm from "./screens/Home/Componentes/BottomForm/ServicioForm";
+import Maps from "./screens/Maps/Maps";
+
 const Stack = createStackNavigator();
 
 function App() {
@@ -48,8 +50,9 @@ function App() {
       <Stack.Screen name="SelectPublic" component={SelectPublic} />
       <Stack.Screen name="Form" component={FormCard} />
       <Stack.Screen name="ServicioForm" component={ServicioForm} />
-      <Stack.Screen name="Payment" component={Payment} />
+      <Stack.Screen name="Payment" component={Payment} /> 
       <Stack.Screen name="Profile" component={Profile} />
+      <Stack.Screen name="Maps" component={Maps}/>
     </Stack.Navigator>
   );
 }
