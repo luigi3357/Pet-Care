@@ -7,7 +7,8 @@ const initialState = {
   all_posts: [],
   filtered_posts: [],
   checkout_link: "",
-  login: [],
+  login:[],
+  activeFilters: []
 };
 
 const apiReducer = (state = initialState, action) => {
@@ -80,7 +81,34 @@ const apiReducer = (state = initialState, action) => {
       return {
         ...state,
         filtered_posts: action.payload,
-      };
+      }
+    case ACTION_TYPES.ADD_FILTER:
+      return {
+        ...state,
+        activeFilters: [...state.activeFilters, action.payload],
+      }
+    case ACTION_TYPES.CLEAN_FILTER:
+      return {
+        ...state,
+        activeFilters: [],
+      }
+    case ACTION_TYPES.APPLY_FILTERS:
+      let posts_copy = [...state.all_posts]
+      let new_filtered_posts = posts_copy.filter((v)=>{
+        if(state.activeFilters.includes(v.type)||state.activeFilters.includes(v.size)){
+          return true;
+        }
+        for (const filter of state.activeFilters) {
+          if(v.description.includes(filter) || v.title.includes(filter)){return true}
+          
+        }
+      })
+      console.log(new_filtered_posts)
+
+      return {
+        ...state,
+        filtered_posts: new_filtered_posts,
+      }
     default:
       return state;
   }
