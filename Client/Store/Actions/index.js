@@ -140,13 +140,38 @@ export function fetchAllPosts() {
   };
 }
 
-export function getFiltered(filter) {
-  return function (dispatch) {
-    axios
-      .get(`http://${localhost}:3001/orderAndFilter`, {
-        params: {
-          order: filter,
-        },
+/*        ADDING FILTERS         */
+
+export function storeFilter(newFilter){
+  return {
+    type: ACTION_TYPES.ADD_FILTER,
+    payload: newFilter
+  }
+}
+export function cleanUpFilters(){
+  return {
+    type: ACTION_TYPES.CLEAN_FILTER
+  }
+}
+export function applyFilters(){
+  return {
+    type: ACTION_TYPES.APPLY_FILTERS
+  }
+}
+
+
+
+export function getFiltered(filter){
+  return function(dispatch){
+    axios.get(`http://${localhost}:3001/orderAndFilter`,
+    {
+      params : {
+        order : filter
+      }
+    }).then((res)=>{
+      dispatch({
+        type : ACTION_TYPES.GET_FILTERED,
+        payload : res.data
       })
       .then((res) => {
         dispatch({
@@ -154,5 +179,5 @@ export function getFiltered(filter) {
           payload: res.data,
         });
       });
-  };
-}
+  }
+    )}}

@@ -24,17 +24,10 @@ import { useNavigation } from "@react-navigation/native";
 function Footer() {
   const navigation = useNavigation();
   const [selected, setSelected] = React.useState(1);
-  return (
-    <NativeBaseProvider style={{ backgroundColor: "#f9f9f9" }}>
-      <Box bg="#f9f9f9" safeAreaTop width="100%" alignSelf="center">
-        <Center flex={1}></Center>
-        <HStack bg="#f9f9f9" alignItems="center" safeAreaBottom shadow={6}>
-          <Pressable
-            opacity={selected === 0 ? 1 : 1}
-            py="3"
-            flex={1}
-            onPress={() => setSelected(0)}
-          >
+  return <NativeBaseProvider >
+      <Box flex={1} bg="red"  width="100%"  alignSelf="center" >
+        <HStack bg="#f9f9f9" alignItems="center"  shadow={1}>
+          <Pressable  opacity={selected === 0 ? 1 : 1} py="3" flex={1} onPress={() => setSelected(0)}>
             <Center>
               <TouchableOpacity
                 onPress={() => navigation.navigate("HomeScreen")}
@@ -59,8 +52,11 @@ function Footer() {
             <TouchableOpacity
               onPress={() => navigation.navigate("SelectPublic")}
             >
-              <AntDesign name="pluscircle" size={45} color="black" />
+              <AntDesign name="pluscircle" size={24} color="black" />
             </TouchableOpacity>
+            <Text color="#000" fontSize="12">
+              Inicio
+            </Text>
           </Center>
           <Pressable
             opacity={selected === 3 ? 1 : 1}
