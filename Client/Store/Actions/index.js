@@ -3,7 +3,7 @@ import axios from 'axios';
 import ACTION_TYPES from './ActionTypes.js';
 import {fetchData, fetchSuccess, fetchError} from './ApiAction';
 
-const localhost ='192.168.65.107' ; //'192.168.0.11'
+const localhost ='192.168.100.16' ; //'192.168.0.11'
 
 
 
