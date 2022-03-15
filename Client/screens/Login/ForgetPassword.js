@@ -25,7 +25,7 @@ function ForgetPassword() {
 
   function notexistsEmail() {
     return Alert.alert("ERROR", "El email ingresado es incorrecto", [
-      { text: "OK", onPress: () => console.log("OK") },
+      { text: "OK", onPress: () => onChangeEmail("") },
     ]);
   }
 
@@ -61,18 +61,31 @@ function ForgetPassword() {
 
   return (
     <View style={styles.container}>
-      
-
-      <View opacity={visible}>
-        <View style={{ position: "relative", top: 30 }}>
+      <Header
+        backgroundColor="#00d2c6"
+        placement="left"
+        leftComponent={
           <TouchableOpacity onPress={() => navigation.goBack()}>
             <Icon as={<FontAwesome5 name="angle-left" />} size="sm" m={2} />
           </TouchableOpacity>
-        </View>
+        }
+        centerContainerStyle={{ justifyContent: "center" }}
+        centerComponent={
+          <Text style={styles.HeaderTitle}>RECUPERAR CONTRASEÑA</Text>
+        }
+      />
+
+      <View opacity={visible}>
+        {/* <View style={{ position: "relative", top: 30 }}>
+          <TouchableOpacity onPress={() => navigation.goBack()}>
+            <Icon as={<FontAwesome5 name="angle-left" />} size="sm" m={2} />
+          </TouchableOpacity>
+        </View> */}
         <View style={styles.move}>
-          <Text style={styles.text}>Ingrese email de la cuenta</Text>
+          <Text style={styles.text}>Ingresá el email de tu cuenta</Text>
           <Input
             type="text"
+            value={email}
             InputLeftElement={
               <Icon
                 as={<FontAwesome5 name="user" />}
@@ -87,7 +100,7 @@ function ForgetPassword() {
               />
             }
             onChangeText={onChangeEmail}
-            placeholder="Usuario o email"
+            placeholder="Email"
           />
         </View>
         <View style={styles.buttonStyle}>
@@ -110,28 +123,33 @@ const styles = StyleSheet.create({
   },
   move: {
     marginTop: 100,
+    marginHorizontal: 20,
   },
   text: {
-    marginLeft: 15,
+    fontSize: 14,
+    marginBottom: 10,
   },
   buttonStyle: {
     marginRight: 15,
     marginLeft: 15,
     marginTop: 30,
+    width: 100,
+    alignSelf: "center",
   },
   buttonDesing: {
     backgroundColor: "#00d2c6",
   },
   loading: {
-    position: "relative",
-    top: 160,
+    flex:1,
+    position: "absolute",
+    top: "50%",
+    alignSelf: "center",
   },
   HeaderTitle: {
-    fontSize:16,
+    fontSize: 16,
     fontWeight: "bold",
-    width: "60%",
-    backgroundColor: 'yellow'
-  }
+    width: 200,
+  },
 });
 
 export default () => {

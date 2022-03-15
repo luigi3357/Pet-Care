@@ -2,7 +2,7 @@ const { User, Post, Review } = require("../src/db");
 
 async function createPost(posteos) {
   try {
-    const { title, description, email, type, size } = posteos;
+    const { title, description, email, type, size, price } = posteos;
 
     const user = await User.findOne({
       where: {
@@ -25,6 +25,7 @@ async function createPost(posteos) {
       author_id: user.id,
       type,
       size,
+      price
     });
   } catch (error) {
     console.error(error);

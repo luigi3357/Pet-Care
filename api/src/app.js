@@ -4,6 +4,11 @@ const bodyParser = require("body-parser");
 const morgan = require("morgan");
 const routes = require("./routes/index.js");
 
+var session = require('express-session');
+var SQLiteStore = require('connect-sqlite3')(session);
+var session = require('express-session');
+var passport = require('passport');
+
 require("./db.js");
 
 const server = express();
@@ -25,6 +30,14 @@ server.use((req, res, next) => {
   res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
   next();
 });
+
+server.use(session({
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: false,
+  // store: new SQLiteStore({ db: 'sessions.db', dir: './var/db' })
+}));
+server.use(passport.authenticate('session'));
 
 server.use("/", routes);
 
