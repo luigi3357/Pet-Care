@@ -30,11 +30,8 @@ router.post("/checkout", (req, res) => {
                  currency_id: 'ARS'
              }
          ],
-         payer: {
-           email: 'demo@mail.com'
-         },
          back_urls:{
-               "success": "https://petcare.com/success",
+               "success": "https://www.google.com/success",
               "pending": "https://petcare.com/pending",   
               "failure": "https://petcare.com/failure"
             },

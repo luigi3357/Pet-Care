@@ -9,6 +9,7 @@ const initialState = {
   checkout_link: "",
   login: [],
   activeFilters: [],
+  order: null,
 };
 
 const apiReducer = (state = initialState, action) => {
@@ -117,35 +118,39 @@ const apiReducer = (state = initialState, action) => {
       };
     case ACTION_TYPES.GET_FILTERED:
       let filtered_posts_copy = [...state.filtered_posts];
-      let orderedPosts
-      if(action.payload === "descRating"){
+      let orderedPosts;
+      if (action.payload === "descRating") {
         orderedPosts = filtered_posts_copy.sort((a, b) => {
-            if (a.author.rating > b.author.rating) return -1;
-            if (a.author.rating < b.author.rating) return 1;
-            return 0;
-          })
-      }else if(action.payload === "ascRating"){
+          if (a.author.rating > b.author.rating) return -1;
+          if (a.author.rating < b.author.rating) return 1;
+          return 0;
+        });
+      } else if (action.payload === "ascRating") {
         orderedPosts = filtered_posts_copy.sort((a, b) => {
-           if (a.author.rating > b.author.rating) return 1;
-           if (a.author.rating < b.author.rating) return -1;
-           return 0;
-         })
-      }else if(action.payload === "ascPrice"){
+          if (a.author.rating > b.author.rating) return 1;
+          if (a.author.rating < b.author.rating) return -1;
+          return 0;
+        });
+      } else if (action.payload === "ascPrice") {
         orderedPosts = filtered_posts_copy.sort((a, b) => {
-             if (a.price > b.price) return 1;
-             if (a.price < b.price) return -1;
-             return 0;
-          })
-      }else if(action.payload === "descPrice"){
+          if (Number(a.price) > Number(b.price)) return 1;
+          if (Number(a.price) < Number(b.price)) return -1;
+          return 0;
+        });
+      } else if (action.payload === "descPrice") {
         orderedPosts = filtered_posts_copy.sort((a, b) => {
-            if (a.price > b.price) return -1;
-            if (a.price < b.price) return 1;
-            return 0;
-          })
+          if (Number(a.price) > Number(b.price)) return -1;
+          if (Number(a.price) < Number(b.price)) return 1;
+          return 0;
+        });
+      } else {
+        console.log(action.payload, 'reducer')
+        return { ...state, filtered_posts: state.all_posts, order:'' };
       }
       return {
         ...state,
-        filtered_posts: orderedPosts
+        filtered_posts: orderedPosts,
+        order: action.payload,
       };
     default:
       return state;

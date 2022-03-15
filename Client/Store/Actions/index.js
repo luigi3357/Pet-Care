@@ -188,11 +188,11 @@ export function deleteSingleFilter(filter) {
 //       });
 //   }
 
-export function getFiltered(filter) {
+export function getFiltered(order) {
   return function (dispatch) {
     dispatch({
       type: ACTION_TYPES.GET_FILTERED,
-      payload: filter,
+      payload: order,
     });
   };
 }

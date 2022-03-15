@@ -144,3 +144,85 @@ text: {
 }
 
 })
+
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+/* const dispatch = useDispatch() */
+
+    /* const [carer, onChangeCarer] = useState("")
+    const [amount, onChangeAmount] = useState("") */
+    //const [url, setUrl] = useState(null)
+
+   // const checkout_link = useSelector ((state) => state.checkout_link) 
+
+    
+    /* const data = { carer: carer, amount: amount};
+
+    const checkout_link = useSelector ((state) => state.checkout_link) */
+
+    /* function handlePayment (e){
+        console.log(data, "handlePayment")
+        dispatch(postPayment(data))
+        //console.log(data, "afterPostpayment") 
+    }  */
+
+    /* useEffect(() => {
+      if(checkout_link){
+        Linking.openURL(checkout_link)
+      }
+    },[checkout_link]) */
+
+    // useEffect(() => {
+    //   async function sendServer(){
+    //     let response = await fetch (`http://192.168.0.39:3001/mercadopago/checkout`, {
+    //       method: `POST`,
+    //       headers: {
+    //         Accept: "aplication/json",
+    //         "Content-Type": "application/json"
+    //       },
+    //       body: JSON.stringify({
+    //         name: props.route.param.name,
+    //         price: props.route.param.price
+    //       })
+    //     });
+    //     let json=await response.json;
+    //     console.log(json, "...................")
+    //     setUrl(json)
+    //   }
+    //   sendServer();
+    // },[]);
+
+    //
+    // async function stateChange(state)
+    // {
+    //   console.log(state);
+    //   let url=state.url;
+    //   if(state.canGoBack == true && !url.includes("mercadopago")){
+    //     if(url.includes("approved")){
+    //       props.navigation.navigate("Tracking");
+    //     }else{
+    //       props.navigation.navigate("HomeScreen")
+    //     }
+    //   }
+    // }
+
+     {/* <Text>{props.route.params.name},{props.route.params.price}</Text>  */}
+
+          {/* {checkout_link && <WebView
+              style={styles.container}
+              originWhitelist={['*']}
+              source={{ uri: checkout_link}}
+              startLoadingState={true}
+              onNavigationStateChange={state=>stateChange(state)}
+            />} */}
+
+            {/* {url &&
+              <WebView
+              style={styles.container}
+              originWhitelist={['*']}
+              source={{ uri: url }}
+              startLoadingState={true}
+              onNavigationStateChange={state=>stateChange(state)}
+            />
+            } */}
