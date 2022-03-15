@@ -155,7 +155,7 @@ const post = [
     type: "roedores",
     size: "mediano",
     title: "Acerca de Julio Hernandez",
-    price: 50,
+    price: 500,
     description:
       "Hola!! soy Julio Hernandez de Quilmes BA, soy psicólogo de profesión y estoy terminando mi segunda carrera en MV ,trabajo de apoyo en la clínica veterinaria de mi tío así que tengo conocimientos y experiencia necesaria para atender las necesidades de sus mascotas",
   },

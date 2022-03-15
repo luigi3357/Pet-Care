@@ -14,7 +14,7 @@ import {
 } from "../../../../Store/Actions";
 
 const AccordionList = () => {
-  const [order, setOrder] = useState(null);
+  const order = useSelector(state=>state.order)
   const activeFilters = useSelector((state) => state.activeFilters);
   const dispatch = useDispatch();
   const [isExpanded, setisExpanded] = useState({
@@ -34,22 +34,29 @@ const AccordionList = () => {
       dispatch(deleteSingleFilter(new_active_filter))
     }
   }
-  function giveOrder(order){
-    console.log(order)
-    dispatch(getFiltered(order));
-    setOrder(order)
-  }
+  function giveOrder(filtro){
+    console.log(filtro,order)
+    if(order==filtro){
+      dispatch(getFiltered(''));
+    }else{
 
+      dispatch(getFiltered(filtro));
+    }
+  }
+  
   useEffect(() => {
     if (activeFilters.length > 0) {
       dispatch(applyFilters());
-      console.log(activeFilters);
-    }else{
+    }else if(!order){
       dispatch(fetchAllPosts());
     }
   }, [activeFilters]);
-
+  
   function cleanUp() {
+    if(order){
+      
+      dispatch(getFiltered(''));
+    }
     dispatch(cleanUpFilters());
     dispatch(fetchAllPosts());
   }
