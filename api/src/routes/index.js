@@ -1,4 +1,6 @@
 const { Router } = require('express');
+var passport = require('passport');
+var GoogleStrategy = require('passport-google-oidc');
 const { verifyEmail, hash, create, search, compare } = require('../services/login');
 const { key, validate } = require('../services/resetPassword');
 const { sendEmail } = require('../services/SendEmail');
@@ -9,6 +11,7 @@ const ReviewRoutes = require('./reviews');
 const UploadRoutes = require('./uploadform');
 const SearchRoutes = require('./searchBar');
 const FilterRoutes = require('./Filters');
+const AuthRouter = require('./auth');
 
 
 const MercadoPagoRoutes = require("./mercadoPago")
@@ -24,6 +27,7 @@ router.use('/upload', UploadRoutes)
 router.use('/search', SearchRoutes)
 router.use("/mercadoPago", MercadoPagoRoutes)
 router.use("/filter", FilterRoutes)
+router.use('/auth', AuthRouter);
 
 
 
@@ -92,5 +96,6 @@ router.get("/login/:email", async (req, res) => {
         return res.send("error")
     }
 })
+
 
 module.exports = router;

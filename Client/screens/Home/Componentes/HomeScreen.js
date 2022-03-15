@@ -22,12 +22,16 @@ import PublishButton from "./PublishButton";
 
 export default function HomeScreens() {
   const filtered_posts = useSelector((state) => state.filtered_posts);
-  const dispatch = useDispatch();
+
+  const user = useSelector((state) => state.login);
+
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     dispatch(fetchAllPosts());
+  dispatch(getLogin(user.email));
   }, []);
+
   useEffect(() => {
     setInterval(() => {
       if (filtered_posts.length > 0) {

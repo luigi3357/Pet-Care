@@ -5,7 +5,7 @@ import {useNavigation} from '@react-navigation/native'
 import InputsLogin from './Componentes/InpuntsLogin'
 import {FontAwesome5,MaterialIcons} from '@expo/vector-icons'
 import { useDispatch, useSelector } from 'react-redux'
-import { getLogin, resetPassword } from '../../Store/Actions'
+import { getLogin, getUser, resetPassword } from '../../Store/Actions'
 
 
 function NewPassword(){
@@ -21,13 +21,20 @@ function NewPassword(){
     const [visible,setVisible]=useState(100)
 
 
+    function log(){
+     dispatch(getUser())  
+    navigation.navigate("Login")
+}
+
+
+
 function resetAlert(){
         return(
         Alert.alert(
           "Exito",
           "Contraseña cambiada",
           [
-            { text: "OK", onPress: () =>navigation.navigate("Login") }
+            { text: "OK", onPress: () => { log() } }
           ]
         )
     
@@ -45,6 +52,13 @@ function errorAlert(){
         )
     
       )};
+
+
+function minPassword() {
+        Alert.alert("Error", "La contraseña debe tener como minimo 8 caracteres.", [
+          { text: "Ok", onPress: () => navigation.navigate("NewPassword")  },
+        ]);
+      }
     
     
 useEffect(() => {
@@ -56,19 +70,21 @@ useEffect(() => {
    if(password.length && repeatPassword.length){
         setLoading(true)
         setVisible(0)
-   
-       dispatch(resetPassword(data))
-       
-
-          if(password===repeatPassword){
+        if(password.length < 8 ){
+          setLoading(false)
+          setVisible(100)
+          minPassword()}
+          else if(password===repeatPassword){
             setLoading(false)
             setVisible(100)
             resetAlert()
+            dispatch(resetPassword(data))
           }else{
             setLoading(false)
             setVisible(100)
             errorAlert()
           }
+         
         }
       }
       

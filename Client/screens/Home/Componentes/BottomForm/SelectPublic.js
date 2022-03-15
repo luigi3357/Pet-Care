@@ -2,14 +2,29 @@ import React from 'react'
 import {Text,Image, TouchableOpacity, View,StyleSheet,ImageBackground} from 'react-native'
 import { useNavigation } from "@react-navigation/native";
 import { AntDesign } from "@expo/vector-icons";
+import { getLogin } from '../../../../Store/Actions';
+import { useDispatch, useSelector } from 'react-redux';
 
 export function SelectPublic () {
     const navigation = useNavigation();
+    const dispatch = useDispatch;
+    const user = useSelector((state) => state.login);
+    function handleRedirectService(){
+        dispatch(getLogin(user.email));
+        navigation.navigate("ServicioForm")
+        }
+
+        function handleRedirectForm(){
+        dispatch(getLogin(user.email));
+        navigation.navigate("Form")
+        }
+
 return (
     <View style={styles.container}>
    <View style={{zIndex:1, position:'absolute',flex:1,height:100,width:100,opacity:0.5,left:0,marginTop:340,
 
 }}>
+
 
    
    <TouchableOpacity 
@@ -21,8 +36,7 @@ return (
 
 <View style={styles.containerbtn}>
     <TouchableOpacity
-    onPress={()=> 
-        navigation.navigate("Form")}
+    onPress={handleRedirectForm}
     >
 <Text
 style={styles.text}
@@ -36,8 +50,7 @@ source={{uri:'https://www.tqel.es/img/cms/cuidadores_perros.jpg'}}
 
 <View  style={styles.containerbtn}>
 <TouchableOpacity
-onPress={()=> 
-    navigation.navigate("ServicioForm")}
+onPress={handleRedirectService}
 >
 <Text
 style={styles.text}

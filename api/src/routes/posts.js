@@ -30,7 +30,6 @@ router.post('/create', async (req, res, next)=>{
             address,
             phone: Number(phone),
             author_id,
-            
         })
         return res.status(201).send('Publicación creada con éxito')
         

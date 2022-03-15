@@ -22,6 +22,15 @@ import {
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { useNavigation } from "@react-navigation/native";
 
+const user = useSelector((state) => state.login);
+
+
+function handleRedirect(){
+  dispatch(getLogin(user.email));
+  navigation.navigate("SelectPublic")
+}
+
+
 function Footer() {
   const navigation = useNavigation();
   const [selected, setSelected] = React.useState(1);
@@ -63,7 +72,7 @@ function Footer() {
           >
             <Center marginTop={1}>
               <TouchableOpacity
-                onPress={() => navigation.navigate("SelectPublic")}
+                onPress={handleRedirect}
               >
                 <AntDesign name="pluscircle" size={23} color="black" />
               </TouchableOpacity>
