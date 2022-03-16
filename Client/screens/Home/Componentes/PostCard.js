@@ -6,10 +6,13 @@ import {
   Text,
   TouchableOpacity,
   View,
+  ImageBackground,
 } from "react-native";
 import ReviewCard from "./ReviewCard";
 import { useNavigation } from "@react-navigation/native";
 import { Octicons } from "@expo/vector-icons";
+import bgCard from "../../../assets/bgCard.jpg";
+import DetailsPage from "./DetailsPage";
 
 export default function PostCard({
   id,
@@ -33,7 +36,8 @@ export default function PostCard({
   }
 
   return (
-    <View style={styles.container}>
+    // <View style={styles.container}>
+    <ImageBackground source={bgCard} style={[styles.bgCard, styles.container]}>
       <View
         style={{
           display: "flex",
@@ -102,10 +106,27 @@ export default function PostCard({
               color: "white",
               fontStyle: "italic",
               fontSize: 16,
+              backgroundColor: "#005e50",
+              padding: 10,
+              borderRadius: 20,
             }}
           >
             {description}
           </Text>
+
+            {/* Botón a la página de detalles */}
+           <TouchableOpacity title="detailsPage" onPress={()=> navigation.navigate(DetailsPage,{
+            id,
+            authorId,
+            date,
+            title,
+            image,
+            rating,
+            bookings,
+            description,
+            reviews})}>
+            <Text>Detalles</Text>
+          </TouchableOpacity>
 
           <View style={styles.detailsReviews}>
             <ScrollView
@@ -125,13 +146,25 @@ export default function PostCard({
                   );
                 })
               ) : (
-                <Text style={styles.text}>El usuario aún no posee reviews</Text>
+                <Text
+                  style={{
+                    flex: 1,
+                    fontSize: 16,
+                    fontWeight: "bold",
+                    alignItems: "center",
+                    alignSelf: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  El usuario aún no posee reviews
+                </Text>
               )}
             </ScrollView>
           </View>
         </View>
       ) : null}
-    </View>
+    </ImageBackground>
+    // {/* </View> */}
   );
 }
 
@@ -140,7 +173,6 @@ const styles = StyleSheet.create({
     display: "flex",
     backgroundColor: "#00d2c6",
     minHeight: 200,
-
     justifyContent: "center",
     alignItems: "flex-start",
     minWidth: 300,
@@ -166,7 +198,7 @@ const styles = StyleSheet.create({
     textShadowOffset: { width: 1, height: 1 },
   },
   button: {
-    backgroundColor: "#8aF",
+    backgroundColor: "#7C169E",
     marginTop: 1,
     textTransform: "uppercase",
     color: "#FFF",
@@ -189,5 +221,10 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignContent: "center",
     justifyContent: "center",
+  },
+  bgCard: {
+    flex: 1,
+    justifyContent: "center",
+    resizeMode: "contain",
   },
 });
