@@ -55,18 +55,28 @@ function Footer() {
               </Text>
             </Center>
           </Pressable>
-          <Center>
-            <TouchableOpacity
-              onPress={() => navigation.navigate("SelectPublic")}
-            >
-              <AntDesign name="pluscircle" size={35} color="black" />
-            </TouchableOpacity>
-          </Center>
           <Pressable
-            opacity={selected === 3 ? 1 : 1}
-            py="2"
+            opacity={selected === 0 ? 1 : 1}
+            py="3"
             flex={1}
-            onPress={() => setSelected(3)}
+            onPress={() => setSelected(0)}
+          >
+            <Center marginTop={1}>
+              <TouchableOpacity
+                onPress={() => navigation.navigate("SelectPublic")}
+              >
+                <AntDesign name="pluscircle" size={23} color="black" />
+              </TouchableOpacity>
+              <Text color="#000" fontSize="12" marginTop={1}>
+                Crear
+              </Text>
+            </Center>
+          </Pressable>
+          <Pressable
+            opacity={selected === 0 ? 1 : 1}
+            py="3"
+            flex={1}
+            onPress={() => setSelected(0)}
           >
             <Center>
               <TouchableOpacity onPress={() => navigation.navigate("Profile")}>
@@ -82,12 +92,22 @@ function Footer() {
               </Text>
             </Center>
           </Pressable>
-          <Pressable  opacity={selected === 0 ? 1 : 1} py="3" flex={1} onPress={() => setSelected(0)}>
+          <Pressable
+            opacity={selected === 0 ? 1 : 1}
+            py="3"
+            flex={1}
+            onPress={() => setSelected(0)}
+          >
             <Center>
-                <TouchableOpacity onPress={()=> navigation.navigate("Maps")}>
-              <Icon mb="1" as={<MaterialCommunityIcons name={"google-maps"} />} color="#00D2C6"size="sm" />
+              <TouchableOpacity onPress={() => navigation.navigate("Maps")}>
+                <Icon
+                  mb="1"
+                  as={<MaterialCommunityIcons name={"google-maps"} />}
+                  color="#000"
+                  size="sm"
+                />
               </TouchableOpacity>
-              <Text color="#00D2C6"fontSize="12">
+              <Text color="#000" fontSize="12">
                 Location
               </Text>
             </Center>

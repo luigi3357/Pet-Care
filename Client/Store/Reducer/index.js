@@ -7,8 +7,9 @@ const initialState = {
   all_posts: [],
   filtered_posts: [],
   checkout_link: "",
-  login:[],
-  activeFilters: []
+  login: [],
+  activeFilters: [],
+  order: null,
 };
 
 const apiReducer = (state = initialState, action) => {
@@ -77,6 +78,7 @@ const apiReducer = (state = initialState, action) => {
         all_posts: action.payload,
         filtered_posts: action.payload,
       };
+<<<<<<< HEAD
     // case ACTION_TYPES.GET_FILTERED:
     //   return {
     //     ...state,
@@ -84,33 +86,82 @@ const apiReducer = (state = initialState, action) => {
     //   }
 
     case ACTION_TYPES.GET_FILTERED:
+=======
+    case ACTION_TYPES.ADD_FILTER:
       return {
         ...state,
-        
-        filtered_posts: action.payload=== "all" ? all_posts :
-        action.payload === "descRating" ? filtered_posts.sort((a, b)=>{
-          if (a.rating > b.rating) return -1;
-          if (a.rating < b.rating) return 1;
-          return 0
-      }):
-        action.payload === "ascRating" ? filtered_posts.sort((a, b)=>{
-          if (a.rating > b.rating) return 1;
-          if (a.rating < b.rating) return -1;
+        activeFilters: [...state.activeFilters, action.payload],
+      };
+    case ACTION_TYPES.DELETE_SINGLE_FILTER:
+      return {
+        ...state,
+        activeFilters: action.payload,
+      };
+    case ACTION_TYPES.CLEAN_FILTER:
+>>>>>>> 77598d2d7b35248c2f80ce4b2373e57269daa2ba
+      return {
+        ...state,
+        activeFilters: [],
+      };
+    case ACTION_TYPES.APPLY_FILTERS:
+      let all_posts_copy = [...state.all_posts];
+      const new_filtered_posts = all_posts_copy.filter((post) => {
+        if (
+          state.activeFilters.includes(post.type) ||
+          state.activeFilters.includes(post.size)
+        ) {
+          return true;
+        }
+        for (const filter of state.activeFilters) {
+          if (
+            post.description.includes(filter) ||
+            post.title.includes(filter)
+          ) {
+            return true;
+          }
+        }
+        return false;
+      });
+      return {
+        ...state,
+        filtered_posts: new_filtered_posts,
+      };
+    case ACTION_TYPES.GET_FILTERED:
+      let filtered_posts_copy = [...state.filtered_posts];
+      let orderedPosts;
+      if (action.payload === "descRating") {
+        orderedPosts = filtered_posts_copy.sort((a, b) => {
+          if (a.author.rating > b.author.rating) return -1;
+          if (a.author.rating < b.author.rating) return 1;
           return 0;
-      }):
-        action.payload === "ascPrice" ? filtered_posts.sort((a, b)=>{
-          if (a.price > b.price) return 1;
-          if (a.price < b.price) return -1;
+        });
+      } else if (action.payload === "ascRating") {
+        orderedPosts = filtered_posts_copy.sort((a, b) => {
+          if (a.author.rating > b.author.rating) return 1;
+          if (a.author.rating < b.author.rating) return -1;
           return 0;
-      }):
-        action.payload === "descPrice" ? filtered_posts.sort((a, b)=>{
-          if (a.price > b.price) return -1;
-          if (a.price < b.price) return 1;
+        });
+      } else if (action.payload === "ascPrice") {
+        orderedPosts = filtered_posts_copy.sort((a, b) => {
+          if (Number(a.price) > Number(b.price)) return 1;
+          if (Number(a.price) < Number(b.price)) return -1;
           return 0;
-      }):
-        action.payload === "pequeño" || action.payload === "mediano" || action.payload ==="grande" ? filtered_posts.filter(el=> el.size.toLowerCase() === action.payload.toLowerCase()):
-        action.payload === "perro" || action.payload === "gato" || action.payload === "aves" || action.payload === "roedores" ? filtered_posts.filter(el=> el.types.toLowerCase() === action.payload.toLowerCase()): all_posts
+        });
+      } else if (action.payload === "descPrice") {
+        orderedPosts = filtered_posts_copy.sort((a, b) => {
+          if (Number(a.price) > Number(b.price)) return -1;
+          if (Number(a.price) < Number(b.price)) return 1;
+          return 0;
+        });
+      } else {
+        console.log(action.payload, 'reducer')
+        return { ...state, filtered_posts: state.all_posts, order:'' };
       }
+      return {
+        ...state,
+        filtered_posts: orderedPosts,
+        order: action.payload,
+      };
     default:
       return state;
   }

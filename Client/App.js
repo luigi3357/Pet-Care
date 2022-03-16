@@ -11,8 +11,12 @@ import MailCode from "./screens/Login/MailCode";
 import NewPassword from "./screens/Login/NewPassword";
 import Register from "./screens/Login/Register";
 import Profile from "./screens/Profile/Profile";
+<<<<<<< HEAD
 import Payment from "./screens/Payment/Payment";
 import DetailsPage from "./screens/Home/Componentes/DetailsPage";
+=======
+import Payment from "./screens/Payment/PaymentMercadoPago";
+>>>>>>> 77598d2d7b35248c2f80ce4b2373e57269daa2ba
 import Store from "./Store";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import * as Linking from "expo-linking";
@@ -40,21 +44,27 @@ function App() {
 
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="LandingPage" component={LandingPage} />
-      <Stack.Screen name="Login" component={Login} />
-      <Stack.Screen name="MailCode" component={MailCode} />
-      <Stack.Screen name="ForgetPassword" component={ForgetPassword} />
+      {/* <Stack.Screen name="LandingPage" component={LandingPage} /> */}
+      {/* <Stack.Screen name="Login" component={Login} />
       <Stack.Screen name="Register" component={Register} />
       <Stack.Screen name="NewPassword" component={NewPassword} />
+      <Stack.Screen name="MailCode" component={MailCode} />
+      
+      <Stack.Screen name="ForgetPassword" component={ForgetPassword} /> */}
+      {/* <Stack.Screen name="Payment" component={Payment} />  */}
       <Stack.Screen name="HomeScreen" component={HomeScreen} />
       <Stack.Screen name="Review" component={Review} />
       <Stack.Screen name="SelectPublic" component={SelectPublic} />
       <Stack.Screen name="Form" component={FormCard} />
       <Stack.Screen name="ServicioForm" component={ServicioForm} />
+<<<<<<< HEAD
       <Stack.Screen name="Payment" component={Payment} /> 
       <Stack.Screen name="DetailsPage" component={DetailsPage} />
+=======
+>>>>>>> 77598d2d7b35248c2f80ce4b2373e57269daa2ba
       <Stack.Screen name="Profile" component={Profile} />
       <Stack.Screen name="Maps" component={Maps}/>
+     
     </Stack.Navigator>
   );
 }

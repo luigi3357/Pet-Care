@@ -3,7 +3,7 @@ import axios from "axios";
 import ACTION_TYPES from "./ActionTypes.js";
 import { fetchData, fetchSuccess, fetchError } from "./ApiAction";
 
-export const localhost = "192.168.65.104"; //'192.168.0.11'
+export const localhost = "192.168.100.8"; //'192.168.0.11'
 
 export const getUser = (payload) => (dispatch) => {
   dispatch(fetchData());
@@ -161,6 +161,12 @@ export function applyFilters() {
     type: ACTION_TYPES.APPLY_FILTERS,
   };
 }
+export function deleteSingleFilter(filter) {
+  return {
+    type: ACTION_TYPES.DELETE_SINGLE_FILTER,
+    payload: filter
+  };
+}
 
 // export function getFiltered(filter){
 //   return function(dispatch){
@@ -182,11 +188,11 @@ export function applyFilters() {
 //       });
 //   }
 
-export function getFiltered(filter) {
+export function getFiltered(order) {
   return function (dispatch) {
     dispatch({
       type: ACTION_TYPES.GET_FILTERED,
-      payload: filter,
+      payload: order,
     });
   };
 }
