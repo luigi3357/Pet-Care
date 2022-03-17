@@ -164,7 +164,7 @@ export function applyFilters() {
 export function deleteSingleFilter(filter) {
   return {
     type: ACTION_TYPES.DELETE_SINGLE_FILTER,
-    payload: filter
+    payload: filter,
   };
 }
 
